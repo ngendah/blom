@@ -17,3 +17,5 @@ _deps
 *ninja
 *ninja_*
 *debug*
+http_archives/
+protos/

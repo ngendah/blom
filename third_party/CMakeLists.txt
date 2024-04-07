@@ -34,13 +34,27 @@ FetchContent_Populate(
         SOURCE_DIR protobuf
 )
 
+FetchContent_Populate(
+        grpc
+        URL "https://github.com/grpc/grpc/archive/refs/tags/v1.58.1.tar.gz"
+        URL_HASH "SHA256=860bf758a1437a03318bf09db8e87cb8149a2f578954110ce8549e147f868b62"
+        SOURCE_DIR grpc
+)
+
+FetchContent_Populate(
+        tensorflow
+        URL "https://github.com/tensorflow/tensorflow/archive/refs/tags/v2.13.0.zip"
+        URL_HASH "SHA256=447cdb65c80c86d6c6cf1388684f157612392723eaea832e6392d219098b49de"
+        SOURCE_DIR tensorflow
+)
+
 FetchContent_MakeAvailable(eigen3)
 
 add_subdirectory(abseil)  # git submodule
 add_subdirectory(boost_math) # git submodule
 add_subdirectory(googletest) # git submodule
-
 add_subdirectory(zlib)
 add_subdirectory(rapidjson)
+add_subdirectory(grpc)
 
 file(GLOB_RECURSE farmhash RELATIVE farmhash/src *.cpp *.h)
