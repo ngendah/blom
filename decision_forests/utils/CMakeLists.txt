@@ -1,6 +1,6 @@
 add_library(
  utils
- OBJECT
+ STATIC
  adaptive_work.cc
  logging_default.cc
 )
@@ -16,6 +16,14 @@ target_include_directories(utils_tests PRIVATE ${absl_SOURCE_DIR})
 target_link_libraries(
   utils_tests
   utils
+  absl::flags
+  absl::flags_commandlineflag
+  absl::flags_parse
+  absl::flags_usage
+  absl::status
+  absl::strings
+  absl::synchronization
+  absl::time
   GTest::gtest_main
 )
 include(GoogleTest)
