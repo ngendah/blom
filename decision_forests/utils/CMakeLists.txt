@@ -33,12 +33,26 @@ target_link_libraries(
   absl::time
 )
 
+add_library(
+  status_macros
+  STATIC
+  status_macros.h
+  status_macros_default.h
+)
+target_include_directories(status_macros PRIVATE ${absl_SOURCE_DIR})
+target_link_libraries(
+  status_macros
+  PRIVATE
+  absl::status
+  absl::statusor
+)
 
 enable_testing()
 add_executable(
   utils_tests 
   logging_test.cc
   adaptive_work_test.cc
+  status_macros_test.cc
 )
 target_include_directories(
   utils_tests
@@ -50,6 +64,7 @@ target_link_libraries(
   utils_tests
   logging
   adaptive_work
+  status_macros
   GTest::gtest_main GTest::gmock_main
 )
 include(GoogleTest)
