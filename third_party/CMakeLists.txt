@@ -35,12 +35,6 @@ FetchContent_Declare(
 )
 
 FetchContent_Populate(
- tensorflow
- URL "https://github.com/tensorflow/tensorflow/archive/refs/tags/v2.13.0.zip"
- URL_HASH "SHA256=447cdb65c80c86d6c6cf1388684f157612392723eaea832e6392d219098b49de"
-)
-
-FetchContent_Populate(
  farmhash
  URL "https://github.com/google/farmhash/archive/master.zip"
  URL_HASH "SHA256=d27a245e59f5e10fba10b88cb72c5f0e03d3f2936abbaf0cb78eeec686523ec1"
