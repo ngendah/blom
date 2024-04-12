@@ -47,12 +47,25 @@ target_link_libraries(
   absl::statusor
 )
 
+add_library(
+  regex
+  STATIC
+  regex.cc
+)
+target_include_directories(regex PRIVATE ${absl_SOURCE_DIR})
+target_link_libraries(
+  regex
+  PRIVATE
+  absl::strings
+)
+
 enable_testing()
 add_executable(
   utils_tests 
   logging_test.cc
   adaptive_work_test.cc
   status_macros_test.cc
+  regex_test.cc
 )
 target_include_directories(
   utils_tests
@@ -65,6 +78,7 @@ target_link_libraries(
   logging
   adaptive_work
   status_macros
+  regex
   GTest::gtest_main GTest::gmock_main
 )
 include(GoogleTest)
