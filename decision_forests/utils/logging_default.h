@@ -81,6 +81,7 @@ inline bool IsLoggingEnabled(Severity severity) {
     case Severity::FATAL:
       return true;
   }
+  return false;
 }
 
 }  // namespace logging
