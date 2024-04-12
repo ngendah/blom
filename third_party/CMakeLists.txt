@@ -47,5 +47,5 @@ FetchContent_Populate(
  SOURCE_DIR zlib
 )
 
-FetchContent_MakeAvailable(googletest abseil)
+FetchContent_MakeAvailable(googletest abseil protobuf)
 
