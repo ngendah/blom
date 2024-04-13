@@ -2,14 +2,6 @@ cmake_minimum_required(VERSION 3.22)
 
 project(yggdrasil)
 
-# find_program(PROTOC_COMPILER NAMES protoc DOC "The Google Protocol Buffers Compiler"
-#              HINTS ${CMAKE_INSTALL_PREFIX})
-# 
-# if(NOT PROTOC_COMPILER)
-#   message(WARNING "Could not find protoc compiler")
-# endif()
-
-
 # TODO mv to CMakeUserPresets.json
 set(FETCHCONTENT_POPULATE_EXTERNAL_PROJECT ON)
 set(CMAKE_BUILD_TYPE Debug)

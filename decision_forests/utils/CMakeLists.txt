@@ -60,12 +60,12 @@ target_link_libraries(
 )
 
 enable_testing()
-# add_custom_command(
-#   OUTPUT distribution.pb.h distribution.pb.cc
-#   COMMAND ${PROTOC_COMPILER} -I=${CMAKE_CURRENT_SOURCE_DIR} --cpp_out=${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
-#   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
-#   VERBATIM
-# )
+add_custom_command(
+  OUTPUT distribution.pb.h distribution.pb.cc
+  COMMAND ${protobuf_BINARY_DIR}/protoc -I=${CMAKE_CURRENT_SOURCE_DIR} --cpp_out=${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
+  DEPENDS ${protobuf_BINARY_DIR}/protoc ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
+  VERBATIM
+)
 add_executable(
   utils_tests 
   logging_test.cc
