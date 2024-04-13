@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 3.22)
 
 project(yggdrasil)
 
-find_program(PROTOC_COMPILER NAMES protoc DOC "The Google Protocol Buffers Compiler"
-             HINTS ${CMAKE_INSTALL_PREFIX})
+# find_program(PROTOC_COMPILER NAMES protoc DOC "The Google Protocol Buffers Compiler"
+#              HINTS ${CMAKE_INSTALL_PREFIX})
+# 
+# if(NOT PROTOC_COMPILER)
+#   message(WARNING "Could not find protoc compiler")
+# endif()
 
-if(NOT PROTOC_COMPILER)
-  message(WARNING "Could not find protoc compiler")
-endif()
 
 # TODO mv to CMakeUserPresets.json
 set(FETCHCONTENT_POPULATE_EXTERNAL_PROJECT ON)
@@ -24,7 +25,7 @@ set(protobuf_ABSL_PROVIDER package)
 set(protobuf_USE_EXTERNAL_GTEST ON)
 set(protobuf_BUILD_TESTS OFF)
 set(protobuf_BUILD_LIBUPB OFF)
-set(protobuf_BUILD_PROTOBUF_BINARIES OFF)
+set(protobuf_BUILD_PROTOBUF_BINARIES ON)
 
 add_subdirectory(third_party)
 add_subdirectory(decision_forests)

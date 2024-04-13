@@ -1,20 +1,31 @@
 include(FetchContent)
 
 FetchContent_Declare(
- eigen3
- URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
-)
-
-FetchContent_Declare(
  googletest
  URL "https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz"
  URL_HASH "SHA256=8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7"
 )
 
+FetchContent_MakeAvailable(googletest)
+
+# https://github.com/protocolbuffers/protobuf/issues/12185
+
+set(ABSL_ENABLE_INSTALL ON)
+
 FetchContent_Declare(
  abseil
  URL "https://github.com/abseil/abseil-cpp/releases/download/20230802.2/abseil-cpp-20230802.2.tar.gz"
 )
+
+FetchContent_MakeAvailable(abseil)
+
+FetchContent_Declare(
+ protobuf
+ URL "https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protobuf-24.3.tar.gz"
+ URL_HASH "SHA256=07d69502e58248927b58c7d7e7424135272ba5b2852a753ab6b67e62d2d29355"
+)
+
+FetchContent_MakeAvailable(protobuf)
 
 FetchContent_Declare(
  rapidjson
@@ -23,9 +34,8 @@ FetchContent_Declare(
 )
 
 FetchContent_Declare(
- protobuf
- URL "https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protobuf-24.3.tar.gz"
- URL_HASH "SHA256=07d69502e58248927b58c7d7e7424135272ba5b2852a753ab6b67e62d2d29355"
+ eigen3
+ URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
 )
 
 FetchContent_Declare(
@@ -46,6 +56,4 @@ FetchContent_Populate(
  URL "https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz"
  SOURCE_DIR zlib
 )
-
-FetchContent_MakeAvailable(googletest abseil protobuf)
 

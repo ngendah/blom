@@ -60,19 +60,18 @@ target_link_libraries(
 )
 
 enable_testing()
-add_custom_command(
-  OUTPUT distribution.pb.h distribution.pb.cc
-  COMMAND ${PROTOC_COMPILER} -I=${CMAKE_CURRENT_SOURCE_DIR} --cpp_out=${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
-  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
-  VERBATIM
-)
+# add_custom_command(
+#   OUTPUT distribution.pb.h distribution.pb.cc
+#   COMMAND ${PROTOC_COMPILER} -I=${CMAKE_CURRENT_SOURCE_DIR} --cpp_out=${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
+#   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
+#   VERBATIM
+# )
 add_executable(
   utils_tests 
   logging_test.cc
   adaptive_work_test.cc
   status_macros_test.cc
   regex_test.cc
-  distribution.pb.cc
 )
 target_include_directories(
   utils_tests
@@ -89,7 +88,6 @@ target_link_libraries(
   status_macros
   regex
 # third_party targets
-  protobuf
   GTest::gtest_main GTest::gmock_main
 )
 include(GoogleTest)
