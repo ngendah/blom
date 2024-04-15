@@ -23,7 +23,7 @@
 
 syntax = "proto2";
 
-package decision_forests.utils.proto;
+package yggdrasil_decision_forests.utils.proto;
 
 // Represents the (discrete) probability distribution of a random variable with
 // natural (i.e. integer greater of equal to zero) support: counts[i]/sum is the
