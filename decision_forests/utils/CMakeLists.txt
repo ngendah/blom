@@ -80,6 +80,74 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
+add_library(
+  bytestream
+  STATIC
+  bytestream.cc
+)
+target_include_directories(
+  bytestream
+  PRIVATE
+  ${absl_SOURCE_DIR}
+)
+target_link_libraries(
+  bytestream
+  PRIVATE
+  absl::status
+  absl::statusor
+  absl::strings
+)
+
+add_library(
+  filesystem
+  STATIC
+  filesystem_default.cc
+  filesystem.cc
+)
+target_include_directories(
+  filesystem
+  PRIVATE
+  logging
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  filesystem
+  PRIVATE
+  absl::strings
+  absl::random_distributions
+  absl::random_seed_sequences
+  absl::random_internal_randen
+  protobuf::libprotoc
+)
+if(NOT ${ANDROID_PLATFORM})
+  target_link_libraries(
+    filesystem
+    PRIVATE
+    stdc++fs
+  )
+endif()
+
+# add_library(
+#   csv
+#   STATIC
+#   csv.cc
+# )
+# target_include_directories(
+#   csv
+#   PRIVATE
+#   ${absl_SOURCE_DIR}
+# )
+# target_link_libraries(
+#   csv
+#   PRIVATE
+#   absl::status
+#   absl::statusor
+#   absl::strings
+#   protobuf::libprotoc
+# )
+
+
 enable_testing()
 add_custom_command(
   OUTPUT ${generated_sources_dir}/distribution.pb.h ${generated_sources_dir}/distribution.pb.cc
@@ -87,14 +155,12 @@ add_custom_command(
   DEPENDS ${protobuf_BINARY_DIR}/protoc ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
   VERBATIM
 )
+file(GLOB test_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*test.cc)
 add_executable(
   utils_tests 
-  logging_test.cc
-  adaptive_work_test.cc
-  status_macros_test.cc
-  regex_test.cc
-  protobuf_test.cc
+  ${test_SRC_FILES}
   distribution.pb.cc
+  testing_macros_test.cc
 )
 target_include_directories(
   utils_tests
@@ -112,6 +178,8 @@ target_link_libraries(
   status_macros
   regex
   protobuf
+  bytestream
+  filesystem
 # third_party targets
   absl::statusor
   protobuf::libprotoc
