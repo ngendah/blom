@@ -57,3 +57,4 @@ FetchContent_Populate(
  SOURCE_DIR zlib
 )
 
+include(farmhash.cmake)

@@ -1,4 +1,5 @@
-farmhash*
+farmhash/
+farmhash-*/
 protobuf*
 rapidjson*
 zlib*
