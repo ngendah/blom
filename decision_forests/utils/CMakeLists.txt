@@ -170,6 +170,23 @@ target_link_libraries(
   absl::memory
 )
 
+add_library(
+  concurrency
+  STATIC
+  concurrency.cc
+  concurrency_default.cc
+)
+target_include_directories(
+  concurrency
+  PRIVATE
+  ${absl_SOURCE_DIR}
+)
+target_link_libraries(
+  concurrency
+  PRIVATE
+  logging
+)
+
 # add_library(
 #   csv
 #   STATIC
@@ -220,6 +237,7 @@ target_link_libraries(
   filesystem
   sharded_io
   registration
+  concurrency
 # third_party targets
   absl::statusor
   protobuf::libprotoc
