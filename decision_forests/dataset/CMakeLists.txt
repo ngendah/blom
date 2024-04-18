@@ -94,7 +94,6 @@ target_link_libraries(
   absl::statusor
   absl::raw_hash_set
 )
-
 # 
 # add_library(
 #   vertical_dataset
@@ -125,6 +124,32 @@ target_link_libraries(
 #   protobuf::libprotoc
 # )
 
+add_library(
+  example_reader
+  STATIC
+  example_reader.cc
+)
+target_include_directories(
+  example_reader
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  example_reader
+  PRIVATE
+  data_spec
+  formats
+  status_macros
+  absl::memory
+  absl::status
+  absl::statusor
+  absl::strings
+  absl::string_view
+  protobuf::libprotoc
+)
+
+
 # Testing artifacts
 
 file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
@@ -149,6 +174,7 @@ target_link_libraries(
   data_spec
   example_builder
   data_spec_inference
+  example_reader
 # third_party targets
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
