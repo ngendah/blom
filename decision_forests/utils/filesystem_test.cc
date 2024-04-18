@@ -42,18 +42,18 @@ TEST(Filesystem, Match) {
   std::vector<std::string> paths;
   EXPECT_OK(file::Match(
       file::JoinPath(DataRootDirectory(),
-                     "test_data/dataset/"
+                     "testing_data/dataset/"
                      "toy.tfe-tfrecord*"),
       &paths, file::Defaults()));
   EXPECT_THAT(
       paths, ElementsAre(
                  file::JoinPath(
                      DataRootDirectory(),
-                     "test_data/dataset/"
+                     "testing_data/dataset/"
                      "toy.tfe-tfrecord-00000-of-00002"),
                  file::JoinPath(
                      DataRootDirectory(),
-                     "test_data/dataset/"
+                     "testing_data/dataset/"
                      "toy.tfe-tfrecord-00001-of-00002")));
 }
 

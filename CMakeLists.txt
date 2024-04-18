@@ -22,3 +22,19 @@ set(protobuf_BUILD_PROTOBUF_BINARIES ON)
 add_subdirectory(third_party)
 add_subdirectory(decision_forests)
 
+# testing executable
+enable_testing()
+add_executable(yggdrasil_tests)
+target_link_directories(
+  yggdrasil_tests
+  PUBLIC
+  ${CMAKE_PROJECT_PATH}/decision_forests
+)
+target_link_libraries(
+  yggdrasil_tests
+  PRIVATE
+  utils_tests
+)
+include(GoogleTest)
+gtest_discover_tests(yggdrasil_tests)
+

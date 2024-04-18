@@ -1,3 +1,5 @@
+generate_cpp_from_protos("*.proto" ${CMAKE_CURRENT_SOURCE_DIR})
+
 add_library(
   logging
   STATIC
@@ -107,7 +109,6 @@ add_library(
 target_include_directories(
   filesystem
   PRIVATE
-  logging
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
 )
@@ -127,6 +128,29 @@ if(NOT ${ANDROID_PLATFORM})
     stdc++fs
   )
 endif()
+
+add_library(
+  sharded_io
+  STATIC
+  sharded_io.cc
+)
+target_include_directories(
+  sharded_io
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  sharded_io
+  PRIVATE
+  logging
+  filesystem
+  absl::strings
+  absl::status
+  absl::statusor
+  absl::string_view
+  protobuf::libprotoc
+)
 
 # add_library(
 #   csv
@@ -148,19 +172,14 @@ endif()
 # )
 
 
-enable_testing()
-add_custom_command(
-  OUTPUT ${generated_sources_dir}/distribution.pb.h ${generated_sources_dir}/distribution.pb.cc
-  COMMAND ${protobuf_BINARY_DIR}/protoc -I=${CMAKE_CURRENT_SOURCE_DIR} --cpp_out=${generated_sources_dir} ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
-  DEPENDS ${protobuf_BINARY_DIR}/protoc ${CMAKE_CURRENT_SOURCE_DIR}/distribution.proto
-  VERBATIM
-)
-file(GLOB test_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*test.cc)
-add_executable(
+# Testing artifacts
+
+file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+add_library(
   utils_tests 
+  OBJECT
   ${test_SRC_FILES}
   distribution.pb.cc
-  testing_macros_test.cc
 )
 target_include_directories(
   utils_tests
@@ -180,11 +199,10 @@ target_link_libraries(
   protobuf
   bytestream
   filesystem
+  sharded_io
 # third_party targets
   absl::statusor
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
 )
-include(GoogleTest)
-gtest_discover_tests(utils_tests)
 
