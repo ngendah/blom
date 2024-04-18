@@ -67,6 +67,34 @@ target_link_libraries(
   absl::string_view
   protobuf::libprotoc
 )
+
+add_library(
+  data_spec_inference
+  STATIC
+  data_spec_inference.cc
+)
+target_include_directories(
+  data_spec_inference
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  data_spec_inference
+  PRIVATE
+  logging
+  sharded_io
+  concurrency
+  status_macros
+  data_spec
+  formats
+  absl::string_view
+  absl::status
+  absl::statusor
+  absl::raw_hash_set
+)
+
 # 
 # add_library(
 #   vertical_dataset
@@ -120,6 +148,7 @@ target_link_libraries(
   formats
   data_spec
   example_builder
+  data_spec_inference
 # third_party targets
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
