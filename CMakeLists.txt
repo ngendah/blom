@@ -34,6 +34,7 @@ target_link_libraries(
   yggdrasil_tests
   PRIVATE
   utils_tests
+  dataset_tests
 )
 include(GoogleTest)
 gtest_discover_tests(yggdrasil_tests)

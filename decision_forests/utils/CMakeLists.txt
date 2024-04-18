@@ -191,6 +191,7 @@ target_include_directories(
 )
 target_link_libraries(
   utils_tests
+  PRIVATE
 # utils targets
   logging
   adaptive_work

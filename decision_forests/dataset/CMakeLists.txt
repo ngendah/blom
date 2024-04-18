@@ -97,10 +97,12 @@ target_link_libraries(
 #   protobuf::libprotoc
 # )
 
-enable_testing()
-file(GLOB test_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*test.cc)
-add_executable(
+# Testing artifacts
+
+file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+add_library(
   dataset_tests 
+  OBJECT
   ${test_SRC_FILES}
 )
 target_include_directories(
@@ -113,6 +115,7 @@ target_include_directories(
 )
 target_link_libraries(
   dataset_tests
+  PRIVATE
 # local targets
   formats
   data_spec
@@ -121,6 +124,4 @@ target_link_libraries(
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
 )
-include(GoogleTest)
-gtest_discover_tests(dataset_tests)
 
