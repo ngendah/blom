@@ -39,32 +39,61 @@ target_link_libraries(
   PRIVATE
   logging
   regex
-  farmhash::farmhash
   absl::strings
   absl::string_view
+  farmhash::farmhash
   protobuf::libprotoc
 )
 
+add_library(
+  example_builder
+  STATIC
+  example_builder.cc
+  example.pb.cc
+  data_spec.pb.cc
+)
+target_include_directories(
+  example_builder
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  example_builder
+  PRIVATE
+  logging
+  data_spec
+  absl::string_view
+  protobuf::libprotoc
+)
+# 
 # add_library(
-#   example_builder
+#   vertical_dataset
 #   STATIC
-#   example_builder.cc
+#   vertical_dataset.cc
 #   example.pb.cc
 #   data_spec.pb.cc
 # )
 # target_include_directories(
-#   example_builder
+#   vertical_dataset
 #   PRIVATE
 #   ${absl_SOURCE_DIR}
 #   ${farmhash_SOURCE_DIR}/src
 #   ${protobuf_SOURCE_DIR}/src
 # )
 # target_link_libraries(
-#   example_builder
+#   vertical_dataset
 #   PRIVATE
+#   status_macros
 #   logging
-#   farmhash::farmhash
+#   data_spec
+#   example_builder
 #   absl::string_view
+#   absl::cord
+#   absl::statusor
+#   absl::memory
+#   farmhash::farmhash
 #   protobuf::libprotoc
 # )
 
@@ -79,6 +108,7 @@ target_include_directories(
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
   ${protobuf_SOURCE_DIR}/src
 )
 target_link_libraries(
@@ -86,6 +116,7 @@ target_link_libraries(
 # local targets
   formats
   data_spec
+  example_builder
 # third_party targets
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
