@@ -152,6 +152,24 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
+add_library(
+  registration
+  STATIC
+  registration.cc
+)
+target_include_directories(
+  registration
+  PRIVATE
+  ${absl_SOURCE_DIR}
+)
+target_link_libraries(
+  registration
+  PRIVATE
+  absl::status
+  absl::statusor
+  absl::memory
+)
+
 # add_library(
 #   csv
 #   STATIC
@@ -201,6 +219,7 @@ target_link_libraries(
   bytestream
   filesystem
   sharded_io
+  registration
 # third_party targets
   absl::statusor
   protobuf::libprotoc
