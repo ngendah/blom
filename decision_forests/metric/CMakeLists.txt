@@ -1,24 +1,24 @@
 generate_cpp_from_protos("*.proto" ${CMAKE_CURRENT_SOURCE_DIR})
 
-# add_library(
-#   metric
-#   STATIC
-#   metric.cc
-# )
-# target_include_directories(
-#   metric
-#   PRIVATE
-#   ${absl_SOURCE_DIR}
-#   ${protobuf_SOURCE_DIR}/src
-# )
-# target_link_libraries(
-#   metric
-#   PRIVATE
-#   absl::string_view
-#   protobuf::libprotoc
-# )
-# 
-# 
+add_library(
+  ranking_utils
+  STATIC
+  ranking_mrr.cc
+  ranking_ndcg.cc
+)
+target_include_directories(
+  ranking_utils
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  ranking_utils
+  PRIVATE
+  absl::string_view
+)
+
+
 # # Testing artifact
 # 
 # file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
