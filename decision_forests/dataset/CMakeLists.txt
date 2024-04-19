@@ -149,6 +149,38 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
+add_library(
+  example_writer
+  STATIC
+  example_writer.cc
+)
+target_include_directories(
+  example_writer
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+)
+target_link_libraries(
+  example_writer
+  PRIVATE
+  data_spec
+  formats
+  registration
+  status_macros
+  sharded_io
+  absl::strings
+  absl::string_view
+  absl::memory
+  absl::status
+  absl::statusor
+  absl::strings
+  absl::string_view
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
+
 # Testing artifacts
 
 file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
@@ -174,6 +206,7 @@ target_link_libraries(
   example_builder
   data_spec_inference
   example_reader
+  example_writer
 # third_party targets
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
