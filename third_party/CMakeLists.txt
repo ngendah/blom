@@ -28,6 +28,14 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(protobuf)
 
 FetchContent_Declare(
+  boost_math
+  URL "https://github.com/boostorg/math/archive/refs/tags/boost-1.83.0.tar.gz"
+  URL_HASH "SHA256=53e5f7539a66899fe0fca3080405cbd5f7959da5394ec13664746741aece1705"
+)
+
+FetchContent_MakeAvailable(boost_math)
+
+FetchContent_Declare(
  rapidjson
  URL "https://github.com/Tencent/rapidjson/archive/v1.1.0.zip"
  URL_HASH "SHA256=8e00c38829d6785a2dfb951bb87c6974fa07dfe488aa5b25deec4b8bc0f6a3ab"
