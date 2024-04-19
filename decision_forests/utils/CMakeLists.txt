@@ -211,13 +211,13 @@ target_link_libraries(
 
 file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
-  utils_tests 
+  utils_tests_obj
   OBJECT
   ${test_SRC_FILES}
   distribution.pb.cc
 )
 target_include_directories(
-  utils_tests
+  utils_tests_obj
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -225,7 +225,7 @@ target_include_directories(
   ${generated_sources_dir}
 )
 target_link_libraries(
-  utils_tests
+  utils_tests_obj
   PRIVATE
 # utils targets
   logging

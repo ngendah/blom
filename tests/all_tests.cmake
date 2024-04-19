@@ -9,8 +9,8 @@ target_link_directories(
 target_link_libraries(
   yggdrasil_tests
   PRIVATE
-  utils_tests
-  dataset_tests
+  utils_tests_obj
+  dataset_tests_obj
 )
 include(GoogleTest)
 gtest_discover_tests(yggdrasil_tests)
