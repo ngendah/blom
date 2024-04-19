@@ -149,7 +149,6 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
-
 # Testing artifacts
 
 file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
