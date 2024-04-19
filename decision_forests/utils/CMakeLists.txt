@@ -207,7 +207,7 @@ target_link_libraries(
 # )
 
 
-# Testing artifacts
+# Testing artifact
 
 file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
@@ -227,7 +227,7 @@ target_include_directories(
 target_link_libraries(
   utils_tests_obj
   PRIVATE
-# utils targets
+# local objects
   logging
   adaptive_work
   status_macros
@@ -238,7 +238,7 @@ target_link_libraries(
   sharded_io
   registration
   concurrency
-# third_party targets
+# third_party objects
   absl::statusor
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main

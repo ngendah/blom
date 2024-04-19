@@ -181,7 +181,7 @@ target_link_libraries(
 )
 
 
-# Testing artifacts
+# Testing artifact
 
 file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
@@ -200,14 +200,14 @@ target_include_directories(
 target_link_libraries(
   dataset_tests_obj
   PRIVATE
-# local targets
+# local objects
   formats
   data_spec
   example_builder
   data_spec_inference
   example_reader
   example_writer
-# third_party targets
+# third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
 )
