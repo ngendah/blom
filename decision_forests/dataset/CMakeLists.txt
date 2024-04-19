@@ -94,35 +94,6 @@ target_link_libraries(
   absl::statusor
   absl::raw_hash_set
 )
-# 
-# add_library(
-#   vertical_dataset
-#   STATIC
-#   vertical_dataset.cc
-#   example.pb.cc
-#   data_spec.pb.cc
-# )
-# target_include_directories(
-#   vertical_dataset
-#   PRIVATE
-#   ${absl_SOURCE_DIR}
-#   ${farmhash_SOURCE_DIR}/src
-#   ${protobuf_SOURCE_DIR}/src
-# )
-# target_link_libraries(
-#   vertical_dataset
-#   PRIVATE
-#   status_macros
-#   logging
-#   data_spec
-#   example_builder
-#   absl::string_view
-#   absl::cord
-#   absl::statusor
-#   absl::memory
-#   farmhash::farmhash
-#   protobuf::libprotoc
-# )
 
 add_library(
   example_reader
@@ -180,6 +151,34 @@ target_link_libraries(
   farmhash::farmhash
 )
 
+add_library(
+  vertical_dataset
+  STATIC
+  vertical_dataset.cc
+  vertical_dataset_io.cc
+)
+target_include_directories(
+  vertical_dataset
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+)
+target_link_libraries(
+  vertical_dataset
+  PRIVATE
+  status_macros
+  logging
+  data_spec
+  example_builder
+  absl::string_view
+  absl::cord
+  absl::statusor
+  absl::memory
+  farmhash::farmhash
+  protobuf::libprotoc
+)
+
 
 # Testing artifact
 
@@ -207,6 +206,7 @@ target_link_libraries(
   data_spec_inference
   example_reader
   example_writer
+  vertical_dataset
 # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
