@@ -1,10 +1,8 @@
-generate_cpp_from_protos("*.proto" ${CMAKE_CURRENT_SOURCE_DIR})
-
 add_library(
   formats
   STATIC
   formats.cc
-  formats.pb.cc
+  formats.proto
 )
 target_include_directories(
   formats
@@ -19,13 +17,18 @@ target_link_libraries(
   absl::string_view
   protobuf::libprotoc
 )
+protobuf_generate(
+  TARGET formats
+  IMPORT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
+  PROTOC_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 add_library(
   data_spec
   STATIC
   data_spec.cc
-  example.pb.cc
-  data_spec.pb.cc
+  example.proto
+  data_spec.proto
 )
 target_include_directories(
   data_spec
@@ -44,13 +47,18 @@ target_link_libraries(
   farmhash::farmhash
   protobuf::libprotoc
 )
+protobuf_generate(
+  TARGET data_spec
+  IMPORT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
+  PROTOC_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 add_library(
   example_builder
   STATIC
   example_builder.cc
-  example.pb.cc
-  data_spec.pb.cc
+  example.proto
+  data_spec.proto
 )
 target_include_directories(
   example_builder
@@ -66,6 +74,11 @@ target_link_libraries(
   data_spec
   absl::string_view
   protobuf::libprotoc
+)
+protobuf_generate(
+  TARGET example_builder
+  IMPORT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
+  PROTOC_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_library(

@@ -1,5 +1,3 @@
-generate_cpp_from_protos("*.proto" ${CMAKE_CURRENT_SOURCE_DIR})
-
 add_library(
   ranking_utils
   STATIC
@@ -10,7 +8,6 @@ target_include_directories(
   ranking_utils
   PRIVATE
   ${absl_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
 )
 target_link_libraries(
   ranking_utils

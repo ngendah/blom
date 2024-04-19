@@ -65,4 +65,6 @@ FetchContent_Populate(
  SOURCE_DIR zlib
 )
 
+include(${protobuf_SOURCE_DIR}/cmake/protobuf-generate.cmake)
 include(farmhash.cmake)
+

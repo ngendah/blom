@@ -1,5 +1,3 @@
-generate_cpp_from_protos("*.proto" ${CMAKE_CURRENT_SOURCE_DIR})
-
 add_library(
   logging
   STATIC
@@ -187,25 +185,6 @@ target_link_libraries(
   logging
 )
 
-# add_library(
-#   csv
-#   STATIC
-#   csv.cc
-# )
-# target_include_directories(
-#   csv
-#   PRIVATE
-#   ${absl_SOURCE_DIR}
-# )
-# target_link_libraries(
-#   csv
-#   PRIVATE
-#   absl::status
-#   absl::statusor
-#   absl::strings
-#   protobuf::libprotoc
-# )
-
 
 # Testing artifact
 
@@ -214,7 +193,7 @@ add_library(
   utils_tests_obj
   OBJECT
   ${test_SRC_FILES}
-  distribution.pb.cc
+  distribution.proto
 )
 target_include_directories(
   utils_tests_obj
@@ -242,5 +221,10 @@ target_link_libraries(
   absl::statusor
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
+)
+protobuf_generate(
+  TARGET utils_tests_obj
+  IMPORT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
+  PROTOC_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
