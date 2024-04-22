@@ -1,3 +1,5 @@
+include(CCMakeProtos.cmake)
+
 add_library(
   logging
   STATIC
@@ -141,6 +143,7 @@ target_include_directories(
 target_link_libraries(
   sharded_io
   PRIVATE
+  distribution_proto
   logging
   filesystem
   absl::strings
@@ -185,6 +188,48 @@ target_link_libraries(
   logging
 )
 
+add_library(
+  html
+  STATIC
+  html.cc
+)
+target_include_directories(
+  html
+  PRIVATE
+  ${absl_SOURCE_DIR}
+)
+target_link_libraries(
+  html
+  PRIVATE
+  absl::strings
+)
+
+add_library(
+  distribution
+  STATIC
+  distribution.cc
+)
+target_include_directories(
+  distribution
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+)
+target_link_libraries(
+  distribution
+  PRIVATE
+  distribution_proto
+  data_spec_proto
+  logging
+  html
+  absl::strings
+  absl::cord
+  absl::string_view
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
 
 # Testing artifact
 
@@ -193,7 +238,6 @@ add_library(
   utils_tests_obj
   OBJECT
   ${test_SRC_FILES}
-  distribution.proto
 )
 target_include_directories(
   utils_tests_obj
@@ -201,12 +245,14 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
-  ${generated_sources_dir}
+  ${farmhash_SOURCE_DIR}/src
 )
 target_link_libraries(
   utils_tests_obj
   PRIVATE
 # local objects
+  distribution_proto
+  data_spec
   logging
   adaptive_work
   status_macros
@@ -217,14 +263,11 @@ target_link_libraries(
   sharded_io
   registration
   concurrency
+  html
+  distribution
 # third_party objects
   absl::statusor
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
-)
-protobuf_generate(
-  TARGET utils_tests_obj
-  IMPORT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
-  PROTOC_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
