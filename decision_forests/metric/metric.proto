@@ -17,11 +17,11 @@ syntax = "proto2";
 
 package yggdrasil_decision_forests.metric.proto;
 
-import "yggdrasil_decision_forests/dataset/data_spec.proto";
-import "yggdrasil_decision_forests/dataset/weight.proto";
-import "yggdrasil_decision_forests/model/abstract_model.proto";
-import "yggdrasil_decision_forests/model/prediction.proto";
-import "yggdrasil_decision_forests/utils/distribution.proto";
+import "dataset/data_spec.proto";
+import "dataset/weight.proto";
+import "model/abstract_model.proto";
+import "model/prediction.proto";
+import "utils/distribution.proto";
 
 // Configuration of the evaluation of a model. Describes how the evaluation
 // should be done.

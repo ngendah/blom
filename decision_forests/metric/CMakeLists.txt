@@ -8,11 +8,34 @@ target_include_directories(
   ranking_utils
   PRIVATE
   ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
 )
 target_link_libraries(
   ranking_utils
   PRIVATE
   absl::string_view
+  protobuf::libprotoc
+)
+
+add_library(
+  metric
+  STATIC
+  metric.cc
+)
+target_include_directories(
+  metric
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${boost_math_SOURCE_DIR}/include
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  metric
+  PRIVATE
+  metric_proto
+  absl::strings
+  protobuf::libprotoc
 )
 
 

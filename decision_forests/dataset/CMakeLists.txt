@@ -1,5 +1,3 @@
-include(CCMakeProtos.cmake)
-
 add_library(
   formats
   STATIC
@@ -10,11 +8,12 @@ target_include_directories(
   PRIVATE
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}/dataset
 )
 target_link_libraries(
   formats
   PRIVATE
-  formats_proto
+  dataset_proto
   logging
   absl::string_view
   protobuf::libprotoc
@@ -35,8 +34,7 @@ target_include_directories(
 target_link_libraries(
   data_spec
   PRIVATE
-  example_proto
-  data_spec_proto
+  dataset_proto
   logging
   regex
   absl::strings
@@ -60,8 +58,7 @@ target_include_directories(
 target_link_libraries(
   example_builder
   PRIVATE
-  example_proto
-  data_spec_proto
+  dataset_proto
   logging
   data_spec
   absl::string_view
@@ -199,6 +196,8 @@ target_include_directories(
 target_link_libraries(
   dataset_tests_obj
   PRIVATE
+# other project objects
+  utils_proto
 # local objects
   formats
   data_spec

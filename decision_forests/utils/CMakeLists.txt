@@ -1,5 +1,3 @@
-include(CCMakeProtos.cmake)
-
 add_library(
   logging
   STATIC
@@ -143,7 +141,7 @@ target_include_directories(
 target_link_libraries(
   sharded_io
   PRIVATE
-  distribution_proto
+  utils_proto
   logging
   filesystem
   absl::strings
@@ -215,12 +213,12 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
   ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}/utils
 )
 target_link_libraries(
   distribution
   PRIVATE
-  distribution_proto
-  data_spec_proto
+  utils_proto
   logging
   html
   absl::strings
@@ -246,13 +244,16 @@ target_include_directories(
   ${googletest_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
   ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}/utils
 )
 target_link_libraries(
   utils_tests_obj
   PRIVATE
-# local objects
-  distribution_proto
+# other project objects
+  dataset_proto
   data_spec
+# this objects
+  utils_proto
   logging
   adaptive_work
   status_macros
