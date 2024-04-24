@@ -27,10 +27,10 @@
 #include "absl/strings/cord.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
-#include "distribution.pb.h"
 #include "html.h"
 #include "logging.h"
 #include "status_macros.h"
+#include "utils/distribution.pb.h"
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec.h"
 

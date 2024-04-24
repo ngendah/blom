@@ -213,7 +213,7 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
   ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}/utils
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   distribution
@@ -267,7 +267,7 @@ target_include_directories(
   ${googletest_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
   ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}/utils
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   utils_tests_obj

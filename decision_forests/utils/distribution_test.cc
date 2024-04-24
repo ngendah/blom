@@ -23,7 +23,7 @@
 #include "gtest/gtest.h"
 #include "absl/strings/str_replace.h"
 #include "dataset/data_spec.pb.h"
-#include "distribution.pb.h"
+#include "utils/distribution.pb.h"
 #include "test.h"
 
 namespace yggdrasil_decision_forests {

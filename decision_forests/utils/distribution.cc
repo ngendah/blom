@@ -15,7 +15,7 @@
 
 #include "distribution.h"
 
-#include "distribution.pb.h"
+#include "utils/distribution.pb.h"
 #include "logging.h"
 
 namespace yggdrasil_decision_forests {

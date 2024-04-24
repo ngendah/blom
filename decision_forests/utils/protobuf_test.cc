@@ -17,7 +17,7 @@
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-#include "distribution.pb.h"
+#include "utils/distribution.pb.h"
 
 namespace yggdrasil_decision_forests {
 namespace utils {
