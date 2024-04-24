@@ -228,6 +228,29 @@ target_link_libraries(
   farmhash::farmhash
 )
 
+add_library(
+  plot
+  STATIC
+  plot.cc
+)
+target_include_directories(
+  plot
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+)
+target_link_libraries(
+  plot
+  PRIVATE
+  logging
+  html
+  absl::strings
+  absl::cord
+  absl::string_view
+  farmhash::farmhash
+)
+
 
 # Testing artifact
 
@@ -266,6 +289,7 @@ target_link_libraries(
   concurrency
   html
   distribution
+  plot
 # third_party objects
   absl::statusor
   protobuf::libprotoc
