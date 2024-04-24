@@ -21,12 +21,14 @@ add_library(
   metric
   STATIC
   metric.cc
+  report.cc
 )
 target_include_directories(
   metric
   PRIVATE
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
   ${boost_math_SOURCE_DIR}/include
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
@@ -34,35 +36,117 @@ target_link_libraries(
   metric
   PRIVATE
   metric_proto
+  html
   absl::strings
   protobuf::libprotoc
 )
 
+add_library(
+  report
+  STATIC
+  report.cc
+)
+target_include_directories(
+  report
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${boost_math_SOURCE_DIR}/include
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  report
+  PRIVATE
+  model_proto
+  distribution
+  html
+  plot
+  absl::strings
+  protobuf::libprotoc
+  farmhash::farmhash
+)
 
-# # Testing artifact
-# 
-# file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-# add_library(
-#   metric_tests_obj 
-#   OBJECT
-#   ${test_SRC_FILES}
-# )
-# target_include_directories(
-#   metric_tests_obj
-#   PRIVATE
-#   ${absl_SOURCE_DIR}
-#   ${googletest_SOURCE_DIR}
-#   ${farmhash_SOURCE_DIR}/src
-#   ${protobuf_SOURCE_DIR}/src
-# )
-# target_link_libraries(
-#   metric_tests_obj
-#   PRIVATE
-# # other project objects
-#   dataset_proto
-#   model_proto
-# # this objects
-# # third_party objects
-#   GTest::gtest_main GTest::gmock_main
-# )
+add_library(
+  comparison
+  STATIC
+  comparison.cc
+)
+target_include_directories(
+  comparison
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${boost_math_SOURCE_DIR}/include
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  comparison
+  PRIVATE
+  ranking_utils
+  model_proto
+  dataset_proto
+  absl::strings
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
+add_library(
+  uplift
+  STATIC
+  uplift.cc
+)
+target_include_directories(
+  uplift
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${boost_math_SOURCE_DIR}/include
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  uplift
+  PRIVATE
+  dataset_proto
+  metric_proto
+  model_proto
+  comparison
+  absl::strings
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
+
+# Testing artifact
+
+file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+add_library(
+  metric_tests_obj 
+  OBJECT
+  ${test_SRC_FILES}
+)
+target_include_directories(
+  metric_tests_obj
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${googletest_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+  ${boost_math_SOURCE_DIR}/include
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  metric_tests_obj
+  PRIVATE
+# other project objects
+  dataset_proto
+  model_proto
+# this objects
+  metric
+  uplift
+# third_party objects
+  GTest::gtest_main GTest::gmock_main
+)
 
