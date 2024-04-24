@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-#include "yggdrasil_decision_forests/metric/report.h"
+#include "metric/report.h"
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-#include "yggdrasil_decision_forests/metric/metric.h"
-#include "yggdrasil_decision_forests/metric/metric.pb.h"
-#include "yggdrasil_decision_forests/utils/filesystem.h"
-#include "yggdrasil_decision_forests/utils/random.h"
-#include "yggdrasil_decision_forests/utils/test.h"
+#include "metric/metric.h"
+#include "metric/metric.pb.h"
+#include "utils/filesystem.h"
+#include "utils/random.h"
+#include "utils/test.h"
 
 namespace yggdrasil_decision_forests {
 namespace metric {

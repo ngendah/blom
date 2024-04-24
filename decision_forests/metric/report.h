@@ -19,8 +19,8 @@
 #define YGGDRASIL_DECISION_FORESTS_METRIC_REPORT_H_
 
 #include "absl/status/statusor.h"
-#include "yggdrasil_decision_forests/metric/metric.pb.h"
-#include "yggdrasil_decision_forests/utils/status_macros.h"
+#include "metric/metric.pb.h"
+#include "utils/status_macros.h"
 
 namespace yggdrasil_decision_forests {
 namespace metric {

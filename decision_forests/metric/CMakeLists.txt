@@ -58,7 +58,10 @@ target_link_libraries(
 # target_link_libraries(
 #   metric_tests_obj
 #   PRIVATE
-# # local objects
+# # other project objects
+#   dataset_proto
+#   model_proto
+# # this objects
 # # third_party objects
 #   GTest::gtest_main GTest::gmock_main
 # )

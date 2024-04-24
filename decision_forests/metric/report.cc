@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "yggdrasil_decision_forests/metric/report.h"
+#include "metric/report.h"
 
 #include <string>
 #include <utility>
@@ -22,13 +22,13 @@
 #include "absl/status/status.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/substitute.h"
-#include "yggdrasil_decision_forests/dataset/data_spec.h"
-#include "yggdrasil_decision_forests/metric/metric.h"
-#include "yggdrasil_decision_forests/model/abstract_model.pb.h"
-#include "yggdrasil_decision_forests/utils/distribution.h"
-#include "yggdrasil_decision_forests/utils/histogram.h"
-#include "yggdrasil_decision_forests/utils/html.h"
-#include "yggdrasil_decision_forests/utils/plot.h"
+#include "dataset/data_spec.h"
+#include "metric/metric.h"
+#include "model/abstract_model.pb.h"
+#include "utils/distribution.h"
+#include "utils/histogram.h"
+#include "utils/html.h"
+#include "utils/plot.h"
 
 namespace yggdrasil_decision_forests {
 namespace metric {
