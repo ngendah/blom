@@ -256,7 +256,7 @@ target_link_libraries(
 
 # Testing artifact
 
-file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
   utils_tests_obj
   OBJECT
