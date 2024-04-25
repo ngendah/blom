@@ -7,3 +7,5 @@ add_subdirectory(dataset)
 add_subdirectory(metric)
 add_subdirectory(model)
 add_subdirectory(learner)
+add_subdirectory(serving)
+

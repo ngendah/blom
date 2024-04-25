@@ -110,3 +110,21 @@ protobuf_generate(
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
 )
 
+add_library(
+  serving_proto
+  STATIC
+  serving/serving.proto
+)
+target_include_directories(
+  serving_proto
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+protobuf_generate(
+  TARGET serving_proto
+  PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
+  PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+)
+
