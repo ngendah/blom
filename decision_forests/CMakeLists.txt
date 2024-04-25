@@ -5,5 +5,5 @@ add_subdirectory(utils)
 add_subdirectory(cart)
 add_subdirectory(dataset)
 add_subdirectory(metric)
-# add_subdirectory(model)
+add_subdirectory(model)
 
