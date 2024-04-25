@@ -1,3 +1,5 @@
+add_subdirectory(distribute)
+
 add_library(
   logging
   STATIC
