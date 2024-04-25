@@ -176,10 +176,37 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
+add_library(
+  weight
+  STATIC
+  weight.cc
+)
+target_include_directories(
+  weight
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  weight
+  PRIVATE
+  dataset_proto
+  learner_proto
+  data_spec
+  vertical_dataset
+  logging
+  status_macros
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
+
 
 # Testing artifact
 
-file(GLOB_RECURSE test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
   dataset_tests_obj 
   OBJECT
@@ -192,6 +219,7 @@ target_include_directories(
   ${googletest_SOURCE_DIR}
   ${farmhash_SOURCE_DIR}/src
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   dataset_tests_obj
@@ -199,6 +227,7 @@ target_link_libraries(
 # other project objects
   utils_proto
 # local objects
+  weight
   formats
   data_spec
   example_builder
