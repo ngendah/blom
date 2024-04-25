@@ -1,1 +1,81 @@
+add_library(
+  fast_engine_factory
+  STATIC
+  fast_engine_factory.cc
+)
+target_include_directories(
+  fast_engine_factory
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  fast_engine_factory
+  PRIVATE
+  registration
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
+add_library(
+  abstract_model
+  STATIC
+  abstract_model.cc
+)
+target_include_directories(
+  abstract_model
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  abstract_model
+  PRIVATE
+  model_proto
+  dataset_proto
+  data_spec
+  vertical_dataset
+  weight
+  metric
+  logging
+  example_set
+  concurrency
+  distribution
+  logging
+  sharded_io
+  status_macros
+  absl::status
+  absl::statusor
+  absl::strings
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
+add_library(
+  metadata
+  STATIC
+  metadata.cc
+)
+target_include_directories(
+  metadata
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  metadata
+  PRIVATE
+  model_proto
+  absl::strings
+)
+
 
