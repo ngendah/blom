@@ -6,6 +6,7 @@ add_library(
   STATIC
   utils/distribution.proto
   utils/distribute/distribute.proto
+  utils/distribute/implementations/multi_thread/multi_thread.proto
 )
 target_include_directories(
   utils_proto
