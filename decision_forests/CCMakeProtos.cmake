@@ -5,6 +5,7 @@ add_library(
   utils_proto
   STATIC
   utils/distribution.proto
+  utils/distribute/distribute.proto
 )
 target_include_directories(
   utils_proto
@@ -79,6 +80,31 @@ target_link_libraries(
 )
 protobuf_generate(
   TARGET metric_proto
+  PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
+  PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+)
+
+add_library(
+  learner_proto
+  STATIC
+  learner/abstract_learner.proto
+)
+target_include_directories(
+  learner_proto
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  learner_proto
+  PRIVATE
+  utils_proto
+  dataset_proto
+  model_proto
+)
+protobuf_generate(
+  TARGET learner_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
 )
