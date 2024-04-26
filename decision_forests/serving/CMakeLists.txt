@@ -47,6 +47,7 @@ target_link_libraries(
   PRIVATE
 # other project objects
   dataset_proto
+  learner_proto
 # this objects
   example_set
   # third_party objects
