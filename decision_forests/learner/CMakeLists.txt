@@ -35,7 +35,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
-
+add_library(learner_abstract_learner ALIAS abstract_learner)
 
 # Testing artifact
 
@@ -66,7 +66,7 @@ target_link_libraries(
   abstract_model
   utils_logging
 # this objects
-  abstract_learner
+  learner_abstract_learner
   # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
