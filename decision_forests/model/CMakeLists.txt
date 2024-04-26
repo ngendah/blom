@@ -21,6 +21,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(model_fast_engine_factory ALIAS fast_engine_factory)
 
 add_library(
   abstract_model
@@ -45,11 +46,11 @@ target_link_libraries(
   dataset_weight
   metric_metric
   metric_uplift
-  fast_engine_factory
-  utils_logging
   example_set
   metric_ranking_utils
+  model_fast_engine_factory
   utils_concurrency
+  utils_logging
   utils_distribution
   utils_sharded_io
   utils_status_macros
@@ -59,6 +60,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(model_abstract_model ALIAS abstract_model)
 
 add_library(
   metadata
@@ -79,5 +81,6 @@ target_link_libraries(
   model_proto
   absl::strings
 )
+add_library(model_metadata ALIAS metadata)
 
 

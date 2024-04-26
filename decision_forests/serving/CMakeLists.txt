@@ -50,10 +50,10 @@ target_link_libraries(
   learner_proto
 # this objects
   example_set
-  metadata
+  model_metadata
   metric_ranking_utils
   metric_metric
-  abstract_model
+  model_abstract_model
   # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main

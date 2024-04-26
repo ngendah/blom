@@ -18,12 +18,12 @@ target_link_libraries(
   dataset_proto
   dataset_data_spec 
   dataset_vertical_dataset
-  metadata
   dataset_weight
+  dataset_types
   metric_metric
   metric_ranking_utils
-  dataset_types
-  abstract_model
+  model_abstract_model
+  model_metadata
   fold_generator
   utils_concurrency
   utils_logging
@@ -63,7 +63,7 @@ target_link_libraries(
   dataset_data_spec 
   dataset_vertical_dataset
   metric_metric
-  abstract_model
+  model_abstract_model
   utils_logging
 # this objects
   learner_abstract_learner
