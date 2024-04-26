@@ -168,6 +168,8 @@ target_link_libraries(
   logging
   data_spec
   example_builder
+  example_reader
+  example_writer
   absl::string_view
   absl::cord
   absl::statusor
@@ -226,6 +228,7 @@ target_link_libraries(
   PRIVATE
 # other project objects
   utils_proto
+  learner_proto
 # local objects
   weight
   formats
