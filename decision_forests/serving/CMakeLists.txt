@@ -51,8 +51,8 @@ target_link_libraries(
 # this objects
   example_set
   metadata
-  ranking_utils
-  metric
+  metric_ranking_utils
+  metric_metric
   abstract_model
   # third_party objects
   protobuf::libprotoc

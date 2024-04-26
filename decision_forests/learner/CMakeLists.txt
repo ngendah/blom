@@ -20,8 +20,8 @@ target_link_libraries(
   dataset_vertical_dataset
   metadata
   dataset_weight
-  metric
-  ranking_utils
+  metric_metric
+  metric_ranking_utils
   dataset_types
   abstract_model
   fold_generator
@@ -62,7 +62,7 @@ target_link_libraries(
   learner_proto
   dataset_data_spec 
   dataset_vertical_dataset
-  metric
+  metric_metric
   abstract_model
   utils_logging
 # this objects

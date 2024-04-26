@@ -43,12 +43,12 @@ target_link_libraries(
   dataset_data_spec 
   dataset_vertical_dataset
   dataset_weight
-  metric
-  uplift
+  metric_metric
+  metric_uplift
   fast_engine_factory
   utils_logging
   example_set
-  ranking_utils
+  metric_ranking_utils
   utils_concurrency
   utils_distribution
   utils_sharded_io
