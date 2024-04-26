@@ -332,6 +332,29 @@ target_link_libraries(
 )
 add_library(utils_fold_generator ALIAS fold_generator)
 
+add_library(
+  bitmap
+  STATIC
+  bitmap.cc
+)
+target_include_directories(
+  bitmap
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  bitmap
+  PRIVATE
+  utils_proto
+  utils_concurrency
+  utils_filesystem
+  utils_status_macros
+  absl::strings
+  protobuf::libprotoc
+)
+add_library(utils_bitmap ALIAS bitmap)
+
 
 # Testing artifact
 
@@ -374,6 +397,7 @@ target_link_libraries(
   utils_plot
   utils_fold_generator
   utils_hyper_parameters
+  utils_bitmap
 # third_party objects
   absl::statusor
   protobuf::libprotoc
