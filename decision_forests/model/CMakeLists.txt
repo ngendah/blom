@@ -14,7 +14,7 @@ target_include_directories(
 target_link_libraries(
   fast_engine_factory
   PRIVATE
-  registration
+  utils_registration
   absl::strings
   absl::status
   absl::statusor
@@ -46,14 +46,13 @@ target_link_libraries(
   metric
   uplift
   fast_engine_factory
-  logging
+  utils_logging
   example_set
   ranking_utils
-  concurrency
-  distribution
-  logging
-  sharded_io
-  status_macros
+  utils_concurrency
+  utils_distribution
+  utils_sharded_io
+  utils_status_macros
   absl::status
   absl::statusor
   absl::strings

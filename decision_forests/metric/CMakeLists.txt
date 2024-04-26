@@ -36,8 +36,8 @@ target_link_libraries(
   metric
   PRIVATE
   metric_proto
-  html
-  plot
+  utils_html
+  utils_plot
   absl::strings
   protobuf::libprotoc
 )
@@ -60,9 +60,9 @@ target_link_libraries(
   report
   PRIVATE
   model_proto
-  distribution
-  html
-  plot
+  utils_distribution
+  utils_html
+  utils_plot
   absl::strings
   protobuf::libprotoc
   farmhash::farmhash

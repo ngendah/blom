@@ -23,6 +23,7 @@ target_link_libraries(
   absl::strings
   protobuf::libprotoc
 )
+add_library(utils_distribute ALIAS distribute)
 
 add_library(
   toy_worker
@@ -43,6 +44,7 @@ target_link_libraries(
   absl::synchronization
   protobuf::libprotoc
 )
+add_library(utils_toy_worker ALIAS toy_worker)
 
 add_library(
   distribute_test_utils
@@ -65,6 +67,7 @@ target_link_libraries(
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
 )
+add_library(utils_distribute_test_utils ALIAS distribute_test_utils)
 
 
 # Testing artifact
@@ -88,14 +91,14 @@ target_link_libraries(
   utils_distribute_tests_obj
   PRIVATE
 # this objects
-  distribute
-  multi_thread
-  toy_worker
-  distribute_test_utils
+  utils_distribute
+  utils_multi_thread
+  utils_toy_worker
+  utils_distribute_test_utils
 # other local objects
   utils_proto
-  registration
-  filesystem
+  utils_registration
+  utils_filesystem
 # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main

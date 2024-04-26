@@ -25,9 +25,9 @@ target_link_libraries(
   types
   abstract_model
   fold_generator
-  concurrency
-  logging
-  hyper_parameters
+  utils_concurrency
+  utils_logging
+  utils_hyper_parameters
   absl::status
   absl::statusor
   absl::strings
@@ -64,7 +64,7 @@ target_link_libraries(
   vertical_dataset
   metric
   abstract_model
-  logging
+  utils_logging
 # this objects
   abstract_learner
   # third_party objects

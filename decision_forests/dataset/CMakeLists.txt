@@ -30,7 +30,7 @@ target_link_libraries(
   formats
   PRIVATE
   dataset_proto
-  logging
+  utils_logging
   absl::string_view
   protobuf::libprotoc
 )
@@ -51,8 +51,8 @@ target_link_libraries(
   data_spec
   PRIVATE
   dataset_proto
-  logging
-  regex
+  utils_logging
+  utils_regex
   absl::strings
   absl::string_view
   farmhash::farmhash
@@ -75,7 +75,7 @@ target_link_libraries(
   example_builder
   PRIVATE
   dataset_proto
-  logging
+  utils_logging
   data_spec
   absl::string_view
   protobuf::libprotoc
@@ -96,10 +96,10 @@ target_include_directories(
 target_link_libraries(
   data_spec_inference
   PRIVATE
-  logging
-  sharded_io
-  concurrency
-  status_macros
+  utils_logging
+  utils_sharded_io
+  utils_concurrency
+  utils_status_macros
   data_spec
   formats
   absl::string_view
@@ -124,7 +124,7 @@ target_link_libraries(
   PRIVATE
   data_spec
   formats
-  status_macros
+  utils_status_macros
   absl::memory
   absl::status
   absl::statusor
@@ -150,9 +150,9 @@ target_link_libraries(
   PRIVATE
   data_spec
   formats
-  registration
-  status_macros
-  sharded_io
+  utils_registration
+  utils_status_macros
+  utils_sharded_io
   absl::strings
   absl::string_view
   absl::memory
@@ -180,8 +180,8 @@ target_include_directories(
 target_link_libraries(
   vertical_dataset
   PRIVATE
-  status_macros
-  logging
+  utils_status_macros
+  utils_logging
   data_spec
   example_builder
   example_reader
@@ -214,8 +214,8 @@ target_link_libraries(
   learner_proto
   data_spec
   vertical_dataset
-  logging
-  status_macros
+  utils_logging
+  utils_status_macros
   absl::status
   absl::statusor
   protobuf::libprotoc

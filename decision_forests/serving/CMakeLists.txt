@@ -16,8 +16,8 @@ target_link_libraries(
   PRIVATE
   data_spec
   vertical_dataset
-  logging
-  status_macros
+  utils_logging
+  utils_status_macros
   absl::strings
   absl::status
   absl::statusor

@@ -19,4 +19,5 @@ target_link_libraries(
   status_macros
   protobuf::libprotoc
 )
+add_library(utils_multi_thread ALIAS multi_thread)
 
