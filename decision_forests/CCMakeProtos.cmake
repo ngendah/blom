@@ -5,6 +5,7 @@ add_library(
   utils_proto
   STATIC
   utils/distribution.proto
+  utils/fold_generator.proto
   utils/distribute/distribute.proto
   utils/distribute/implementations/multi_thread/multi_thread.proto
 )

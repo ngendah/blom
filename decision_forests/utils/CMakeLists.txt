@@ -253,6 +253,68 @@ target_link_libraries(
   farmhash::farmhash
 )
 
+add_library(
+  csv
+  STATIC
+  csv.cc
+)
+target_include_directories(csv PRIVATE ${absl_SOURCE_DIR})
+target_link_libraries(
+  csv
+  PRIVATE
+  filesystem
+  absl::strings
+)
+
+add_library(
+  hyper_parameters
+  STATIC
+  hyper_parameters.cc
+)
+target_include_directories(
+  hyper_parameters
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  hyper_parameters
+  PRIVATE
+  learner_proto
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
+
+add_library(
+  fold_generator
+  STATIC
+  fold_generator.cc
+)
+target_include_directories(
+  fold_generator
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  fold_generator
+  PRIVATE
+  dataset_proto
+  data_spec
+  vertical_dataset
+  csv
+  filesystem
+  status_macros
+  logging
+  absl::strings
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+
 
 # Testing artifact
 
@@ -275,10 +337,11 @@ target_link_libraries(
   utils_tests_obj
   PRIVATE
 # other project objects
-  dataset_proto
-  data_spec
-# this objects
   utils_proto
+  dataset_proto
+  learner_proto
+  data_spec_inference
+# this objects
   logging
   adaptive_work
   status_macros
@@ -292,6 +355,8 @@ target_link_libraries(
   html
   distribution
   plot
+  fold_generator
+  hyper_parameters
 # third_party objects
   absl::statusor
   protobuf::libprotoc
