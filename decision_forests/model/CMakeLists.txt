@@ -46,9 +46,9 @@ target_link_libraries(
   dataset_weight
   metric_metric
   metric_uplift
-  example_set
   metric_ranking_utils
   model_fast_engine_factory
+  serving_example_set
   utils_concurrency
   utils_logging
   utils_distribution

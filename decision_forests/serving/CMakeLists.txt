@@ -23,6 +23,7 @@ target_link_libraries(
   absl::statusor
   protobuf::libprotoc
 )
+add_library(serving_example_set ALIAS example_set)
 
 
 # Testing artifact
@@ -49,11 +50,11 @@ target_link_libraries(
   dataset_proto
   learner_proto
 # this objects
-  example_set
-  model_metadata
+  serving_example_set
   metric_ranking_utils
   metric_metric
   model_abstract_model
+  model_metadata
   # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
