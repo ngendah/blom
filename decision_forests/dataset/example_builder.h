@@ -19,8 +19,8 @@
 #include "absl/strings/string_view.h"
 #include "absl/types/span.h"
 #include "data_spec.h"
-#include "data_spec.pb.h"
-#include "example.pb.h"
+#include "dataset/data_spec.pb.h"
+#include "dataset/example.pb.h"
 #include "utils/logging.h"
 
 namespace yggdrasil_decision_forests::dataset {

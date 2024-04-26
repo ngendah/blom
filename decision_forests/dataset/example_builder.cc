@@ -15,7 +15,7 @@
 
 #include "example_builder.h"
 
-#include "data_spec.pb.h"
+#include "dataset/data_spec.pb.h"
 
 namespace yggdrasil_decision_forests::dataset {
 

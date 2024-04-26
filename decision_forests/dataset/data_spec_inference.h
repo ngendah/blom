@@ -29,7 +29,7 @@
 
 #include "absl/status/statusor.h"
 #include "absl/strings/string_view.h"
-#include "data_spec.pb.h"
+#include "dataset/data_spec.pb.h"
 #include "utils/registration.h"
 
 namespace yggdrasil_decision_forests {
