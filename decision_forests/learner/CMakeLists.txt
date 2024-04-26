@@ -18,9 +18,13 @@ target_link_libraries(
   dataset_proto
   data_spec
   vertical_dataset
+  metadata
   weight
   metric
+  ranking_utils
+  types
   abstract_model
+  fold_generator
   concurrency
   logging
   hyper_parameters

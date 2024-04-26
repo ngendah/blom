@@ -37,6 +37,7 @@ target_link_libraries(
   PRIVATE
   metric_proto
   html
+  plot
   absl::strings
   protobuf::libprotoc
 )

@@ -14,6 +14,7 @@ target_link_libraries(
   dataset_tests_obj
   metric_tests_obj
   serving_tests_obj
+  learner_tests_obj
 )
 include(GoogleTest)
 gtest_discover_tests(yggdrasil_tests)

@@ -1,4 +1,20 @@
 add_library(
+  types
+  STATIC
+  types.cc
+)
+target_include_directories(
+  types
+  PRIVATE
+  ${absl_SOURCE_DIR}
+)
+target_link_libraries(
+  types
+  PRIVATE
+  absl::strings
+)
+
+add_library(
   formats
   STATIC
   formats.cc

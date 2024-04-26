@@ -44,8 +44,11 @@ target_link_libraries(
   vertical_dataset
   weight
   metric
+  uplift
+  fast_engine_factory
   logging
   example_set
+  ranking_utils
   concurrency
   distribution
   logging

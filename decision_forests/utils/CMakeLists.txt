@@ -115,6 +115,7 @@ target_include_directories(
 target_link_libraries(
   filesystem
   PRIVATE
+  bytestream
   absl::strings
   absl::random_distributions
   absl::random_seed_sequences

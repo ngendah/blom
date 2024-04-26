@@ -24,7 +24,7 @@
 #include <vector>
 
 #include "absl/types/span.h"
-#include "metric.pb.h"
+#include "metric/metric.pb.h"
 #include "dataset/data_spec.pb.h"
 #include "model/abstract_model.pb.h"
 

@@ -20,6 +20,8 @@
 
 #include "absl/status/status.h"
 
+#include "config.h"
+
 namespace yggdrasil_decision_forests {
 namespace dataset {
 
