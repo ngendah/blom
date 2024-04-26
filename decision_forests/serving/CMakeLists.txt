@@ -14,15 +14,16 @@ target_include_directories(
 target_link_libraries(
   example_set
   PRIVATE
-  data_spec
-  vertical_dataset
-  logging
-  status_macros
+  dataset_data_spec 
+  dataset_vertical_dataset
+  utils_logging
+  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
   protobuf::libprotoc
 )
+add_library(serving_example_set ALIAS example_set)
 
 
 # Testing artifact
@@ -49,11 +50,11 @@ target_link_libraries(
   dataset_proto
   learner_proto
 # this objects
-  example_set
-  metadata
-  ranking_utils
-  metric
-  abstract_model
+  serving_example_set
+  metric_ranking_utils
+  metric_metric
+  model_abstract_model
+  model_metadata
   # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main

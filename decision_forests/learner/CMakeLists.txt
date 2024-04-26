@@ -16,18 +16,18 @@ target_link_libraries(
   PRIVATE
   model_proto
   dataset_proto
-  data_spec
-  vertical_dataset
-  metadata
-  weight
-  metric
-  ranking_utils
-  types
-  abstract_model
+  dataset_data_spec 
+  dataset_vertical_dataset
+  dataset_weight
+  dataset_types
+  metric_metric
+  metric_ranking_utils
+  model_abstract_model
+  model_metadata
   fold_generator
-  concurrency
-  logging
-  hyper_parameters
+  utils_concurrency
+  utils_logging
+  utils_hyper_parameters
   absl::status
   absl::statusor
   absl::strings
@@ -35,7 +35,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
-
+add_library(learner_abstract_learner ALIAS abstract_learner)
 
 # Testing artifact
 
@@ -60,13 +60,13 @@ target_link_libraries(
 # other project objects
   dataset_proto
   learner_proto
-  data_spec
-  vertical_dataset
-  metric
-  abstract_model
-  logging
+  dataset_data_spec 
+  dataset_vertical_dataset
+  metric_metric
+  model_abstract_model
+  utils_logging
 # this objects
-  abstract_learner
+  learner_abstract_learner
   # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main

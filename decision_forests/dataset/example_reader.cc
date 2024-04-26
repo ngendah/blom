@@ -27,10 +27,10 @@
 #include "absl/strings/str_join.h"
 #include "absl/strings/string_view.h"
 #include "absl/strings/substitute.h"
-#include "data_spec.pb.h"
 #include "example_reader_interface.h"
 #include "formats.h"
-#include "formats.pb.h"
+#include "dataset/data_spec.pb.h"
+#include "dataset/formats.pb.h"
 #include "utils/status_macros.h"
 
 namespace yggdrasil_decision_forests {

@@ -22,3 +22,4 @@ http_archives/
 protos/
 *.pb.cc
 *.pb.h
+*_libraries.txt

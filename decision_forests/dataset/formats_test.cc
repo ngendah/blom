@@ -19,7 +19,7 @@
 #include <utility>
 
 #include "gtest/gtest.h"
-#include "formats.pb.h"
+#include "dataset/formats.pb.h"
 
 namespace yggdrasil_decision_forests {
 namespace dataset {

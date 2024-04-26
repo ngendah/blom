@@ -28,7 +28,7 @@
 #include "absl/strings/str_join.h"
 #include "absl/strings/string_view.h"
 #include "absl/strings/substitute.h"
-#include "formats.pb.h"
+#include "dataset/formats.pb.h"
 #include "utils/logging.h"
 
 namespace yggdrasil_decision_forests {

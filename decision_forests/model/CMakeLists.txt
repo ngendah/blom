@@ -14,13 +14,14 @@ target_include_directories(
 target_link_libraries(
   fast_engine_factory
   PRIVATE
-  registration
+  utils_registration
   absl::strings
   absl::status
   absl::statusor
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(model_fast_engine_factory ALIAS fast_engine_factory)
 
 add_library(
   abstract_model
@@ -40,26 +41,26 @@ target_link_libraries(
   PRIVATE
   model_proto
   dataset_proto
-  data_spec
-  vertical_dataset
-  weight
-  metric
-  uplift
-  fast_engine_factory
-  logging
-  example_set
-  ranking_utils
-  concurrency
-  distribution
-  logging
-  sharded_io
-  status_macros
+  dataset_data_spec 
+  dataset_vertical_dataset
+  dataset_weight
+  metric_metric
+  metric_uplift
+  metric_ranking_utils
+  model_fast_engine_factory
+  serving_example_set
+  utils_concurrency
+  utils_logging
+  utils_distribution
+  utils_sharded_io
+  utils_status_macros
   absl::status
   absl::statusor
   absl::strings
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(model_abstract_model ALIAS abstract_model)
 
 add_library(
   metadata
@@ -80,5 +81,6 @@ target_link_libraries(
   model_proto
   absl::strings
 )
+add_library(model_metadata ALIAS metadata)
 
 

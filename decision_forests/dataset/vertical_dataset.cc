@@ -34,8 +34,8 @@
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
 #include "data_spec.h"
-#include "data_spec.pb.h"
-#include "example.pb.h"
+#include "dataset/data_spec.pb.h"
+#include "dataset/example.pb.h"
 #include "utils/logging.h"
 #include "utils/status_macros.h"
 

@@ -15,6 +15,7 @@ target_link_libraries(
   absl::flags_usage
   absl::strings
 )
+add_library(utils_logging ALIAS logging)
 
 add_library(
   adaptive_work
@@ -34,6 +35,7 @@ target_link_libraries(
   absl::synchronization
   absl::time
 )
+add_library(utils_adaptive_work ALIAS adaptive_work)
 
 add_library(
   status_macros
@@ -48,6 +50,7 @@ target_link_libraries(
   absl::status
   absl::statusor
 )
+add_library(utils_status_macros ALIAS status_macros)
 
 add_library(
   regex
@@ -60,6 +63,7 @@ target_link_libraries(
   PRIVATE
   absl::strings
 )
+add_library(utils_regex ALIAS regex)
 
 add_library(
   protobuf
@@ -75,12 +79,13 @@ target_include_directories(
 target_link_libraries(
   protobuf
   PRIVATE
-  logging
+  utils_logging
   absl::status
   absl::statusor
   absl::strings
   protobuf::libprotoc
 )
+add_library(utils_protobuf ALIAS protobuf)
 
 add_library(
   bytestream
@@ -99,6 +104,7 @@ target_link_libraries(
   absl::statusor
   absl::strings
 )
+add_library(utils_bytestream ALIAS bytestream)
 
 add_library(
   filesystem
@@ -115,7 +121,7 @@ target_include_directories(
 target_link_libraries(
   filesystem
   PRIVATE
-  bytestream
+  utils_bytestream
   absl::strings
   absl::random_distributions
   absl::random_seed_sequences
@@ -129,6 +135,7 @@ if(NOT ${ANDROID_PLATFORM})
     stdc++fs
   )
 endif()
+add_library(utils_filesystem ALIAS filesystem)
 
 add_library(
   sharded_io
@@ -145,14 +152,15 @@ target_link_libraries(
   sharded_io
   PRIVATE
   utils_proto
-  logging
-  filesystem
+  utils_logging
+  utils_filesystem
   absl::strings
   absl::status
   absl::statusor
   absl::string_view
   protobuf::libprotoc
 )
+add_library(utils_sharded_io ALIAS sharded_io)
 
 add_library(
   registration
@@ -171,6 +179,7 @@ target_link_libraries(
   absl::statusor
   absl::memory
 )
+add_library(utils_registration ALIAS registration)
 
 add_library(
   concurrency
@@ -186,8 +195,9 @@ target_include_directories(
 target_link_libraries(
   concurrency
   PRIVATE
-  logging
+  utils_logging
 )
+add_library(utils_concurrency ALIAS concurrency)
 
 add_library(
   html
@@ -204,6 +214,7 @@ target_link_libraries(
   PRIVATE
   absl::strings
 )
+add_library(utils_html ALIAS html)
 
 add_library(
   distribution
@@ -222,14 +233,15 @@ target_link_libraries(
   distribution
   PRIVATE
   utils_proto
-  logging
-  html
+  utils_logging
+  utils_html
   absl::strings
   absl::cord
   absl::string_view
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(utils_distribution ALIAS distribution)
 
 add_library(
   plot
@@ -246,13 +258,14 @@ target_include_directories(
 target_link_libraries(
   plot
   PRIVATE
-  logging
-  html
+  utils_logging
+  utils_html
   absl::strings
   absl::cord
   absl::string_view
   farmhash::farmhash
 )
+add_library(utils_plot ALIAS plot)
 
 add_library(
   csv
@@ -263,9 +276,10 @@ target_include_directories(csv PRIVATE ${absl_SOURCE_DIR})
 target_link_libraries(
   csv
   PRIVATE
-  filesystem
+utils_filesystem
   absl::strings
 )
+add_library(utils_csv ALIAS csv)
 
 add_library(
   hyper_parameters
@@ -288,6 +302,7 @@ target_link_libraries(
   absl::statusor
   protobuf::libprotoc
 )
+add_library(utils_hyper_parameters ALIAS hyper_parameters)
 
 add_library(
   fold_generator
@@ -305,16 +320,17 @@ target_link_libraries(
   fold_generator
   PRIVATE
   dataset_proto
-  data_spec
-  vertical_dataset
-  csv
-  filesystem
-  status_macros
-  logging
+  dataset_data_spec 
+  dataset_vertical_dataset
+  utils_csv
+  utils_filesystem
+  utils_status_macros
+  utils_logging
   absl::strings
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(utils_fold_generator ALIAS fold_generator)
 
 
 # Testing artifact
@@ -341,23 +357,23 @@ target_link_libraries(
   utils_proto
   dataset_proto
   learner_proto
-  data_spec_inference
+  dataset_data_spec_inference
 # this objects
-  logging
-  adaptive_work
-  status_macros
-  regex
-  protobuf
-  bytestream
-  filesystem
-  sharded_io
-  registration
-  concurrency
-  html
-  distribution
-  plot
-  fold_generator
-  hyper_parameters
+  utils_logging
+  utils_adaptive_work
+  utils_status_macros
+  utils_regex
+  utils_protobuf
+  utils_bytestream
+  utils_filesystem
+  utils_sharded_io
+  utils_registration
+  utils_concurrency
+  utils_html
+  utils_distribution
+  utils_plot
+  utils_fold_generator
+  utils_hyper_parameters
 # third_party objects
   absl::statusor
   protobuf::libprotoc

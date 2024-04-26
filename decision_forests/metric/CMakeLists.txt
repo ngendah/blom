@@ -16,6 +16,7 @@ target_link_libraries(
   absl::string_view
   protobuf::libprotoc
 )
+add_library(metric_ranking_utils ALIAS ranking_utils)
 
 add_library(
   metric
@@ -36,11 +37,12 @@ target_link_libraries(
   metric
   PRIVATE
   metric_proto
-  html
-  plot
+  utils_html
+  utils_plot
   absl::strings
   protobuf::libprotoc
 )
+add_library(metric_metric ALIAS metric)
 
 add_library(
   report
@@ -60,13 +62,14 @@ target_link_libraries(
   report
   PRIVATE
   model_proto
-  distribution
-  html
-  plot
+  utils_distribution
+  utils_html
+  utils_plot
   absl::strings
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(metric_report ALIAS report)
 
 add_library(
   comparison
@@ -92,6 +95,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(metric_comparison ALIAS comparison)
 
 add_library(
   uplift
@@ -113,11 +117,12 @@ target_link_libraries(
   dataset_proto
   metric_proto
   model_proto
-  comparison
+  metric_comparison
   absl::strings
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(metric_uplift ALIAS uplift)
 
 
 # Testing artifact
@@ -145,8 +150,8 @@ target_link_libraries(
   dataset_proto
   model_proto
 # this objects
-  metric
-  uplift
+  metric_metric
+  metric_uplift
 # third_party objects
   GTest::gtest_main GTest::gmock_main
 )

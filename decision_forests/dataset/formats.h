@@ -26,7 +26,7 @@
 
 #include "absl/status/statusor.h"
 #include "absl/strings/string_view.h"
-#include "formats.pb.h"
+#include "dataset/formats.pb.h"
 
 namespace yggdrasil_decision_forests {
 namespace dataset {

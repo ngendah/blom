@@ -13,6 +13,7 @@ target_link_libraries(
   PRIVATE
   absl::strings
 )
+add_library(dataset_types ALIAS types)
 
 add_library(
   formats
@@ -24,16 +25,17 @@ target_include_directories(
   PRIVATE
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}/dataset
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   formats
   PRIVATE
   dataset_proto
-  logging
+  utils_logging
   absl::string_view
   protobuf::libprotoc
 )
+add_library(dataset_formats ALIAS formats)
 
 add_library(
   data_spec
@@ -46,18 +48,20 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${farmhash_SOURCE_DIR}/src
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   data_spec
   PRIVATE
   dataset_proto
-  logging
-  regex
+  utils_logging
+  utils_regex
   absl::strings
   absl::string_view
   farmhash::farmhash
   protobuf::libprotoc
 )
+add_library(dataset_data_spec ALIAS data_spec)
 
 add_library(
   example_builder
@@ -70,16 +74,18 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${farmhash_SOURCE_DIR}/src
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   example_builder
   PRIVATE
   dataset_proto
-  logging
-  data_spec
+  utils_logging
+  dataset_data_spec
   absl::string_view
   protobuf::libprotoc
 )
+add_library(dataset_example_builder ALIAS example_builder)
 
 add_library(
   data_spec_inference
@@ -92,21 +98,23 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${farmhash_SOURCE_DIR}/src
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   data_spec_inference
   PRIVATE
-  logging
-  sharded_io
-  concurrency
-  status_macros
-  data_spec
-  formats
+  utils_logging
+  utils_sharded_io
+  utils_concurrency
+  utils_status_macros
+  dataset_data_spec
+  dataset_formats
   absl::string_view
   absl::status
   absl::statusor
   absl::raw_hash_set
 )
+add_library(dataset_data_spec_inference ALIAS data_spec_inference)
 
 add_library(
   example_reader
@@ -118,13 +126,14 @@ target_include_directories(
   PRIVATE
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   example_reader
   PRIVATE
-  data_spec
-  formats
-  status_macros
+  dataset_data_spec
+  dataset_formats
+  utils_status_macros
   absl::memory
   absl::status
   absl::statusor
@@ -132,6 +141,7 @@ target_link_libraries(
   absl::string_view
   protobuf::libprotoc
 )
+add_library(dataset_example_reader ALIAS example_reader)
 
 add_library(
   example_writer
@@ -144,15 +154,16 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
   ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   example_writer
   PRIVATE
-  data_spec
-  formats
-  registration
-  status_macros
-  sharded_io
+  dataset_data_spec
+  dataset_formats
+  utils_registration
+  utils_status_macros
+  utils_sharded_io
   absl::strings
   absl::string_view
   absl::memory
@@ -163,6 +174,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(dataset_example_writer ALIAS example_writer)
 
 add_library(
   vertical_dataset
@@ -176,16 +188,17 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${farmhash_SOURCE_DIR}/src
   ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
   vertical_dataset
   PRIVATE
-  status_macros
-  logging
-  data_spec
-  example_builder
-  example_reader
-  example_writer
+  utils_status_macros
+  utils_logging
+  dataset_data_spec
+  dataset_example_builder
+  dataset_example_reader
+  dataset_example_writer
   absl::string_view
   absl::cord
   absl::statusor
@@ -193,6 +206,7 @@ target_link_libraries(
   farmhash::farmhash
   protobuf::libprotoc
 )
+add_library(dataset_vertical_dataset ALIAS vertical_dataset)
 
 add_library(
   weight
@@ -212,14 +226,15 @@ target_link_libraries(
   PRIVATE
   dataset_proto
   learner_proto
-  data_spec
-  vertical_dataset
-  logging
-  status_macros
+  dataset_data_spec
+  dataset_vertical_dataset
+  utils_logging
+  utils_status_macros
   absl::status
   absl::statusor
   protobuf::libprotoc
 )
+add_library(dataset_weight ALIAS weight)
 
 
 # Testing artifact
@@ -246,14 +261,14 @@ target_link_libraries(
   utils_proto
   learner_proto
 # local objects
-  weight
-  formats
-  data_spec
-  example_builder
-  data_spec_inference
-  example_reader
-  example_writer
-  vertical_dataset
+  dataset_weight
+  dataset_formats
+  dataset_data_spec
+  dataset_example_builder
+  dataset_data_spec_inference
+  dataset_example_reader
+  dataset_example_writer
+  dataset_vertical_dataset
 # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
