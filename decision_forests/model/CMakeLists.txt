@@ -40,9 +40,9 @@ target_link_libraries(
   PRIVATE
   model_proto
   dataset_proto
-  data_spec
-  vertical_dataset
-  weight
+  dataset_data_spec 
+  dataset_vertical_dataset
+  dataset_weight
   metric
   uplift
   fast_engine_factory

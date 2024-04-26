@@ -16,13 +16,13 @@ target_link_libraries(
   PRIVATE
   model_proto
   dataset_proto
-  data_spec
-  vertical_dataset
+  dataset_data_spec 
+  dataset_vertical_dataset
   metadata
-  weight
+  dataset_weight
   metric
   ranking_utils
-  types
+  dataset_types
   abstract_model
   fold_generator
   utils_concurrency
@@ -60,8 +60,8 @@ target_link_libraries(
 # other project objects
   dataset_proto
   learner_proto
-  data_spec
-  vertical_dataset
+  dataset_data_spec 
+  dataset_vertical_dataset
   metric
   abstract_model
   utils_logging

@@ -14,8 +14,8 @@ target_include_directories(
 target_link_libraries(
   example_set
   PRIVATE
-  data_spec
-  vertical_dataset
+  dataset_data_spec 
+  dataset_vertical_dataset
   utils_logging
   utils_status_macros
   absl::strings

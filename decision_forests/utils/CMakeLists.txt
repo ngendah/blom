@@ -320,8 +320,8 @@ target_link_libraries(
   fold_generator
   PRIVATE
   dataset_proto
-  data_spec
-  vertical_dataset
+  dataset_data_spec 
+  dataset_vertical_dataset
   utils_csv
   utils_filesystem
   utils_status_macros
@@ -357,7 +357,7 @@ target_link_libraries(
   utils_proto
   dataset_proto
   learner_proto
-  data_spec_inference
+  dataset_data_spec_inference
 # this objects
   utils_logging
   utils_adaptive_work
