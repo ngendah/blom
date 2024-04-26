@@ -1,3 +1,5 @@
+add_subdirectory(decision_tree)
+
 add_library(
   fast_engine_factory
   STATIC

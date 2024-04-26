@@ -6,6 +6,7 @@ add_library(
   STATIC
   utils/distribution.proto
   utils/fold_generator.proto
+  utils/bitmap.proto
   utils/distribute/distribute.proto
   utils/distribute/implementations/multi_thread/multi_thread.proto
 )
@@ -49,6 +50,7 @@ add_library(
   model/prediction.proto
   model/abstract_model.proto
   model/hyperparameter.proto
+  model/decision_tree/decision_tree.proto
 )
 target_include_directories(
   model_proto
