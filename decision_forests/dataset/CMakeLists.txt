@@ -241,7 +241,7 @@ add_library(dataset_weight ALIAS weight)
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
-  dataset_tests_obj 
+  dataset_tests_obj
   OBJECT
   ${test_SRC_FILES}
 )
@@ -260,6 +260,7 @@ target_link_libraries(
 # other project objects
   utils_proto
   learner_proto
+  utils_testing_utils
 # local objects
   dataset_weight
   dataset_formats

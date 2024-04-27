@@ -53,8 +53,7 @@ using ::yggdrasil_decision_forests::dataset::proto::DataSpecification;
 
 std::string DatasetDir() {
   return file::JoinPath(test::DataRootDirectory(),
-                        "yggdrasil_decision_forests/"
-                        "test_data/dataset");
+                        "testing_data/dataset");
 }
 
 TEST(DecisionTree, GetLeafAndGetPath) {

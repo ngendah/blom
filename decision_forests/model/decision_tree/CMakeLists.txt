@@ -86,6 +86,7 @@ target_link_libraries(
   utils_filesystem
   utils_logging
   utils_status_macros
+  utils_testing_utils
   # third_party objects
   protobuf::libprotoc
   farmhash::farmhash

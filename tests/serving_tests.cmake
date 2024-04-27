@@ -10,8 +10,6 @@ target_link_libraries(
   serving_tests
   PRIVATE
   serving_tests_obj
-  dataset_tests_obj
-  utils_tests_obj
 )
 include(GoogleTest)
 gtest_discover_tests(serving_tests)

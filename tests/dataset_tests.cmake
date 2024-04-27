@@ -10,7 +10,6 @@ target_link_libraries(
   dataset_tests
   PRIVATE
   dataset_tests_obj
-  utils_tests_obj
 )
 include(GoogleTest)
 gtest_discover_tests(dataset_tests)

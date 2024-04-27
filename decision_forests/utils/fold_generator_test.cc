@@ -47,7 +47,7 @@ using test::StatusIs;
 std::string LargeDatasetDir() {
   return file::JoinPath(
       test::DataRootDirectory(),
-      "yggdrasil_decision_forests/test_data/dataset");
+      "testing_data/dataset");
 }
 
 class FoldGenerator : public ::testing::Test {
