@@ -40,8 +40,7 @@
 #include "utils/test.h"
 #include "utils/testing_macros.h"
 
-#include "dataset/csv_example_reader.h"
-#include "dataset/csv_example_writer.h"
+#include "dataset/all_formats.h"
 
 namespace yggdrasil_decision_forests {
 namespace model {
