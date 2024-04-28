@@ -330,6 +330,8 @@ target_link_libraries(
   dataset_example_reader
   dataset_example_writer
   dataset_vertical_dataset
+  dataset_csv_example_reader
+  dataset_csv_example_writer
 # third_party objects
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
