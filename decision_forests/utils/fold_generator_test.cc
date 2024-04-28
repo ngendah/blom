@@ -26,6 +26,7 @@
 #include "absl/strings/numbers.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_split.h"
+#include "dataset/all_formats.h"
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
 #include "dataset/vertical_dataset.h"
