@@ -40,6 +40,8 @@
 #include "utils/test.h"
 #include "utils/testing_macros.h"
 
+#include "dataset/csv_example_reader.h"
+#include "dataset/csv_example_writer.h"
 
 namespace yggdrasil_decision_forests {
 namespace model {
@@ -53,8 +55,7 @@ using ::yggdrasil_decision_forests::dataset::proto::DataSpecification;
 
 std::string DatasetDir() {
   return file::JoinPath(test::DataRootDirectory(),
-                        "yggdrasil_decision_forests/"
-                        "test_data/dataset");
+                        "testing_data/dataset");
 }
 
 TEST(DecisionTree, GetLeafAndGetPath) {

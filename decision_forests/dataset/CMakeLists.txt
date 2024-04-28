@@ -236,12 +236,72 @@ target_link_libraries(
 )
 add_library(dataset_weight ALIAS weight)
 
+add_library(
+  csv_example_reader
+  STATIC
+  csv_example_reader.cc
+)
+target_include_directories(
+  csv_example_reader
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  csv_example_reader
+  PRIVATE
+  dataset_proto
+  dataset_data_spec
+  dataset_example_reader
+  utils_csv
+  utils_filesystem
+  utils_logging
+  utils_status_macros
+  absl::strings
+  absl::status
+  absl::statusor
+  absl::memory
+)
+add_library(dataset_csv_example_reader ALIAS csv_example_reader)
+
+add_library(
+  csv_example_writer
+  STATIC
+  csv_example_writer.cc
+)
+target_include_directories(
+  csv_example_writer
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  csv_example_writer
+  PRIVATE
+  dataset_proto
+  dataset_data_spec
+  dataset_example_writer
+  utils_csv
+  utils_filesystem
+  utils_logging
+  utils_status_macros
+  absl::strings
+  absl::status
+  absl::statusor
+  absl::memory
+)
+add_library(dataset_csv_example_writer ALIAS csv_example_writer)
+
 
 # Testing artifact
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
-  dataset_tests_obj 
+  dataset_tests_obj
   OBJECT
   ${test_SRC_FILES}
 )
@@ -260,6 +320,7 @@ target_link_libraries(
 # other project objects
   utils_proto
   learner_proto
+  utils_testing_utils
 # local objects
   dataset_weight
   dataset_formats

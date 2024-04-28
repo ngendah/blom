@@ -9,8 +9,6 @@ target_link_directories(
 target_link_libraries(
   metric_tests
   PRIVATE
-  dataset_tests_obj
-  utils_tests_obj
   metric_tests_obj
 )
 include(GoogleTest)

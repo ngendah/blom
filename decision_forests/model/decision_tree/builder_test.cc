@@ -49,7 +49,7 @@ TEST(TreeBuilder, Base) {
   std::string description;
   tree.AppendModelStructure(dataspec, 0, &description);
   test::ExpectEqualGolden(description,
-                          "yggdrasil_decision_forests/test_data/"
+                          "testing_data/"
                           "golden/build_decision_tree.txt.expected");
 }
 

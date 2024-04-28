@@ -263,6 +263,9 @@ target_link_libraries(
   absl::strings
   absl::cord
   absl::string_view
+  absl::random_distributions
+  absl::random_seed_sequences
+  absl::random_internal_randen
   farmhash::farmhash
 )
 add_library(utils_plot ALIAS plot)
@@ -355,10 +358,34 @@ target_link_libraries(
 )
 add_library(utils_bitmap ALIAS bitmap)
 
+add_library(
+  test
+  STATIC
+  test.cc
+)
+target_include_directories(
+  bitmap
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${googletest_SOURCE_DIR}
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  test
+  PRIVATE
+  utils_filesystem
+  utils_logging
+  utils_status_macros
+  absl::strings
+  protobuf::libprotoc
+  GTest::gmock_main
+)
+add_library(utils_testing_utils ALIAS test)
+
 
 # Testing artifact
 
-file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *_test.cc)
 add_library(
   utils_tests_obj
   OBJECT
@@ -376,12 +403,10 @@ target_include_directories(
 target_link_libraries(
   utils_tests_obj
   PRIVATE
-# other project objects
   utils_proto
   dataset_proto
   learner_proto
   dataset_data_spec_inference
-# this objects
   utils_logging
   utils_adaptive_work
   utils_status_macros
@@ -398,6 +423,7 @@ target_link_libraries(
   utils_fold_generator
   utils_hyper_parameters
   utils_bitmap
+  utils_testing_utils
 # third_party objects
   absl::statusor
   protobuf::libprotoc

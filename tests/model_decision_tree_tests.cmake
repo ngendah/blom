@@ -10,7 +10,6 @@ target_link_libraries(
   model_decision_tree_tests
   PRIVATE
   model_decision_tree_tests_obj
-  utils_tests_obj
 )
 include(GoogleTest)
 gtest_discover_tests(model_decision_tree_tests)

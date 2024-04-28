@@ -37,9 +37,13 @@ target_link_libraries(
   metric
   PRIVATE
   metric_proto
+  utils_concurrency
   utils_html
   utils_plot
   absl::strings
+  absl::random_distributions
+  absl::random_seed_sequences
+  absl::random_internal_randen
   protobuf::libprotoc
 )
 add_library(metric_metric ALIAS metric)
@@ -66,6 +70,9 @@ target_link_libraries(
   utils_html
   utils_plot
   absl::strings
+  absl::random_distributions
+  absl::random_seed_sequences
+  absl::random_internal_randen
   protobuf::libprotoc
   farmhash::farmhash
 )
@@ -147,11 +154,18 @@ target_link_libraries(
   metric_tests_obj
   PRIVATE
 # other project objects
+  utils_proto
   dataset_proto
   model_proto
-# this objects
   metric_metric
+  metric_ranking_utils
+  metric_comparison
   metric_uplift
+  dataset_vertical_dataset
+  utils_concurrency
+  utils_distribution
+  utils_filesystem
+  utils_testing_utils
 # third_party objects
   GTest::gtest_main GTest::gmock_main
 )
