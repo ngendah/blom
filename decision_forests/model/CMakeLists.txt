@@ -1,4 +1,5 @@
 add_subdirectory(decision_tree)
+add_subdirectory(random_forests)
 
 add_library(
   fast_engine_factory

@@ -51,6 +51,7 @@ add_library(
   model/abstract_model.proto
   model/hyperparameter.proto
   model/decision_tree/decision_tree.proto
+  model/random_forest/random_forest.proto
 )
 target_include_directories(
   model_proto
@@ -76,11 +77,6 @@ target_include_directories(
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
   ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  metric_proto
-  PRIVATE
-  model_proto
 )
 protobuf_generate(
   TARGET metric_proto
