@@ -359,6 +359,28 @@ target_link_libraries(
 add_library(utils_bitmap ALIAS bitmap)
 
 add_library(
+  blob_sequence
+  STATIC
+  blob_sequence.cc
+)
+target_include_directories(
+  blob_sequence
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  blob_sequence
+  PRIVATE
+  utils_bytestream
+  utils_status_macros
+  absl::strings
+  absl::status
+  absl::statusor
+)
+add_library(utils_blob_sequence ALIAS blob_sequence)
+
+add_library(
   test
   STATIC
   test.cc
@@ -425,6 +447,7 @@ target_link_libraries(
   utils_fold_generator
   utils_hyper_parameters
   utils_bitmap
+  utils_blob_sequence
   utils_testing_utils
 # third_party objects
   absl::statusor
