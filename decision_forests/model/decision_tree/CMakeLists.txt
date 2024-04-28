@@ -83,6 +83,8 @@ target_link_libraries(
   dataset_data_spec
   dataset_data_spec_inference
   dataset_vertical_dataset
+  dataset_csv_example_reader
+  dataset_csv_example_writer
   utils_filesystem
   utils_logging
   utils_status_macros

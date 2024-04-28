@@ -47,7 +47,7 @@ using test::EqualsProto;
 std::string DatasetDir() {
   return file::JoinPath(test::DataRootDirectory(),
                         ""
-                        "test_data/dataset");
+                        "testing_data/dataset");
 }
 
 TEST(VerticalDataset, ExtractAndAppend) {
