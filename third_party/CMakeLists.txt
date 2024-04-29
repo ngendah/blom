@@ -35,23 +35,6 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(boost_math)
 
-FetchContent_Declare(
- rapidjson
- URL "https://github.com/Tencent/rapidjson/archive/v1.1.0.zip"
- URL_HASH "SHA256=8e00c38829d6785a2dfb951bb87c6974fa07dfe488aa5b25deec4b8bc0f6a3ab"
-)
-
-FetchContent_Declare(
- eigen3
- URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
-)
-
-FetchContent_Declare(
- grpc
- URL "https://github.com/grpc/grpc/archive/refs/tags/v1.58.1.tar.gz"
- URL_HASH "SHA256=860bf758a1437a03318bf09db8e87cb8149a2f578954110ce8549e147f868b62"
-)
-
 FetchContent_Populate(
  farmhash
  URL "https://github.com/google/farmhash/archive/master.zip"
@@ -59,11 +42,31 @@ FetchContent_Populate(
  SOURCE_DIR farmhash
 )
 
-FetchContent_Populate(
- zlib
- URL "https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz"
- SOURCE_DIR zlib
+FetchContent_Declare(
+ eigen3
+ URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
+ URL_HASH "SHA256=8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72"
 )
+
+FetchContent_MakeAvailable(eigen3)
+
+# FetchContent_Declare(
+#  rapidjson
+#  URL "https://github.com/Tencent/rapidjson/archive/v1.1.0.zip"
+#  URL_HASH "SHA256=8e00c38829d6785a2dfb951bb87c6974fa07dfe488aa5b25deec4b8bc0f6a3ab"
+# )
+# 
+# FetchContent_Declare(
+#  grpc
+#  URL "https://github.com/grpc/grpc/archive/refs/tags/v1.58.1.tar.gz"
+#  URL_HASH "SHA256=860bf758a1437a03318bf09db8e87cb8149a2f578954110ce8549e147f868b62"
+# )
+# 
+# FetchContent_Populate(
+#  zlib
+#  URL "https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz"
+#  SOURCE_DIR zlib
+# )
 
 include(${protobuf_SOURCE_DIR}/cmake/protobuf-generate.cmake)
 include(farmhash.cmake)
