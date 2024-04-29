@@ -1,3 +1,5 @@
+add_subdirectory(decision_tree)
+
 add_library(
   abstract_learner
   STATIC
