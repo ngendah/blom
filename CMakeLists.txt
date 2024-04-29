@@ -20,6 +20,9 @@ set(protobuf_BUILD_TESTS OFF)
 set(protobuf_BUILD_LIBUPB OFF)
 set(protobuf_BUILD_PROTOBUF_BINARIES ON)
 
+# Eigen3 configuration
+set(BUILD_TESTING OFF)
+
 add_subdirectory(third_party)
 add_subdirectory(decision_forests)
 add_subdirectory(tests)
