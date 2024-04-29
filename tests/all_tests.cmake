@@ -15,6 +15,7 @@ target_link_libraries(
   metric_tests_obj
   serving_tests_obj
   learner_tests_obj
+  model_tests_obj
   model_decision_tree_tests_obj
 )
 include(GoogleTest)
