@@ -55,6 +55,86 @@ target_link_libraries(
 )
 add_library(model_decision_tree ALIAS decision_tree)
 
+add_library(
+  decision_tree_io
+  STATIC
+  decision_tree_io.cc
+)
+target_include_directories(
+  decision_tree_io
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  decision_tree_io
+  PRIVATE
+  utils_bytestream
+  utils_filesystem
+  utils_protobuf
+  utils_sharded_io
+  utils_status_macros
+  absl::strings
+  absl::status
+  absl::statusor
+)
+add_library(model_decision_tree_io ALIAS decision_tree_io)
+
+add_library(
+  decision_tree_io_blob_sequence
+  STATIC
+  decision_tree_io_blob_sequence.cc
+)
+target_include_directories(
+  decision_tree_io_blob_sequence
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  decision_tree_io_blob_sequence
+  PRIVATE
+  utils_bytestream
+  utils_filesystem
+  utils_protobuf
+  utils_sharded_io
+  utils_status_macros
+  absl::strings
+  absl::status
+  absl::statusor
+)
+add_library(model_decision_tree_io_blob_sequence ALIAS decision_tree_io_blob_sequence)
+
+add_library(
+  structure_analysis
+  STATIC
+  structure_analysis.cc
+)
+target_include_directories(
+  structure_analysis
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  structure_analysis
+  PRIVATE
+  model_proto
+  utils_histogram
+  utils_logging
+  model_decision_tree
+  absl::strings
+  absl::status
+  absl::statusor
+)
+add_library(model_structure_analysis ALIAS structure_analysis)
+
 
 # Testing artifact
 
