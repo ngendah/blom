@@ -1,5 +1,5 @@
 add_subdirectory(decision_tree)
-add_subdirectory(random_forests)
+add_subdirectory(random_forest)
 
 add_library(
   fast_engine_factory
@@ -86,4 +86,63 @@ target_link_libraries(
 )
 add_library(model_metadata ALIAS metadata)
 
+add_library(
+  model_library
+  STATIC
+  model_library.cc
+)
+target_include_directories(
+  model_library
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  model_library
+  PRIVATE
+  model_proto
+  model_abstract_model
+  model_fast_engine_factory
+  model_metadata
+  utils_blob_sequence
+  utils_bytestream
+  utils_filesystem
+  utils_logging
+  utils_registration
+  utils_status_macros
+  absl::strings
+)
+add_library(model_model_library ALIAS model_library)
+
+
+# Testing artifact
+
+file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+add_library(
+  model_tests_obj
+  OBJECT
+  ${test_SRC_FILES}
+)
+target_include_directories(
+  model_tests_obj
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${googletest_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  model_tests_obj
+  PRIVATE
+  model_model_library
+  utils_status_macros
+  utils_testing_utils
+  # third_party objects
+  protobuf::libprotoc
+  farmhash::farmhash
+  GTest::gtest_main GTest::gmock_main
+)
 
