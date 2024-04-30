@@ -19,8 +19,6 @@
 #include <utility>
 #include <vector>
 
-#include "utils/concurrency.h"
-#include "model/decision_tree/decision_tree.pb.h"
 #include "utils/bitmap.h"
 #include "utils/logging.h"
 
