@@ -1,7 +1,5 @@
 include(FetchContent)
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
 FetchContent_Declare(
  googletest
  URL "https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz"
@@ -11,8 +9,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # https://github.com/protocolbuffers/protobuf/issues/12185
-
-set(ABSL_ENABLE_INSTALL ON)
 
 FetchContent_Declare(
  abseil

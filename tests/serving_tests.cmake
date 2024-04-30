@@ -11,7 +11,7 @@ target_link_libraries(
   PRIVATE
   serving_tests_obj
 )
-if(NOT ANDROID_NDK)
+if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
   gtest_discover_tests(utils_tests)
 endif()

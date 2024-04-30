@@ -14,7 +14,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 .cmake
-ninja.build*
+builds/
 *ninja
 *ninja_*
 *debug*
