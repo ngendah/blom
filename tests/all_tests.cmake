@@ -18,7 +18,7 @@ target_link_libraries(
   model_tests_obj
   model_decision_tree_tests_obj
 )
-if(NOT ANDROID_NDK)
+if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
   gtest_discover_tests(utils_tests)
 endif()

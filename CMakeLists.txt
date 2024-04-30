@@ -3,37 +3,44 @@ cmake_policy(VERSION 3.20)
 
 project(yggdrasil)
 
-# TODO mv to CMakeUserPresets.json
-set(FETCHCONTENT_POPULATE_EXTERNAL_PROJECT ON)
-set(CMAKE_BUILD_TYPE Debug)
-set(INSTALL_GTEST OFF)
-
-# abseil configurations
-set(ABSL_FIND_GOOGLETEST OFF)
-set(ABSL_USE_EXTERNAL_GOOGLETEST ON)
-set(ABSL_PROPAGATE_CXX_STD ON)
-
-# protocal buffer configurations
-set(protobuf_ABSL_PROVIDER package)
-set(protobuf_USE_EXTERNAL_GTEST ON)
-set(protobuf_BUILD_TESTS OFF)
-set(protobuf_BUILD_LIBUPB OFF)
-set(protobuf_BUILD_PROTOBUF_BINARIES ON)
-
-if(ANDROID_NDK)
-  message(STATUS "Cross compiling requires protobuf binaries v24.3+ 
-  to be already installed on the build system,
-   https://github.com/protocolbuffers/protobuf/releases")
-  find_program(PROTOC_COMPILER protoc REQUIRED)
-  set(protobuf_BUILD_LIBPROTOC ON)
+if(NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES ${CMAKE_SYSTEM_NAME})
   set(
-    WITH_PROTOC
-    ${PROTOC_COMPILER}
-    CACHE FILEPATH
-    "protobuf compiler"
+    CMAKE_CROSSCOMPILING
+    TRUE
+    CACHE STRING
+    "Indication whether cross-compilation is active"
   )
+endif()
+if(NOT PROJECT_BUILD_DIR)
+  message(SEND_ERROR "Missing PROJECT_BUILD_DIR, set the projects build directory or pass it on command line -DPROJECT_BUILD_DIR=.. or set as a cacheVariable on presets")
+  return()
 endif()
 
 add_subdirectory(third_party)
+if(NOT CMAKE_CROSSCOMPILING)
+  export(
+    TARGETS protoc
+    NAMESPACE "${PROJECT_NAME}::"
+    FILE "${PROJECT_BUILD_DIR}/ProtoBufConfig.cmake"
+  )
+  set(
+    PROTOC_COMPILER
+    protoc
+    CACHE
+    FILEPATH
+    ""
+  )
+endif()
+if(CMAKE_CROSSCOMPILING)
+  include(${PROJECT_BUILD_DIR}/ProtoBufConfig.cmake)
+  set(
+    PROTOC_COMPILER
+    "${PROJECT_NAME}::protoc"
+    CACHE
+    FILEPATH
+    ""
+  )
+endif()
 add_subdirectory(decision_forests)
 add_subdirectory(tests)
+

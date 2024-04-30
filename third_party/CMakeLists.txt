@@ -1,58 +1,14 @@
+set(FETCHCONTENT_POPULATE_EXTERNAL_PROJECT ON)
+
 include(FetchContent)
-
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
-FetchContent_Declare(
- googletest
- URL "https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz"
- URL_HASH "SHA256=8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7"
-)
-
-FetchContent_MakeAvailable(googletest)
+include(abseil.cmake)
+include(googletest.cmake)
+include(farmhash.cmake)
+include(boost_math.cmake)
+include(protobuf.cmake)
+include(eigen3.cmake)
 
 # https://github.com/protocolbuffers/protobuf/issues/12185
-
-set(ABSL_ENABLE_INSTALL ON)
-
-FetchContent_Declare(
- abseil
- URL "https://github.com/abseil/abseil-cpp/releases/download/20230802.2/abseil-cpp-20230802.2.tar.gz"
-)
-
-FetchContent_MakeAvailable(abseil)
-
-FetchContent_Declare(
- protobuf
- URL "https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protobuf-24.3.tar.gz"
- URL_HASH "SHA256=07d69502e58248927b58c7d7e7424135272ba5b2852a753ab6b67e62d2d29355"
-)
-
-FetchContent_MakeAvailable(protobuf)
-
-FetchContent_Declare(
-  boost_math
-  URL "https://github.com/boostorg/math/archive/refs/tags/boost-1.83.0.tar.gz"
-  URL_HASH "SHA256=53e5f7539a66899fe0fca3080405cbd5f7959da5394ec13664746741aece1705"
-)
-
-FetchContent_MakeAvailable(boost_math)
-
-FetchContent_Populate(
- farmhash
- URL "https://github.com/google/farmhash/archive/master.zip"
- URL_HASH "SHA256=d27a245e59f5e10fba10b88cb72c5f0e03d3f2936abbaf0cb78eeec686523ec1"
- SOURCE_DIR farmhash
-)
-
-set(BUILD_TESTING OFF)
-
-FetchContent_Declare(
- eigen3
- URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
- URL_HASH "SHA256=8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72"
-)
-
-FetchContent_MakeAvailable(eigen3)
 
 # FetchContent_Declare(
 #  rapidjson
@@ -71,7 +27,4 @@ FetchContent_MakeAvailable(eigen3)
 #  URL "https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz"
 #  SOURCE_DIR zlib
 # )
-
-include(protobuf-generate.cmake)
-include(farmhash.cmake)
 

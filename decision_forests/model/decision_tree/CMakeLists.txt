@@ -98,6 +98,7 @@ target_include_directories(
 target_link_libraries(
   decision_tree_io_blob_sequence
   PRIVATE
+  model_proto
   utils_bytestream
   utils_filesystem
   utils_protobuf
