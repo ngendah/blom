@@ -17,6 +17,7 @@ target_include_directories(
 target_link_libraries(
   fast_engine_factory
   PRIVATE
+  dataset_proto
   utils_registration
   absl::strings
   absl::status

@@ -11,6 +11,8 @@ target_link_libraries(
   PRIVATE
   serving_tests_obj
 )
-include(GoogleTest)
-gtest_discover_tests(serving_tests)
+if(NOT ANDROID_NDK)
+  include(GoogleTest)
+  gtest_discover_tests(utils_tests)
+endif()
 
