@@ -1,5 +1,7 @@
 include(FetchContent)
 
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 FetchContent_Declare(
  googletest
  URL "https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz"
@@ -42,6 +44,8 @@ FetchContent_Populate(
  SOURCE_DIR farmhash
 )
 
+set(BUILD_TESTING OFF)
+
 FetchContent_Declare(
  eigen3
  URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
@@ -68,6 +72,6 @@ FetchContent_MakeAvailable(eigen3)
 #  SOURCE_DIR zlib
 # )
 
-include(${protobuf_SOURCE_DIR}/cmake/protobuf-generate.cmake)
+include(protobuf-generate.cmake)
 include(farmhash.cmake)
 

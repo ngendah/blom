@@ -1,6 +1,6 @@
 farmhash/
 farmhash-*/
-protobuf*
+protobuf/*
 rapidjson*
 zlib*
 grpc*

@@ -21,6 +21,7 @@ protobuf_generate(
   TARGET utils_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
 )
 
 add_library(
@@ -42,6 +43,7 @@ protobuf_generate(
   TARGET dataset_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
 )
 
 add_library(
@@ -64,6 +66,7 @@ protobuf_generate(
   TARGET model_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
 )
 
 add_library(
@@ -82,6 +85,7 @@ protobuf_generate(
   TARGET metric_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
 )
 
 add_library(
@@ -107,6 +111,7 @@ protobuf_generate(
   TARGET learner_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
 )
 
 add_library(
@@ -125,5 +130,6 @@ protobuf_generate(
   TARGET serving_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
 )
 
