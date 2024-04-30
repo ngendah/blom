@@ -8,7 +8,7 @@
   "configurePresets": [
     {
       "name": "linux",
-      "displayName": "Linux",
+      "displayName": "Linux builds",
       "description": "Local linux builds",
       "generator": "Ninja",
       "binaryDir": "ninja.builds"
@@ -22,8 +22,7 @@
       "cacheVariables": {
         "ANDROID_PLATFORM": "android-29",
         "CMAKE_SYSTEM_NAME": "Android",
-        "CMAKE_ANDROID_NDK": "/home/ngendah/Android/Sdk/ndk/26.3.11579264",
-        "CMAKE_TOOLCHAIN_FILE": "/home/ngendah/Android/Sdk/ndk/26.3.11579264/build/cmake/android.toolchain.cmake",
+        "CMAKE_TOOLCHAIN_FILE": "$env{CMAKE_ANDROID_NDK}/build/cmake/android.toolchain.cmake",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },

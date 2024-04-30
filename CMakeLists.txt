@@ -20,8 +20,19 @@ set(protobuf_BUILD_TESTS OFF)
 set(protobuf_BUILD_LIBUPB OFF)
 set(protobuf_BUILD_PROTOBUF_BINARIES ON)
 
-# Eigen3 configuration
-set(BUILD_TESTING OFF)
+if(ANDROID_NDK)
+  message(STATUS "Cross compiling requires protobuf binaries v24.3+ 
+  to be already installed on the build system,
+   https://github.com/protocolbuffers/protobuf/releases")
+  find_program(PROTOC_COMPILER protoc REQUIRED)
+  set(protobuf_BUILD_LIBPROTOC ON)
+  set(
+    WITH_PROTOC
+    ${PROTOC_COMPILER}
+    CACHE FILEPATH
+    "protobuf compiler"
+  )
+endif()
 
 add_subdirectory(third_party)
 add_subdirectory(decision_forests)

@@ -128,7 +128,7 @@ target_link_libraries(
   absl::random_internal_randen
   protobuf::libprotoc
 )
-if(NOT ${ANDROID_PLATFORM})
+if(NOT ANDROID_NDK)
   target_link_libraries(
     filesystem
     PRIVATE
