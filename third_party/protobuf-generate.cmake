@@ -89,6 +89,11 @@ function(protobuf_generate)
     set(_protobuf_compiler ${protobuf_generate_PROTOC_COMPILER})
   endif()
 
+  if(NOT _protobuf_compiler)
+    message(SEND_ERROR "Error: protobuf_generate could not find a compiler")
+    return()
+  endif()
+
   foreach(DIR ${protobuf_generate_IMPORT_DIRS})
     get_filename_component(ABS_PATH ${DIR} ABSOLUTE)
     list(FIND _protobuf_include_path ${ABS_PATH} _contains_already)
