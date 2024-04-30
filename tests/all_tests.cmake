@@ -18,6 +18,8 @@ target_link_libraries(
   model_tests_obj
   model_decision_tree_tests_obj
 )
-include(GoogleTest)
-gtest_discover_tests(yggdrasil_tests)
+if(NOT ANDROID_NDK)
+  include(GoogleTest)
+  gtest_discover_tests(utils_tests)
+endif()
 
