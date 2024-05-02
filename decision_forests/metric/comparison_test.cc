@@ -14,14 +14,14 @@
  */
 
 #include "comparison.h"
+#include "metric.h"
 
 #include <random>
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "boost/math/distributions/normal.hpp"
-#include "metric.h"
-#include "metric.pb.h"
+#include "metric/metric.pb.h"
 #include "utils/random.h"
 
 namespace yggdrasil_decision_forests {

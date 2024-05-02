@@ -127,14 +127,13 @@ target_link_libraries(
   structure_analysis
   PRIVATE
   model_proto
-  utils_histogram
   utils_logging
   model_decision_tree
   absl::strings
   absl::status
   absl::statusor
 )
-add_library(model_structure_analysis ALIAS structure_analysis)
+add_library(model_decision_tree_structure_analysis ALIAS structure_analysis)
 
 
 # Testing artifact

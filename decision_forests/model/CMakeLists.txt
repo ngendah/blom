@@ -45,7 +45,7 @@ target_link_libraries(
   PRIVATE
   model_proto
   dataset_proto
-  dataset_data_spec 
+  dataset_data_spec
   dataset_vertical_dataset
   dataset_weight
   metric_metric
@@ -116,6 +116,34 @@ target_link_libraries(
   absl::strings
 )
 add_library(model_model_library ALIAS model_library)
+
+add_library(
+  model_engine_wrapper
+  STATIC
+  model_engine_wrapper.cc
+)
+target_include_directories(
+  model_engine_wrapper
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  model_engine_wrapper
+  PRIVATE
+  dataset_proto
+  model_proto
+  dataset_vertical_dataset
+  model_abstract_model
+  serving_example_set
+  utils_logging
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
 
 
 # Testing artifact

@@ -18,7 +18,7 @@
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
-#include "metric.pb.h"
+#include "metric/metric.pb.h"
 #include "utils/random.h"
 
 namespace yggdrasil_decision_forests {

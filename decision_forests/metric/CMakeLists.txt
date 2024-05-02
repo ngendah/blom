@@ -24,6 +24,7 @@ add_library(
   metric.cc
   report.cc
 )
+target_compile_options(metric PRIVATE -Wno-return-type)
 target_include_directories(
   metric
   PRIVATE
@@ -37,6 +38,7 @@ target_link_libraries(
   metric
   PRIVATE
   metric_proto
+  metric_ranking_utils
   utils_concurrency
   utils_html
   utils_plot

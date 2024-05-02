@@ -21,7 +21,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
-add_library(learner_utils ALIAS utils)
+add_library(learner_decision_tree_utils ALIAS utils)
 
 add_library(
   generic_parameters
@@ -49,13 +49,44 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
-add_library(learner_generic_parameters ALIAS generic_parameters)
+add_library(learner_decision_tree_generic_parameters ALIAS generic_parameters)
+
+add_library(
+  oblique
+  STATIC
+  oblique.cc
+)
+target_compile_options(oblique PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+target_include_directories(
+  oblique
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${Eigen3_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  oblique
+  PRIVATE
+  dataset_proto
+  learner_proto
+  dataset_vertical_dataset
+  learner_decision_tree_utils
+  utils_logging
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+add_library(learner_decision_tree_oblique ALIAS oblique)
 
 add_library(
   training
   STATIC
   training.cc
 )
+target_compile_options(training PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
 target_include_directories(
   training
   PRIVATE
@@ -73,6 +104,7 @@ target_link_libraries(
   utils_proto
   dataset_data_spec
   dataset_vertical_dataset
+  learner_decision_tree_oblique
   model_decision_tree
   utils_concurrency
   utils_distribution
@@ -85,37 +117,7 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
-add_library(learner_training ALIAS training)
-
-add_library(
-  oblique
-  STATIC
-  oblique.cc
-)
-target_include_directories(
-  oblique
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${Eigen3_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
-  ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  oblique
-  PRIVATE
-  dataset_proto
-  learner_proto
-  dataset_vertical_dataset
-  learner_training
-  learner_utils
-  utils_logging
-  absl::status
-  absl::statusor
-  protobuf::libprotoc
-  farmhash::farmhash
-)
-add_library(learner_oblique ALIAS oblique)
+add_library(learner_decision_tree_training ALIAS training)
 
 
 # Testing artifact
@@ -126,6 +128,7 @@ add_library(
   OBJECT
   ${test_SRC_FILES}
 )
+target_compile_options(learner_decision_tree_tests_obj PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
 target_include_directories(
   learner_decision_tree_tests_obj
   PRIVATE
@@ -140,10 +143,10 @@ target_link_libraries(
   PRIVATE
   dataset_proto
   model_proto
-  learner_training
-  learner_oblique
-  learner_utils
-  learner_generic_parameters
+  learner_decision_tree_training
+  learner_decision_tree_oblique
+  learner_decision_tree_utils
+  learner_decision_tree_generic_parameters
   model_uplift
   utils_testing_utils
   # third_party objects

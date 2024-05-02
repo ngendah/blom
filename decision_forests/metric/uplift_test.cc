@@ -14,16 +14,14 @@
  */
 
 #include "uplift.h"
+#include "metric.h"
+#include "report.h"
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "absl/strings/substitute.h"
 #include "dataset/data_spec.pb.h"
-#include "metric/metric.h"
-#include "metric/metric.pb.h"
-#include "metric/report.h"
 #include "model/abstract_model.pb.h"
-#include "utils/random.h"
 #include "utils/test.h"
 
 namespace yggdrasil_decision_forests {

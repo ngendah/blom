@@ -1,0 +1,42 @@
+add_library(
+  e2e_test_utils
+  STATIC
+  test_utils.cc
+)
+target_include_directories(
+  e2e_test_utils
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${googletest_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  e2e_test_utils
+  PRIVATE
+  dataset_proto
+  learner_proto
+  model_proto
+  utils_proto
+  dataset_data_spec
+  dataset_data_spec_inference
+  dataset_vertical_dataset
+  learner_abstract_learner
+  learner_library
+  model_abstract_model
+  model_engine_wrapper
+  model_library
+  serving_example_set
+  utils_concurrency
+  utils_csv
+  utils_filesystem
+  utils_logging
+  utils_testing_utils
+  utils_status_macros
+  absl::strings
+  absl::time
+  protobuf::libprotoc
+  farmhash::farmhash
+  GTest::gtest GTest::gmock
+)
+add_library(e2e_testing_utils ALIAS e2e_test_utils)

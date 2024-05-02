@@ -248,6 +248,7 @@ add_library(
   STATIC
   plot.cc
 )
+target_compile_options(plot PRIVATE -Wno-return-type)
 target_include_directories(
   plot
   PRIVATE
@@ -414,7 +415,7 @@ add_library(
   test.cc
 )
 target_include_directories(
-  bitmap
+  test
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
