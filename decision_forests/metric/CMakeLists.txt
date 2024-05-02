@@ -37,6 +37,7 @@ target_link_libraries(
   metric
   PRIVATE
   metric_proto
+  metric_ranking_utils
   utils_concurrency
   utils_html
   utils_plot
