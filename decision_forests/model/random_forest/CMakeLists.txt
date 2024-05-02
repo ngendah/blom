@@ -17,8 +17,11 @@ target_link_libraries(
   dataset_proto
   model_proto
   dataset_vertical_dataset
+  model_decision_tree_io
+  model_decision_tree_structure_analysis
   utils_distribution
   utils_plot
+  utils_blob_sequence
   protobuf::libprotoc
   farmhash::farmhash
 )
