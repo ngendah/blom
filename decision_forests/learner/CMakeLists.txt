@@ -1,4 +1,5 @@
 add_subdirectory(decision_tree)
+add_subdirectory(cart)
 
 add_library(
   abstract_learner

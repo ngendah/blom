@@ -93,6 +93,7 @@ add_library(
   STATIC
   learner/abstract_learner.proto
   learner/decision_tree/decision_tree.proto
+  learner/cart/cart.proto
 )
 target_include_directories(
   learner_proto
