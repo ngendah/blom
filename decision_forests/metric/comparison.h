@@ -19,7 +19,7 @@
 #define YGGDRASIL_DECISION_FORESTS_METRIC_COMPARISON_H_
 
 #include "absl/status/statusor.h"
-#include "metric.pb.h"
+#include "metric/metric.pb.h"
 #include "dataset/data_spec.pb.h"
 
 namespace yggdrasil_decision_forests {

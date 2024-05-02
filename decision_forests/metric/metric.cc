@@ -14,6 +14,10 @@
  */
 
 #include "metric.h"
+#include "labels.h"
+#include "ranking_mrr.h"
+#include "ranking_ndcg.h"
+#include "uplift.h"
 
 #include <cmath>
 #include <cstddef>
@@ -24,9 +28,6 @@
 #include <vector>
 
 #include "absl/types/span.h"
-#include "metric/metric.pb.h"
-#include "dataset/data_spec.pb.h"
-#include "model/abstract_model.pb.h"
 
 #include "absl/container/flat_hash_map.h"
 #include "absl/status/status.h"
@@ -36,18 +37,11 @@
 #include "boost/math/distributions/binomial.hpp"
 #include "boost/math/distributions/chi_squared.hpp"
 #include "boost/math/distributions/students_t.hpp"
-#include "labels.h"
-#include "ranking_mrr.h"
-#include "ranking_ndcg.h"
-#include "uplift.h"
 #include "dataset/data_spec.h"
-#include "utils/concurrency.h"
 #include "utils/distribution.h"
 #include "utils/distribution.pb.h"
 #include "utils/filesystem.h"
-#include "utils/logging.h"
 #include "utils/protobuf.h"
-#include "utils/random.h"
 #include "utils/status_macros.h"
 
 namespace yggdrasil_decision_forests {

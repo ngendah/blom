@@ -14,6 +14,8 @@
  */
 
 #include "metric.h"
+#include "comparison.h"
+#include "report.h"
 
 #include <cmath>
 #include <vector>
@@ -21,12 +23,9 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "absl/status/status.h"
-#include "absl/status/statusor.h"
 #include "absl/strings/substitute.h"
-#include "comparison.h"
-#include "metric.pb.h"
-#include "report.h"
 #include "dataset/data_spec.pb.h"
+#include "metric/metric.pb.h"
 #include "model/abstract_model.pb.h"
 #include "utils/compatibility.h"
 #include "utils/distribution.h"
