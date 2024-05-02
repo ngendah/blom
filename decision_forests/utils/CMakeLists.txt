@@ -414,7 +414,7 @@ add_library(
   test.cc
 )
 target_include_directories(
-  bitmap
+  test
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
