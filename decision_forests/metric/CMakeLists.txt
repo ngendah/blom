@@ -24,6 +24,7 @@ add_library(
   metric.cc
   report.cc
 )
+target_compile_options(metric PRIVATE -Wno-return-type)
 target_include_directories(
   metric
   PRIVATE

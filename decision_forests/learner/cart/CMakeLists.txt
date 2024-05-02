@@ -3,6 +3,7 @@ add_library(
   STATIC
   cart.cc
 )
+target_compile_options(cart PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
 target_include_directories(
   cart
   PRIVATE

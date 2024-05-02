@@ -248,6 +248,7 @@ add_library(
   STATIC
   plot.cc
 )
+target_compile_options(plot PRIVATE -Wno-return-type)
 target_include_directories(
   plot
   PRIVATE

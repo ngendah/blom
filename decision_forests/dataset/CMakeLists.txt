@@ -20,6 +20,7 @@ add_library(
   STATIC
   formats.cc
 )
+target_compile_options(formats PRIVATE -Wno-return-type)
 target_include_directories(
   formats
   PRIVATE
