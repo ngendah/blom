@@ -24,8 +24,9 @@ target_link_libraries(
   protobuf::libprotoc
   farmhash::farmhash
 )
+add_library(model_random_forest ALIAS random_forest)
+# TODO remove and replace instances by above library
 add_library(model_decision_tree_random_forest ALIAS random_forest)
-
 
 # Testing artifact
 

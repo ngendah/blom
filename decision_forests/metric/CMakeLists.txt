@@ -19,38 +19,6 @@ target_link_libraries(
 add_library(metric_ranking_utils ALIAS ranking_utils)
 
 add_library(
-  metric
-  STATIC
-  metric.cc
-  report.cc
-)
-target_compile_options(metric PRIVATE -Wno-return-type)
-target_include_directories(
-  metric
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
-  ${farmhash_SOURCE_DIR}/src
-  ${boost_math_SOURCE_DIR}/include
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  metric
-  PRIVATE
-  metric_proto
-  metric_ranking_utils
-  utils_concurrency
-  utils_html
-  utils_plot
-  absl::strings
-  absl::random_distributions
-  absl::random_seed_sequences
-  absl::random_internal_randen
-  protobuf::libprotoc
-)
-add_library(metric_metric ALIAS metric)
-
-add_library(
   report
   STATIC
   report.cc
@@ -132,6 +100,39 @@ target_link_libraries(
   farmhash::farmhash
 )
 add_library(metric_uplift ALIAS uplift)
+
+add_library(
+  metric
+  STATIC
+  metric.cc
+  report.cc
+)
+target_compile_options(metric PRIVATE -Wno-return-type)
+target_include_directories(
+  metric
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${boost_math_SOURCE_DIR}/include
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  metric
+  PRIVATE
+  metric_proto
+  metric_ranking_utils
+  metric_uplift
+  utils_concurrency
+  utils_html
+  utils_plot
+  absl::strings
+  absl::random_distributions
+  absl::random_seed_sequences
+  absl::random_internal_randen
+  protobuf::libprotoc
+)
+add_library(metric_metric ALIAS metric)
 
 
 # Testing artifact
