@@ -1,4 +1,5 @@
 add_subdirectory(distribute)
+add_subdirectory(feature_importance)
 
 add_library(
   logging
