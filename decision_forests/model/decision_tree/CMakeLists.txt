@@ -37,8 +37,7 @@ target_include_directories(
 target_link_libraries(
   decision_tree
   PRIVATE
-  model_proto
-  dataset_proto
+  model_decision_tree_proto
   utils_proto
   dataset_data_spec
   dataset_vertical_dataset
@@ -156,8 +155,8 @@ target_include_directories(
 target_link_libraries(
   model_decision_tree_tests_obj
   PRIVATE
-  model_proto
   dataset_proto
+  model_decision_tree_proto
   model_decision_tree_builder
   model_decision_tree
   dataset_data_spec
