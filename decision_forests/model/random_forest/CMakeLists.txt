@@ -14,8 +14,7 @@ target_include_directories(
 target_link_libraries(
   random_forest
   PRIVATE
-  dataset_proto
-  model_proto
+  model_random_forest_proto
   dataset_vertical_dataset
   model_decision_tree_io
   model_decision_tree_structure_analysis
@@ -48,8 +47,7 @@ target_include_directories(
 target_link_libraries(
   model_random_forest_tests_obj
   PRIVATE
-  model_proto
-  dataset_proto
+  model_random_forest_proto
   model_decision_tree_builder
   model_decision_tree
   dataset_vertical_dataset
