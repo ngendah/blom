@@ -16,21 +16,16 @@
 #include "decision_tree.h"
 #include "builder.h"
 
-#include <memory>
-#include <string>
-#include <utility>
-#include <vector>
-
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "absl/status/statusor.h"
 #include "absl/strings/str_cat.h"
-#include "absl/strings/string_view.h"
 #include "absl/types/span.h"
 #include "dataset/data_spec.h"
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
 #include "dataset/example.pb.h"
+#include "dataset/dataset_library.h"
 #include "dataset/vertical_dataset.h"
 #include "dataset/vertical_dataset_io.h"
 #include "model/decision_tree/decision_tree.pb.h"
@@ -40,7 +35,6 @@
 #include "utils/test.h"
 #include "utils/testing_macros.h"
 
-#include "dataset/all_formats.h"
 
 namespace yggdrasil_decision_forests {
 namespace model {
@@ -55,6 +49,16 @@ using ::yggdrasil_decision_forests::dataset::proto::DataSpecification;
 std::string DatasetDir() {
   return file::JoinPath(test::DataRootDirectory(),
                         "testing_data/dataset");
+}
+
+TEST(DecisionTree, RegisteredReaders) {
+  std::vector<std::string> readers = yggdrasil_decision_forests::dataset::allRegisteredExampleReaders();
+  CHECK_EQ(readers.size(), 1);
+}
+
+TEST(DecisionTree, RegisteredWriters) {
+  std::vector<std::string> writers = yggdrasil_decision_forests::dataset::allRegisteredExampleWriters();
+  CHECK_EQ(writers.size(), 1);
 }
 
 TEST(DecisionTree, GetLeafAndGetPath) {

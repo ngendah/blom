@@ -16,7 +16,6 @@
 #include <algorithm>
 #include <iterator>
 #include <set>
-#include <string>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -26,12 +25,11 @@
 #include "absl/strings/numbers.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_split.h"
-#include "dataset/all_formats.h"
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
+#include "dataset/dataset_library.h"
 #include "dataset/vertical_dataset.h"
 #include "dataset/vertical_dataset_io.h"
-#include "metric/metric.pb.h"
 #include "filesystem.h"
 #include "status_macros.h"
 #include "test.h"
@@ -259,6 +257,16 @@ TEST(MergeItemsInFoldToItems, SimpleMerge) {
   MergeItemsInFoldToItems(fold_elements, fold, &elements);
   const std::vector<std::string> expected_elements = {"", "", "b", "a", ""};
   EXPECT_EQ(elements, expected_elements);
+}
+
+TEST(FoldGenerator, RegisteredReaders) {
+std::vector<std::string> readers = yggdrasil_decision_forests::dataset::allRegisteredExampleReaders();
+CHECK_EQ(readers.size(), 1);
+}
+
+TEST(FoldGenerator, RegisteredWriters) {
+std::vector<std::string> writers = yggdrasil_decision_forests::dataset::allRegisteredExampleWriters();
+CHECK_EQ(writers.size(), 1);
 }
 
 }  // namespace

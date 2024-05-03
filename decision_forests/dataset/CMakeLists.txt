@@ -297,6 +297,26 @@ target_link_libraries(
 )
 add_library(dataset_csv_example_writer ALIAS csv_example_writer)
 
+add_library(
+  dataset_library
+  STATIC
+  dataset_library.cc
+)
+target_include_directories(
+  dataset_library
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${farmhash_SOURCE_DIR}/src
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  dataset_library
+  PRIVATE
+  dataset_csv_example_reader
+  dataset_csv_example_writer
+)
+
 
 # Testing artifact
 

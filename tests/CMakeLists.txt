@@ -11,5 +11,6 @@ include(learner_random_forests_tests.cmake)
 include(learner_hyperparameters_optimizers_tests.cmake)
 include(learner_optimizers_random_tests.cmake)
 include(learner_generic_worker_tests.cmake)
+include(learner_decision_tree_tests.cmake)
 include(all_tests.cmake)
 
