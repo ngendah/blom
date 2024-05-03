@@ -1,10 +1,12 @@
+add_subdirectory(optimizers)
+
 add_library(
-  random_forest
+  hyperparameters_optimizer
   STATIC
-  random_forest.cc
+  hyperparameters_optimizer.cc
 )
 target_include_directories(
-  random_forest
+  hyperparameters_optimizer
   PRIVATE
   ${absl_SOURCE_DIR}
   ${protobuf_SOURCE_DIR}/src
@@ -12,32 +14,37 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  random_forest
+  hyperparameters_optimizer
   PRIVATE
-  model_random_forest_proto
+  hyperparameters_optimizer_proto
   dataset_vertical_dataset
-  model_decision_tree_io
-  model_decision_tree_structure_analysis
-  utils_distribution
-  utils_plot
-  utils_blob_sequence
+  learner_abstract_learner
+  learner_generic_worker
+  metric_metric
+  metric_ranking_utils
+  model_abstract_model
+  utils_distribute
+  utils_hyper_parameters
+  utils_usage
+  absl::strings
+  absl::status
+  absl::statusor
   protobuf::libprotoc
   farmhash::farmhash
 )
-add_library(model_random_forest ALIAS random_forest)
-# TODO remove and replace instances by above library
-add_library(model_decision_tree_random_forest ALIAS random_forest)
+add_library(learner_hyperparameters_optimizer ALIAS hyperparameters_optimizer)
+
 
 # Testing artifact
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
 add_library(
-  model_random_forest_tests_obj
+  learner_hyperparameters_optimizer_tests_obj
   OBJECT
   ${test_SRC_FILES}
 )
 target_include_directories(
-  model_random_forest_tests_obj
+  learner_hyperparameters_optimizer_tests_obj
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -46,18 +53,17 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  model_random_forest_tests_obj
+  learner_hyperparameters_optimizer_tests_obj
   PRIVATE
-  model_random_forest_proto
-  model_decision_tree_builder
-  model_decision_tree
-  dataset_vertical_dataset
+  model_proto
+  metric_metric
+  e2e_test_utils
+  learner_hyperparameters_optimizer
+  utils_filesystem
   utils_logging
-  utils_status_macros
   utils_testing_utils
   # third_party objects
   protobuf::libprotoc
-  farmhash::farmhash
   GTest::gtest_main GTest::gmock_main
 )
 

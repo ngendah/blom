@@ -1,18 +1,18 @@
 # testing executable
 enable_testing()
-add_executable(dataset_tests)
+add_executable(learner_generic_worker_tests)
 target_link_directories(
-  dataset_tests
+  learner_generic_worker_tests
   PUBLIC
   ${CMAKE_PROJECT_PATH}/decision_forests
 )
 target_link_libraries(
-  dataset_tests
+  learner_generic_worker_tests
   PRIVATE
-  dataset_tests_obj
+  learner_generic_worker_tests_obj
 )
 if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
-  gtest_discover_tests(dataset_tests)
+  gtest_discover_tests(learner_generic_worker_tests)
 endif()
 

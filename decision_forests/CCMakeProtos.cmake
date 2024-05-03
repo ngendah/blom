@@ -142,6 +142,33 @@ protobuf_generate(
 )
 
 add_library(
+  hyperparameters_optimizer_proto
+  STATIC
+  learner/hyperparameters_optimizer/hyperparameters_optimizer.proto
+  learner/hyperparameters_optimizer/optimizers/random.proto
+)
+target_include_directories(
+  hyperparameters_optimizer_proto
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  hyperparameters_optimizer_proto
+  PRIVATE
+  learner_proto
+  metric_proto
+  model_proto
+)
+protobuf_generate(
+  TARGET hyperparameters_optimizer_proto
+  PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
+  PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
+)
+
+add_library(
   serving_proto
   STATIC
   serving/serving.proto
@@ -166,6 +193,7 @@ add_library(
   learner/abstract_learner.proto
   learner/decision_tree/decision_tree.proto
   learner/cart/cart.proto
+  learner/random_forest/random_forest.proto
 )
 target_include_directories(
   learner_proto
@@ -183,6 +211,33 @@ target_link_libraries(
 )
 protobuf_generate(
   TARGET learner_proto
+  PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
+  PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
+  PROTOC_COMPILER ${PROTOC_COMPILER}
+)
+
+add_library(
+  learner_generic_worker_proto
+  STATIC
+  learner/generic_worker/generic_worker.proto
+)
+target_include_directories(
+  learner_generic_worker_proto
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  learner_generic_worker_proto
+  PRIVATE
+  dataset_proto
+  learner_proto
+  metric_proto
+  model_proto
+)
+protobuf_generate(
+  TARGET learner_generic_worker_proto
   PROTOC_OUT_DIR ${PROTOC_GENERATED_SOURCE_DIR}
   PROTOC_OPTIONS "--proto_path=${PROTOC_SOURCE_DIR}"
   PROTOC_COMPILER ${PROTOC_COMPILER}

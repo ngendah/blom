@@ -1,5 +1,8 @@
-add_subdirectory(decision_tree)
 add_subdirectory(cart)
+add_subdirectory(decision_tree)
+add_subdirectory(generic_worker)
+add_subdirectory(hyperparameters_optimizer)
+add_subdirectory(random_forest)
 
 add_library(
   abstract_learner
@@ -57,6 +60,8 @@ target_link_libraries(
   learner_library
   PRIVATE
   learner_proto
+  model_proto
+  learner_abstract_learner
   absl::status
   absl::statusor
   absl::strings

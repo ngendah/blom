@@ -17,6 +17,7 @@ target_link_libraries(
   learner_tests_obj
   model_tests_obj
   model_decision_tree_tests_obj
+
 )
 if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
