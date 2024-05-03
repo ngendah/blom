@@ -104,6 +104,7 @@ target_link_libraries(
   utils_proto
   dataset_data_spec
   dataset_vertical_dataset
+  dataset_types
   learner_decision_tree_oblique
   model_decision_tree
   utils_concurrency
@@ -147,7 +148,6 @@ target_link_libraries(
   learner_decision_tree_oblique
   learner_decision_tree_utils
   learner_decision_tree_generic_parameters
-  model_uplift
   utils_testing_utils
   # third_party objects
   absl::status
