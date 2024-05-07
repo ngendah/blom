@@ -1,3 +1,5 @@
+add_subdirectory(decision_forest)
+
 add_library(
   example_set
   STATIC

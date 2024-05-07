@@ -1,0 +1,144 @@
+add_library(
+  serving_decision_forest_utils
+  STATIC
+  utils.cc
+)
+target_include_directories(
+  serving_decision_forest_utils
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  serving_decision_forest_utils
+  PRIVATE
+  dataset_proto
+  model_proto
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
+
+add_library(
+  serving_decision_forest
+  STATIC
+  decision_forest.cc
+)
+target_include_directories(
+  serving_decision_forest
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  serving_decision_forest
+  PRIVATE
+  model_decision_tree_proto
+  model_random_forest
+  dataset_data_spec
+  dataset_vertical_dataset
+  model_decision_tree
+  serving_example_set
+  serving_decision_forest_utils
+  utils_bitmap
+  utils_logging
+  utils_status_macros
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
+
+add_library(
+  serving_decision_forest_serving
+  STATIC
+  decision_forest_serving.cc
+)
+target_include_directories(
+  serving_decision_forest_serving
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  serving_decision_forest_serving
+  PRIVATE
+  model_proto
+  serving_decision_forest_utils
+  serving_example_set
+  utils_logging
+  utils_usage
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
+
+add_library(
+  register_engines
+  STATIC
+  register_engines.cc
+)
+target_include_directories(
+  register_engines
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  register_engines
+  PRIVATE
+  dataset_proto
+  model_proto
+  serving_decision_forest
+  absl::strings
+  absl::status
+  absl::statusor
+  protobuf::libprotoc
+)
+add_library(serving_register_engines ALIAS register_engines)
+
+
+# Testing artifact
+
+file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+add_library(
+  serving_decision_forest_tests_obj
+  OBJECT
+  ${test_SRC_FILES}
+)
+target_include_directories(
+  serving_decision_forest_tests_obj
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${googletest_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  serving_decision_forest_tests_obj
+  PRIVATE
+  serving_decision_forest_utils
+  serving_decision_forest
+  serving_decision_forest_serving
+  serving_register_engines
+  dataset_library
+  e2e_test_utils
+  model_model_library
+  model_decision_tree_random_forest
+  utils_testing_utils
+  # third_party objects
+  protobuf::libprotoc
+  GTest::gtest_main GTest::gmock_main
+)
+
