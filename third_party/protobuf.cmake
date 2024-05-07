@@ -10,6 +10,9 @@ if(CMAKE_CROSSCOMPILING)
   set(protobuf_BUILD_PROTOC_BINARIES OFF)
 endif()
 
+# silence -Wattributes warning
+add_compile_options(-Wno-attributes)
+
 FetchContent_Declare(
  protobuf
  URL "https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protobuf-24.3.tar.gz"
@@ -17,4 +20,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(protobuf)
 include(protobuf_generate.cmake)
+
+# enable -Wattributes warning
+add_compile_options(-Wattributes)
 
