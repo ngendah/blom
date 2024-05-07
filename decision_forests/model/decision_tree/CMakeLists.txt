@@ -37,6 +37,7 @@ target_include_directories(
 target_link_libraries(
   decision_tree
   PRIVATE
+  dataset_proto
   model_decision_tree_proto
   utils_proto
   dataset_data_spec
@@ -70,6 +71,8 @@ target_include_directories(
 target_link_libraries(
   decision_tree_io
   PRIVATE
+  dataset_proto
+  model_decision_tree_proto
   utils_bytestream
   utils_filesystem
   utils_protobuf
