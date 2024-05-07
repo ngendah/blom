@@ -27,6 +27,7 @@ target_link_libraries(
   model_engine_wrapper
   model_library
   serving_example_set
+  serving_decision_forest
   utils_concurrency
   utils_csv
   utils_filesystem

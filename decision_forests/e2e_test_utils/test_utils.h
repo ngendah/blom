@@ -54,6 +54,7 @@
 #include "metric/metric.pb.h"
 #include "model/abstract_model.h"
 #include "model/abstract_model.pb.h"
+#include "serving/decision_forest/decision_forest.h"
 
 namespace yggdrasil_decision_forests {
 namespace utils {
@@ -258,6 +259,39 @@ void ExpectEqualPredictionsTemplate(const dataset::VerticalDataset& dataset,
 
     // Generate the predictions of the engine.
     PredictCall(engine, example_set_batch, end_idx - begin_idx, &predictions);
+
+    // Check the predictions against the ground truth inference code.
+    ExpectEqualPredictions(dataset, begin_idx, end_idx, model, predictions);
+  }
+}
+
+template <typename Engine,
+          void (*PredictCall)(const Engine&,
+                              const std::vector<typename Engine::ValueType>&,
+                              int, std::vector<float>*)>
+void ExpectEqualPredictionsOldTemplate(
+    const dataset::VerticalDataset& dataset, const model::AbstractModel& model,
+    const Engine& engine, const serving::ExampleFormat example_format) {
+  const int batch_size = 20;
+  const int num_batches = (dataset.nrow() + batch_size - 1) / batch_size;
+  std::vector<typename Engine::ValueType> batch_of_examples;
+
+  std::vector<float> predictions;
+
+  for (int batch_idx = 0; batch_idx < num_batches; batch_idx++) {
+    // Extract a set of examples.
+    const auto begin_idx = batch_idx * batch_size;
+    const auto end_idx =
+        std::min(begin_idx + batch_size, static_cast<int>(dataset.nrow()));
+
+    CHECK_OK(serving::decision_forest::LoadFlatBatchFromDataset(
+        dataset, begin_idx, end_idx,
+        FeatureNames(engine.features().fixed_length_features()),
+        engine.features().fixed_length_na_replacement_values(),
+        &batch_of_examples, example_format));
+
+    // Generate the predictions of the engine.
+    PredictCall(engine, batch_of_examples, end_idx - begin_idx, &predictions);
 
     // Check the predictions against the ground truth inference code.
     ExpectEqualPredictions(dataset, begin_idx, end_idx, model, predictions);
