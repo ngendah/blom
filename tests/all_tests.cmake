@@ -24,6 +24,7 @@ target_link_libraries(
   learner_hyperparameters_optimizer_tests_obj
   learner_optimizers_random_tests_obj
   learner_random_forest_tests_obj
+  serving_decision_forest_tests_obj
 )
 if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
