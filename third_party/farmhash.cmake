@@ -2,7 +2,6 @@ FetchContent_Populate(
  farmhash
  URL "https://github.com/google/farmhash/archive/master.zip"
  URL_HASH "SHA256=d27a245e59f5e10fba10b88cb72c5f0e03d3f2936abbaf0cb78eeec686523ec1"
- SOURCE_DIR farmhash
 )
 
 add_library(
@@ -23,3 +22,4 @@ set(
   CACHE PATH
   "Farmhash binary directory"
 )
+
