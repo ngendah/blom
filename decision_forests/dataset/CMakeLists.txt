@@ -301,6 +301,8 @@ add_library(
   dataset_library
   STATIC
   dataset_library.cc
+  data_spec_inference.cc
+  vertical_dataset_io.cc
 )
 target_include_directories(
   dataset_library
@@ -315,6 +317,8 @@ target_link_libraries(
   PRIVATE
   dataset_csv_example_reader
   dataset_csv_example_writer
+  dataset_data_spec_inference
+  dataset_vertical_dataset
 )
 
 
@@ -338,22 +342,14 @@ target_include_directories(
 target_link_libraries(
   dataset_tests_obj
   PRIVATE
-# other project objects
   utils_proto
   learner_proto
-  utils_testing_utils
-# local objects
-  dataset_weight
-  dataset_formats
   dataset_data_spec
   dataset_example_builder
-  dataset_data_spec_inference
-  dataset_example_reader
-  dataset_example_writer
-  dataset_vertical_dataset
-  dataset_csv_example_reader
-  dataset_csv_example_writer
-# third_party objects
+  dataset_formats
+  dataset_library
+  dataset_weight
+  utils_testing_utils
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
 )
