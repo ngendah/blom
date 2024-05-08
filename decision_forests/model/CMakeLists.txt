@@ -91,6 +91,8 @@ add_library(
   model_library
   STATIC
   model_library.cc
+  decision_tree/decision_tree.cc
+  random_forest/random_forest.cc
 )
 target_include_directories(
   model_library
@@ -105,8 +107,10 @@ target_link_libraries(
   PRIVATE
   model_proto
   model_abstract_model
+  model_decision_tree
   model_fast_engine_factory
   model_metadata
+  model_random_forest
   utils_blob_sequence
   utils_bytestream
   utils_filesystem
