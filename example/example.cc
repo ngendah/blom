@@ -27,6 +27,7 @@
 //
 
 #include "absl/flags/flag.h"
+#include "decision_forests/dataset/dataset_library.h"
 #include "decision_forests/dataset/data_spec.h"
 #include "decision_forests/dataset/data_spec.pb.h"
 #include "decision_forests/dataset/data_spec_inference.h"
