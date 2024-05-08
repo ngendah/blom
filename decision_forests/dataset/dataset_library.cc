@@ -27,5 +27,9 @@ namespace dataset {
   std::vector<std::string> allRegisteredExampleWriters() {
     return ExampleWriterInterfaceRegisterer::GetNames();
   }
+
+  std::vector<std::string> allRegisteredFormats() {
+    return allRegisteredExampleReaders();
+  }
 }
 }
