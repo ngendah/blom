@@ -100,6 +100,7 @@ target_include_directories(
 target_link_libraries(
   decision_tree_io_blob_sequence
   PRIVATE
+  model_decision_tree_proto
   model_proto
   utils_bytestream
   utils_filesystem

@@ -65,8 +65,9 @@ target_include_directories(
 target_link_libraries(
   comparison
   PRIVATE
-  ranking_utils
+  metric_proto
   model_proto
+  ranking_utils
   dataset_proto
   absl::strings
   protobuf::libprotoc
