@@ -7,34 +7,37 @@
   },
   "configurePresets": [
     {
-      "name": "linux.x86",
-      "displayName": "Linux x86_64 builds",
-      "description": "Local linux x86_64 builds",
+      "name": "base",
+      "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/builds/linux.x86_64",
+      "binaryDir": "${sourceDir}/builds/${presetName}",
       "cacheVariables": {
-        "PROJECT_BUILD_DIR": "${sourceDir}/builds"
+        "PROJECT_BUILD_DIR": "${sourceDir}/builds/${presetName}"
       }
+    },
+    {
+      "name": "linux.x64",
+      "displayName": "Linux x64 builds",
+      "description": "Local linux x64 builds",
+      "inherits": "base"
     },
     {
       "name": "android",
       "displayName": "Android",
       "description": "Cross platform builds for Android platform",
-      "generator": "Ninja",
+      "inherits": "base",
       "hidden": true,
       "cacheVariables": {
         "ANDROID_PLATFORM": "android-29",
         "CMAKE_SYSTEM_NAME": "Android",
         "CMAKE_TOOLCHAIN_FILE": "$env{CMAKE_ANDROID_NDK}/build/cmake/android.toolchain.cmake",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "PROJECT_BUILD_DIR": "${sourceDir}/builds"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
     {
-      "name": "android.x86",
+      "name": "android.x64",
       "displayName": "Android x86_64 (x86_64)",
       "inherits": "android",
-      "binaryDir": "${sourceDir}/builds/android.x86_64",
       "cacheVariables": {
         "ANDROID_ABI": "x86_64",
         "CMAKE_ANDROID_ARCH_ABI": "x86_64"
@@ -44,7 +47,6 @@
       "name": "android.v7a",
       "displayName": "Android ARM 32 eabi (armeabi-v7a)",
       "inherits": "android",
-      "binaryDir": "${sourceDir}/builds/android.armv7a",
       "cacheVariables": {
         "ANDROID_ABI": "armeabi-v7a",
         "CMAKE_ANDROID_ARCH_ABI": "armeabi-v7a"
@@ -54,7 +56,6 @@
       "name": "android.v8a",
       "displayName": "Android ARM 64 eabi (arm64-v8a)",
       "inherits": "android",
-      "binaryDir": "${sourceDir}/builds/android.armv8a",
       "cacheVariables": {
         "ANDROID_ABI": "arm64-v8a",
         "CMAKE_ANDROID_ARCH_ABI": "arm64-v8a"
@@ -63,15 +64,15 @@
   ],
   "buildPresets": [
     {
-      "name": "linux.x86",
+      "name": "linux.x64",
       "displayName": "Linux",
-      "configurePreset": "linux.x86"
+      "configurePreset": "linux.x64"
     },
     {
-      "name": "android.x86",
-      "displayName": "x86_64",
+      "name": "android.x64",
+      "displayName": "Android x86_64",
       "description": "X86 64 builds for Android",
-      "configurePreset": "android.x86"
+      "configurePreset": "android.x64"
     },
     {
       "name": "android.v7a",
