@@ -119,6 +119,11 @@
       "displayName": "Android",
       "inherits": "base",
       "hidden": true,
+      "condition": {
+        "type": "notEquals",
+        "lhs": "$env{CMAKE_ANDROID_NDK}",
+        "rhs": ""
+      },
       "cacheVariables": {
         "ANDROID_PLATFORM": "android-29",
         "CMAKE_SYSTEM_NAME": "Android",
