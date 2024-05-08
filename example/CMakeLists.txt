@@ -27,3 +27,10 @@ target_link_libraries(
   utils_filesystem
   utils_logging
 )
+add_custom_command(
+  TARGET example POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy
+  ${PROJECT_SOURCE_DIR}/testing_data
+  ${CMAKE_CURRENT_BINARY_DIR}/testing_data
+)
+

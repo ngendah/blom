@@ -53,6 +53,9 @@ int main(int argc, char** argv) {
   // Enable the logging. Optional in most cases.
   InitLogging(argv[0], &argc, &argv, true);
 
+  // 
+  auto formats = ygg::dataset::allRegisteredFormats();
+
   // Path to the training and testing dataset.
   const auto train_dataset_path = absl::StrCat(
       "csv:",
