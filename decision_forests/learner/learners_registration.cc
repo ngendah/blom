@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "learner_registration.h"
+#include "learners_registration.h"
 
 #include "learner/cart/cart.h"
 #include "learner/hyperparameters_optimizer/hyperparameters_optimizer.h"
