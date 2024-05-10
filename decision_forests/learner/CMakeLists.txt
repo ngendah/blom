@@ -70,6 +70,27 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
+add_library(
+  learners_registration
+  STATIC
+  learners_registration.cc
+)
+target_include_directories(
+  learners_registration
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  learners_registration
+  PRIVATE
+  learner_cart
+  learner_hyperparameters_optimizer
+  learner_random_forest
+)
+
 
 # Testing artifact
 
