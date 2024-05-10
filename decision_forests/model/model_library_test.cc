@@ -29,14 +29,13 @@ namespace yggdrasil_decision_forests {
 namespace model {
 namespace {
 
-EnsureModelsRegistration();
-
 std::string TestDataDir() {
   return file::JoinPath(test::DataRootDirectory(),
                         "testing_data");
 }
 
 TEST(ModelLibrary, CreateAllModels) {
+  EnsureModelsRegistration();
   for (const auto& model_name : AllRegisteredModels()) {
     std::unique_ptr<AbstractModel> mdl;
     EXPECT_OK(CreateEmptyModel(model_name, &mdl));
@@ -44,6 +43,7 @@ TEST(ModelLibrary, CreateAllModels) {
 }
 
 TEST(ModelLibrary, DetectsSavedModelTrue) {
+  EnsureModelsRegistration();
   std::unique_ptr<model::AbstractModel> model;
   std::string model_directory =
       file::JoinPath(TestDataDir(), "model", "adult_binary_class_gbdt");
