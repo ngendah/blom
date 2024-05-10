@@ -30,4 +30,4 @@ std::vector<std::string> EnsureFormatsRegistration();
 }
 }
 
-#endif // YGGDRASIL_DECISION_FORESTS_DATASET_DATASET_LIBRARY_H_
+#endif // YGGDRASIL_DECISION_FORESTS_DATASET_FORMATS_REGISTRATION_H_
