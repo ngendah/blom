@@ -27,7 +27,7 @@
 #include "absl/strings/str_split.h"
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
-#include "dataset/dataset_library.h"
+#include "dataset/dataset_formats_registration.h"
 #include "dataset/vertical_dataset.h"
 #include "dataset/vertical_dataset_io.h"
 #include "filesystem.h"

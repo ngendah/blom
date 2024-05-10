@@ -459,7 +459,7 @@ target_link_libraries(
   dataset_proto
   learner_proto
   dataset_data_spec_inference
-  dataset_library
+  dataset_formats_registration
   utils_logging
   utils_adaptive_work
   utils_status_macros

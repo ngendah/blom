@@ -1,5 +1,6 @@
 /*
  * Copyright 2024 Ngenda Henry.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef YGGDRASIL_DECISION_FORESTS_DATASET_DATASET_LIBRARY_H_
-#define YGGDRASIL_DECISION_FORESTS_DATASET_DATASET_LIBRARY_H_
+#ifndef YGGDRASIL_DECISION_FORESTS_DATASET_FORMATS_REGISTRATION_H_
+#define YGGDRASIL_DECISION_FORESTS_DATASET_FORMATS_REGISTRATION_H_
 
 #include <string>
 #include <vector>
@@ -23,11 +24,9 @@
 
 namespace yggdrasil_decision_forests {
 namespace dataset {
-  std::vector<std::string> allRegisteredExampleReaders();
 
-  std::vector<std::string> allRegisteredExampleWriters();
+std::vector<std::string> EnsureFormatsRegistration();
 
-  std::vector<std::string> allRegisteredFormats();
 }
 }
 

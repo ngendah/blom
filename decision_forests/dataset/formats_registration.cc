@@ -1,5 +1,6 @@
 /*
  * Copyright 2024 Ngenda Henry.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +14,20 @@
  * limitations under the License.
  */
 
-#include "dataset_library.h"
+#include "formats_registration.h"
 
 #include "csv_example_reader.h"
 #include "csv_example_writer.h"
 
 namespace yggdrasil_decision_forests {
 namespace dataset {
-  std::vector<std::string> allRegisteredExampleReaders() {
-    return ExampleReaderInterfaceRegisterer::GetNames();
-  }
 
-  std::vector<std::string> allRegisteredExampleWriters() {
-    return ExampleWriterInterfaceRegisterer::GetNames();
-  }
+std::vector<std::string> EnsureFormatsRegistration() {
+  (void)CsvExampleWriter::kRegisteredName;
+  return {
+    CsvExampleReader::kRegisteredName,
+  };
+}
 
-  std::vector<std::string> allRegisteredFormats() {
-    return allRegisteredExampleReaders();
-  }
 }
 }

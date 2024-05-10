@@ -39,6 +39,8 @@ class CsvExampleWriter final : public ExampleWriterInterface {
  public:
   explicit CsvExampleWriter(const proto::DataSpecification& data_spec);
 
+  static constexpr char kRegisteredName[] = "FORMAT_CSV";
+
   absl::Status Write(const proto::Example& example) override {
     return sharded_csv_writer_.Write(example);
   }
@@ -73,7 +75,7 @@ class CsvExampleWriter final : public ExampleWriterInterface {
   Implementation sharded_csv_writer_;
 };
 
-REGISTER_ExampleWriterInterface(CsvExampleWriter, "FORMAT_CSV");
+REGISTER_ExampleWriterInterface(CsvExampleWriter, CsvExampleWriter::kRegisteredName);
 
 }  // namespace dataset
 }  // namespace yggdrasil_decision_forests

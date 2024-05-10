@@ -25,7 +25,7 @@
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
 #include "dataset/example.pb.h"
-#include "dataset/dataset_library.h"
+#include "dataset/dataset_formats_registration.h"
 #include "dataset/vertical_dataset.h"
 #include "dataset/vertical_dataset_io.h"
 #include "model/decision_tree/decision_tree.pb.h"
@@ -51,15 +51,7 @@ std::string DatasetDir() {
                         "testing_data/dataset");
 }
 
-TEST(DecisionTree, RegisteredReaders) {
-  std::vector<std::string> readers = yggdrasil_decision_forests::dataset::allRegisteredExampleReaders();
-  CHECK_EQ(readers.size(), 1);
-}
-
-TEST(DecisionTree, RegisteredWriters) {
-  std::vector<std::string> writers = yggdrasil_decision_forests::dataset::allRegisteredExampleWriters();
-  CHECK_EQ(writers.size(), 1);
-}
+EnsureFormatsRegistration();
 
 TEST(DecisionTree, GetLeafAndGetPath) {
   DecisionTree tree;

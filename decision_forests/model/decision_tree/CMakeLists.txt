@@ -165,7 +165,7 @@ target_link_libraries(
   model_decision_tree
   dataset_data_spec
   dataset_data_spec_inference
-  dataset_library
+  dataset_formats_registration
   dataset_vertical_dataset
   utils_filesystem
   utils_logging

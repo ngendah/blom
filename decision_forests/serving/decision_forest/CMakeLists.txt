@@ -132,7 +132,7 @@ target_link_libraries(
   serving_decision_forest
   serving_decision_forest_serving
   serving_register_engines
-  dataset_library
+  dataset_formats_registration
   e2e_test_utils
   model_model_library
   model_decision_tree_random_forest

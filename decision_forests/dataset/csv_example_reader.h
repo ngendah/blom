@@ -48,6 +48,8 @@ class CsvExampleReader final : public ExampleReaderInterface {
   explicit CsvExampleReader(const proto::DataSpecification& data_spec,
                             absl::optional<std::vector<int>> required_columns);
 
+  static constexpr char kRegisteredName[] = "FORMAT_CSV";
+
   absl::StatusOr<bool> Next(proto::Example* example) override {
     return sharded_csv_reader_.Next(example);
   }
@@ -90,7 +92,7 @@ class CsvExampleReader final : public ExampleReaderInterface {
   Implementation sharded_csv_reader_;
 };
 
-REGISTER_ExampleReaderInterface(CsvExampleReader, "FORMAT_CSV");
+REGISTER_ExampleReaderInterface(CsvExampleReader, CsvExampleReader::kRegisteredName);
 
 class CsvDataSpecCreator : public AbstractDataSpecCreator {
  public:
@@ -98,6 +100,8 @@ class CsvDataSpecCreator : public AbstractDataSpecCreator {
       const std::vector<std::string>& paths,
       const proto::DataSpecificationGuide& guide,
       proto::DataSpecification* data_spec) override;
+
+  static constexpr char kRegisteredName[] = "FORMAT_CSV";
 
   absl::Status ComputeColumnStatistics(
       const std::vector<std::string>& paths,
@@ -108,7 +112,7 @@ class CsvDataSpecCreator : public AbstractDataSpecCreator {
   absl::StatusOr<int64_t> CountExamples(absl::string_view path) override;
 };
 
-REGISTER_AbstractDataSpecCreator(CsvDataSpecCreator, "FORMAT_CSV");
+REGISTER_AbstractDataSpecCreator(CsvDataSpecCreator, CsvDataSpecCreator::kRegisteredName);
 
 // Determine the most likely type of the attribute according to the current
 // most likely value type and an observed string value.

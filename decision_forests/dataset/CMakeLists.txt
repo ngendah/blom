@@ -298,14 +298,12 @@ target_link_libraries(
 add_library(dataset_csv_example_writer ALIAS csv_example_writer)
 
 add_library(
-  dataset_library
+  formats_registration
   STATIC
-  dataset_library.cc
-  data_spec_inference.cc
-  vertical_dataset_io.cc
+  formats_registration.cc
 )
 target_include_directories(
-  dataset_library
+  formats_registration
   PRIVATE
   ${absl_SOURCE_DIR}
   ${farmhash_SOURCE_DIR}/src
@@ -313,13 +311,12 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  dataset_library
+  formats_registration
   PRIVATE
   dataset_csv_example_reader
   dataset_csv_example_writer
-  dataset_data_spec_inference
-  dataset_vertical_dataset
 )
+add_library(dataset_formats_registration ALIAS formats_registration)
 
 
 # Testing artifact
@@ -347,7 +344,7 @@ target_link_libraries(
   dataset_data_spec
   dataset_example_builder
   dataset_formats
-  dataset_library
+  dataset_formats_registration
   dataset_weight
   utils_testing_utils
   protobuf::libprotoc
