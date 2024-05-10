@@ -27,15 +27,19 @@
 //
 
 #include "absl/flags/flag.h"
-#include "decision_forests/dataset/dataset_library.h"
 #include "decision_forests/dataset/data_spec.h"
 #include "decision_forests/dataset/data_spec.pb.h"
 #include "decision_forests/dataset/data_spec_inference.h"
+#include "decision_forests/dataset/formats_registration.h"
 #include "decision_forests/dataset/vertical_dataset_io.h"
+#include "decision_forests/learner/abstract_learner.h"
 #include "decision_forests/learner/learner_library.h"
+#include "decision_forests/learner/learners_registration.h"
 #include "decision_forests/metric/metric.h"
 #include "decision_forests/metric/report.h"
 #include "decision_forests/model/model_library.h"
+#include "decision_forests/model/models_registration.h"
+#include "decision_forests/serving/fast_engine_registration.h"
 #include "decision_forests/utils/filesystem.h"
 #include "decision_forests/utils/logging.h"
 
@@ -50,11 +54,13 @@ ABSL_FLAG(std::string, output_dir, "tmp/decision_forest",
 namespace ygg = yggdrasil_decision_forests;
 
 int main(int argc, char** argv) {
+  ygg::dataset::EnsureFormatsRegistration();
+  ygg::model::EnsureLearnersRegistration();
+  ygg::model::EnsureModelsRegistration();
+  ygg::serving::EnsureFastEngineRegistration();
+
   // Enable the logging. Optional in most cases.
   InitLogging(argv[0], &argc, &argv, true);
-
-  // 
-  auto formats = ygg::dataset::allRegisteredFormats();
 
   // Path to the training and testing dataset.
   const auto train_dataset_path = absl::StrCat(

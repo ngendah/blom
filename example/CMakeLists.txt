@@ -19,17 +19,19 @@ target_link_libraries(
   example
   PRIVATE
   dataset_proto
-  dataset_library
-  learner_library
+  dataset_formats_registration
+  learner_learners_registration
   metric_metric
   metric_report
   model_library
+  model_models_registration
+  serving_fast_engine_registration
   utils_filesystem
   utils_logging
 )
 add_custom_command(
   TARGET example POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
   ${PROJECT_SOURCE_DIR}/testing_data
   ${CMAKE_CURRENT_BINARY_DIR}/testing_data
 )
