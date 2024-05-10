@@ -25,7 +25,7 @@
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
 #include "dataset/example.pb.h"
-#include "dataset/dataset_formats_registration.h"
+#include "dataset/formats_registration.h"
 #include "dataset/vertical_dataset.h"
 #include "dataset/vertical_dataset_io.h"
 #include "model/decision_tree/decision_tree.pb.h"
@@ -51,9 +51,12 @@ std::string DatasetDir() {
                         "testing_data/dataset");
 }
 
-EnsureFormatsRegistration();
+void SetUp() {
+  yggdrasil_decision_forests::dataset::EnsureFormatsRegistration();
+}
 
 TEST(DecisionTree, GetLeafAndGetPath) {
+  SetUp();
   DecisionTree tree;
   tree.CreateRoot();
   tree.mutable_root()->CreateChildren();
@@ -123,6 +126,7 @@ TEST(DecisionTree, GetLeafAndGetPath) {
 class EvalConditions : public ::testing::Test {
  protected:
   void SetUp() override {
+    SetUp();
     const std::string toy_dataset_path =
         absl::StrCat("csv:", file::JoinPath(DatasetDir(), "toy.csv"));
     dataset::proto::DataSpecificationGuide guide;

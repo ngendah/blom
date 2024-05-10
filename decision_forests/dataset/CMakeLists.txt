@@ -346,6 +346,7 @@ target_link_libraries(
   dataset_formats
   dataset_formats_registration
   dataset_weight
+  dataset_data_spec_inference
   utils_testing_utils
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main

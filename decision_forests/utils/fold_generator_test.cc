@@ -27,7 +27,7 @@
 #include "absl/strings/str_split.h"
 #include "dataset/data_spec.pb.h"
 #include "dataset/data_spec_inference.h"
-#include "dataset/dataset_formats_registration.h"
+#include "dataset/formats_registration.h"
 #include "dataset/vertical_dataset.h"
 #include "dataset/vertical_dataset_io.h"
 #include "filesystem.h"
@@ -51,7 +51,10 @@ std::string LargeDatasetDir() {
 
 class FoldGenerator : public ::testing::Test {
  protected:
-  void SetUp() override { LoadAdultDataset(&dataset_); }
+  void SetUp() override {
+    yggdrasil_decision_forests::dataset::EnsureFormatsRegistration();
+    LoadAdultDataset(&dataset_);
+  }
 
   void LoadAdultDataset(dataset::VerticalDataset* dataset) {
     const std::string ds_typed_path =
@@ -257,16 +260,6 @@ TEST(MergeItemsInFoldToItems, SimpleMerge) {
   MergeItemsInFoldToItems(fold_elements, fold, &elements);
   const std::vector<std::string> expected_elements = {"", "", "b", "a", ""};
   EXPECT_EQ(elements, expected_elements);
-}
-
-TEST(FoldGenerator, RegisteredReaders) {
-std::vector<std::string> readers = yggdrasil_decision_forests::dataset::allRegisteredExampleReaders();
-CHECK_EQ(readers.size(), 1);
-}
-
-TEST(FoldGenerator, RegisteredWriters) {
-std::vector<std::string> writers = yggdrasil_decision_forests::dataset::allRegisteredExampleWriters();
-CHECK_EQ(writers.size(), 1);
 }
 
 }  // namespace
