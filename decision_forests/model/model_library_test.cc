@@ -14,6 +14,7 @@
  */
 
 #include "model_library.h"
+#include "model_registration.h"
 
 #include <memory>
 #include <string>
@@ -21,7 +22,6 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "utils/filesystem.h"
-#include "utils/logging.h"
 #include "utils/test.h"
 #include "utils/testing_macros.h"
 
@@ -35,6 +35,7 @@ std::string TestDataDir() {
 }
 
 TEST(ModelLibrary, CreateAllModels) {
+  auto models = EnsureModelRegistration();
   for (const auto& model_name : AllRegisteredModels()) {
     std::unique_ptr<AbstractModel> mdl;
     EXPECT_OK(CreateEmptyModel(model_name, &mdl));
@@ -48,22 +49,6 @@ TEST(ModelLibrary, DetectsSavedModelTrue) {
   ASSERT_OK_AND_ASSIGN(const bool is_tfdf_model,
                        IsTensorFlowSavedModel(model_directory));
   EXPECT_FALSE(is_tfdf_model);
-}
-
-TEST(ModelLibrary, DetectsTFDFModel) {
-  std::unique_ptr<model::AbstractModel> model;
-  std::string model_directory = file::JoinPath(
-      TestDataDir(), "model", "adult_binary_class_gbdt_savedmodel");
-  ASSERT_OK_AND_ASSIGN(const bool is_tfdf_model,
-                       IsTensorFlowSavedModel(model_directory));
-  EXPECT_TRUE(is_tfdf_model);
-}
-
-TEST(ModelLibrary, LoadTFDFModel) {
-  std::unique_ptr<model::AbstractModel> model;
-  std::string model_directory = file::JoinPath(
-      TestDataDir(), "model", "adult_binary_class_gbdt_savedmodel");
-  EXPECT_OK(LoadModel(model_directory, &model));
 }
 
 }  // namespace

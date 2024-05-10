@@ -91,8 +91,6 @@ add_library(
   model_library
   STATIC
   model_library.cc
-  decision_tree/decision_tree.cc
-  random_forest/random_forest.cc
 )
 target_include_directories(
   model_library
@@ -107,10 +105,8 @@ target_link_libraries(
   PRIVATE
   model_proto
   model_abstract_model
-  model_decision_tree
   model_fast_engine_factory
   model_metadata
-  model_random_forest
   utils_blob_sequence
   utils_bytestream
   utils_filesystem
@@ -149,6 +145,27 @@ target_link_libraries(
   protobuf::libprotoc
 )
 
+add_library(
+  model_registration
+  STATIC
+  model_registration.cc
+)
+target_include_directories(
+  model_registration
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${googletest_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+
+target_link_libraries(
+  model_registration
+  PRIVATE
+  model_random_forest
+)
+
 
 # Testing artifact
 
@@ -171,6 +188,7 @@ target_link_libraries(
   model_tests_obj
   PRIVATE
   model_model_library
+  model_registration
   utils_status_macros
   utils_testing_utils
   # third_party objects
