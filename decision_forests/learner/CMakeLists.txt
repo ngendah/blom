@@ -90,6 +90,7 @@ target_link_libraries(
   learner_hyperparameters_optimizer
   learner_random_forest
 )
+add_library(learner_learners_registration ALIAS learners_registration)
 
 
 # Testing artifact
@@ -119,6 +120,7 @@ target_link_libraries(
   metric_metric
   model_abstract_model
   learner_abstract_learner
+  learner_learners_registration
   learner_library
   utils_logging
   utils_testing_utils
