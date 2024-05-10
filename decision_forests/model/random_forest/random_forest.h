@@ -286,6 +286,8 @@ class RandomForestModel : public AbstractModel, public DecisionForestInterface {
   void ApplyHeaderProto(const proto::Header& header);
 };
 
+REGISTER_AbstractModel(RandomForestModel, RandomForestModel::kRegisteredName);
+
 namespace internal {
 
 // Create a single line string containing the result of the evaluation computed

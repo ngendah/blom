@@ -809,9 +809,6 @@ void AddUpliftLeafToAccumulator(const decision_tree::proto::Node& node,
 }
 
 }  // namespace internal
-
-REGISTER_AbstractModel(RandomForestModel, RandomForestModel::kRegisteredName);
-
 }  // namespace random_forest
 }  // namespace model
 }  // namespace yggdrasil_decision_forests
