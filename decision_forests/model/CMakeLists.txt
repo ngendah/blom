@@ -163,6 +163,7 @@ target_link_libraries(
   models_registration
   PRIVATE
   model_random_forest
+  model_decision_tree_io_blob_sequence
 )
 add_library(model_models_registration ALIAS models_registration)
 

@@ -16,12 +16,19 @@
 #include "models_registration.h"
 
 #include "model/random_forest/random_forest.h"
+#include "model/decision_tree/decision_tree_io_blob_sequence.h"
 
 namespace yggdrasil_decision_forests {
 namespace model {
 
 std::vector<std::string> EnsureModelsRegistration() {
   return { random_forest::RandomForestModel:: kRegisteredName };
+}
+
+std::vector<std::string> EnsureModelsIORegistration() {
+  return {
+    decision_tree::BlobSequenceFormat::kRegisteredName
+  };
 }
 
 }

@@ -25,6 +25,8 @@ namespace model {
 
 std::vector<std::string> EnsureModelsRegistration();
 
+std::vector<std::string> EnsureModelsIORegistration();
+
 }
 }
 

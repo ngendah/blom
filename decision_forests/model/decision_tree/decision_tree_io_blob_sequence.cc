@@ -13,34 +13,22 @@
  * limitations under the License.
  */
 
-#include "decision_tree_io_interface.h"
-
-#include "model/decision_tree/decision_tree.pb.h"
-#include "utils/sharded_io.h"
+#include "decision_tree_io_blob_sequence.h"
 #include "utils/sharded_io_blob_sequence.h"
 
 namespace yggdrasil_decision_forests {
 namespace model {
 namespace decision_tree {
 
-// The BlobSequence format is a minimal container format managed by Yggdrasil
-// and without external dependencies. This is the recommended format for Open
-// Source.
-class BlobSequenceFormat : public AbstractFormat {
- public:
-  ~BlobSequenceFormat() override = default;
-
-  std::unique_ptr<utils::ShardedReader<proto::Node>> CreateReader()
-      const override {
-    return absl::make_unique<utils::BlobSequenceShardedReader<proto::Node>>();
-  };
-
-  std::unique_ptr<utils::ShardedWriter<proto::Node>> CreateWriter()
-      const override {
-    return absl::make_unique<utils::BlobSequenceShardedWriter<proto::Node>>();
-  };
+std::unique_ptr<utils::ShardedReader<proto::Node>> BlobSequenceFormat::CreateReader()
+    const {
+  return absl::make_unique<utils::BlobSequenceShardedReader<proto::Node>>();
 };
-REGISTER_AbstractFormat(BlobSequenceFormat, "BLOB_SEQUENCE");
+
+std::unique_ptr<utils::ShardedWriter<proto::Node>> BlobSequenceFormat::CreateWriter()
+    const {
+  return absl::make_unique<utils::BlobSequenceShardedWriter<proto::Node>>();
+};
 
 }  // namespace decision_tree
 }  // namespace model
