@@ -14,7 +14,7 @@
  */
 
 #include "model_library.h"
-#include "model_registration.h"
+#include "models_registration.h"
 
 #include <memory>
 #include <string>
@@ -29,13 +29,14 @@ namespace yggdrasil_decision_forests {
 namespace model {
 namespace {
 
+EnsureModelsRegistration();
+
 std::string TestDataDir() {
   return file::JoinPath(test::DataRootDirectory(),
                         "testing_data");
 }
 
 TEST(ModelLibrary, CreateAllModels) {
-  auto models = EnsureModelRegistration();
   for (const auto& model_name : AllRegisteredModels()) {
     std::unique_ptr<AbstractModel> mdl;
     EXPECT_OK(CreateEmptyModel(model_name, &mdl));

@@ -146,12 +146,12 @@ target_link_libraries(
 )
 
 add_library(
-  model_registration
+  models_registration
   STATIC
-  model_registration.cc
+  models_registration.cc
 )
 target_include_directories(
-  model_registration
+  models_registration
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -159,12 +159,12 @@ target_include_directories(
   ${farmhash_SOURCE_DIR}/src
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
-
 target_link_libraries(
-  model_registration
+  models_registration
   PRIVATE
   model_random_forest
 )
+add_library(model_models_registration ALIAS models_registration)
 
 
 # Testing artifact
@@ -188,7 +188,7 @@ target_link_libraries(
   model_tests_obj
   PRIVATE
   model_model_library
-  model_registration
+  models_registration
   utils_status_macros
   utils_testing_utils
   # third_party objects

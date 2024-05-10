@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "model_registration.h"
 
-#include "model/random_forest/random_forest.h"
+#ifndef YGGDRASIL_DECISION_FORESTS_MODELS_REGISTRATION_H_
+#define YGGDRASIL_DECISION_FORESTS_MODELS_REGISTRATION_H_
+
+#include <string>
+#include <vector>
 
 namespace yggdrasil_decision_forests {
 namespace model {
 
-std::vector<std::string> EnsureModelRegistration() {
-  return { random_forest::RandomForestModel:: kRegisteredName };
-}
+std::vector<std::string> EnsureModelsRegistration();
 
 }
 }
 
+#endif // YGGDRASIL_DECISION_FORESTS_MODELS_REGISTRATION_H_
