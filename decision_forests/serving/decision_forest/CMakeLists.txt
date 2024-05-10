@@ -85,6 +85,8 @@ add_library(
   register_engines
   STATIC
   register_engines.cc
+  generic_fast_engine.cc
+  opt_pred_fast_engine.cc
 )
 target_include_directories(
   register_engines
@@ -100,6 +102,7 @@ target_link_libraries(
   dataset_proto
   model_proto
   serving_decision_forest
+  serving_decision_forest_serving
   absl::strings
   absl::status
   absl::statusor

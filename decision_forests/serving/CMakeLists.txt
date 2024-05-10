@@ -27,6 +27,26 @@ target_link_libraries(
 )
 add_library(serving_example_set ALIAS example_set)
 
+add_library(
+  fast_engine_registration
+  STATIC
+  fast_engine_registration.cc
+)
+target_include_directories(
+  fast_engine_registration
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  fast_engine_registration
+  PRIVATE
+  serving_register_engines
+)
+add_library(serving_fast_engine_registration ALIAS fast_engine_registration)
+
 
 # Testing artifact
 
