@@ -1,13 +1,13 @@
 # testing executable
 enable_testing()
-add_executable(yggdrasil_tests)
+add_executable(ygg_tests)
 target_link_directories(
-  yggdrasil_tests
+  ygg_tests
   PUBLIC
   ${CMAKE_PROJECT_PATH}/decision_forests
 )
 target_link_libraries(
-  yggdrasil_tests
+  ygg_tests
   PRIVATE
   utils_tests_obj
   utils_distribute_tests_obj
