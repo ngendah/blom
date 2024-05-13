@@ -7,7 +7,7 @@ Blom is a subset of [YDF(Yggdrasil Decision Forests)](https://github.com/google/
 
 Specifically, Blom aims to be a library that can easily, out-of-the box, be cross-compiled for ARM and Android.
 
-# Getting started
+## Getting started
 
 ## Linux
 
@@ -54,21 +54,15 @@ cd builds/linux.x86_64/example
 
    a. Build the image
 
-        ```
         docker build -t blom .
-        ```
 
    b. Run the image
 
-        ```
         docker run -v $(pwd):/home/workspace/blom -u $(id -u):$(id -g) -it blom /bin/bash
-        ```
 
    c. Build the project
 
-        ```
         cmake --preset=linux.x64-debug -S . && cmake --build --preset=linux.x64-debug
-        ```
 
 ## Windows
 
@@ -107,27 +101,19 @@ For more information refer to [Visual Studio documentation on CMake](https://lea
 
    b. Check cmake is installed;
 
-        ```
         cmake --version
-        ```
 
    c. Configure the project;
 
-        ```
         cmake --preset=windows.x64-debug -S .
-        ```
 
    d. Build example;
 
-        ```
         cmake --build --preset=windows.x64-debug --target example
-        ```
 
    e. Or build all;
 
-        ```
         cmake --build --preset=windows.x64-debug
-        ```
 
 ## Cross-compiling
 
@@ -150,9 +136,7 @@ You can cross-compile the Blom for ARM or Android; however only the Android conf
 
 2. Phase 1: build all, in this case on a linux host.
 
-        ```
         cmake --preset=linux.x64-debug -S . && cmake --build --preset=linux.x64-debug
-        ```
 
    If on windows replace `linux` with `windows`.
 
@@ -160,9 +144,7 @@ You can cross-compile the Blom for ARM or Android; however only the Android conf
 
 3. Phase 2: build for Android
 
-        ```
         cmake --preset=android.v8a-debug -S . && cmake --build --preset=android.v8a-debug
-        ```
 
 For more options, review projects preset file.
 
