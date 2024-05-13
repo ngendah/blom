@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
 cmake_policy(VERSION 3.20)
 
-project(ygg)
+project(blom)
+
+set(CMAKE_CXX_STANDARD 17)
 
 if(NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES ${CMAKE_SYSTEM_NAME})
   set(
