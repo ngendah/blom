@@ -51,7 +51,7 @@ using ::yggdrasil_decision_forests::test::StatusIs;
 
 std::string TestDataDir() {
   return file::JoinPath(test::DataRootDirectory(),
-                        "yggdrasil_decision_forests/test_data");
+                        "testing_data");
 }
 
 // Build a forest with two decision trees as follow:

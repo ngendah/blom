@@ -403,7 +403,7 @@ namespace utils {
 
 // If kYdfTestMetricCheckGold=true, checks that "model" is equal to the model
 // stored in
-// "yggdrasil_decision_forests/test_data/golden/<model_name>". The
+// "testing_data/golden/<model_name>". The
 // model meta-data is not compared. If kYdfTestMetricCheckGold=false, does
 // nothing.
 void ExpectEqualGoldenModel(const model::AbstractModel& model,
