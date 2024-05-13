@@ -64,7 +64,7 @@ TEST(TrainAndEvaluateModel, Base) {
     train_model.set_dataset_path(absl::StrCat(
         "csv:", file::JoinPath(
                     test::DataRootDirectory(),
-                    "yggdrasil_decision_forests/test_data/dataset/"
+                    "testing_data/dataset/"
                     "adult_train.csv")));
 
     dataset::CreateDataSpec(train_model.dataset_path(), false, {},
@@ -83,7 +83,7 @@ TEST(TrainAndEvaluateModel, Base) {
     evaluate_model.set_dataset_path(absl::StrCat(
         "csv:", file::JoinPath(
                     test::DataRootDirectory(),
-                    "yggdrasil_decision_forests/test_data/dataset/"
+                    "testing_data/dataset/"
                     "adult_test.csv")));
   }
 

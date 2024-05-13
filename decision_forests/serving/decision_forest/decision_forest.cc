@@ -490,7 +490,7 @@ absl::Status SetLeafNodeRandomForestBinaryClassification(
       return absl::InvalidArgumentError(
           "The model is not a binary classifier. You likely used the wrong "
           "optimized model class (see header of "
-          "yggdrasil_decision_forests/serving/decision_forest/"
+          "decision_forests/serving/decision_forest/"
           "decision_forest.h).");
     }
     *dst_node = Node::Leaf(

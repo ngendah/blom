@@ -58,7 +58,7 @@ using testing::ElementsAre;
 
 std::string TestDataDir() {
   return file::JoinPath(test::DataRootDirectory(),
-                        "yggdrasil_decision_forests/test_data");
+                        "testing_data");
 }
 
 // Loads a header-less csv containing a single numerical column.
