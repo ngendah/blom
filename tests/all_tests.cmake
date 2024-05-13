@@ -1,13 +1,13 @@
 # testing executable
 enable_testing()
-add_executable(ygg_tests)
+add_executable(blom_tests)
 target_link_directories(
-  ygg_tests
+  blom_tests
   PUBLIC
   ${CMAKE_PROJECT_PATH}/decision_forests
 )
 target_link_libraries(
-  ygg_tests
+  blom_tests
   PRIVATE
   utils_tests_obj
   utils_distribute_tests_obj
@@ -28,6 +28,6 @@ target_link_libraries(
 )
 if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
-  gtest_discover_tests(utils_tests)
+  gtest_discover_tests(blom_tests)
 endif()
 
