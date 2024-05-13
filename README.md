@@ -60,7 +60,7 @@ cd builds/linux.x86_64/example
 
         docker run -v $(pwd):/home/workspace/blom -u $(id -u):$(id -g) -it blom /bin/bash
 
-   c. Build the project
+   c. On the container prompt, build the project
 
         cmake --preset=linux.x64-debug -S . && cmake --build --preset=linux.x64-debug
 
