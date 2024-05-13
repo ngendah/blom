@@ -14,8 +14,8 @@ target_include_directories(
 target_link_libraries(
   builder
   PRIVATE
-  model_proto
   dataset_proto
+  model_decision_tree_proto
   protobuf::libprotoc
   farmhash::farmhash
 )
@@ -38,6 +38,7 @@ target_link_libraries(
   decision_tree
   PRIVATE
   dataset_proto
+  model_proto
   model_decision_tree_proto
   utils_proto
   dataset_data_spec
