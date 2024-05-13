@@ -5,7 +5,7 @@ Blom is a subset of [YDF(Yggdrasil Decision Forests)](https://github.com/google/
 2. Decision Tree
 3. Random Forest
 
-Specifically, Blom aims to be a library that can easily, out-of-the box, be cross-compiled for ARM and Android.
+Specifically, Blom aims to be a library that can be easily compiled for both ARM and Android with minimal setup.
 
 ## Getting started
 
@@ -17,7 +17,7 @@ There are various ways to get started with Blom:
 
 2. using an IDE such as Visual studio code(with CMake plugins) or JetBrains CLion.
 
-3. using Docker with the enclosed dockerfile. Ideal if you don't want to install the prequisites on the host and have some knowledge of Docker.
+3. using Docker with the enclosed Dockerfile. Ideal if you need an isolated build environment and have some knowledge of Docker.
 
 #### Prequisites:
 
