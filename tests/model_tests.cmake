@@ -13,6 +13,6 @@ target_link_libraries(
 )
 if(NOT CMAKE_CROSSCOMPILING)
   include(GoogleTest)
-  gtest_discover_tests(utils_tests)
+  gtest_discover_tests(model_tests)
 endif()
 
