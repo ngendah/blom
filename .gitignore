@@ -1,7 +1,4 @@
-# idea
-.DS_Store
-.idea
-
+# cmake
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -23,3 +20,17 @@ protos/
 *.pb.cc
 *.pb.h
 *_libraries.txt
+# idea
+.DS_Store
+.idea/
+# vscode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+# vscode history
+.history/
+# vscode extensions
+*.vsix
