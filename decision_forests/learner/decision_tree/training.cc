@@ -1535,12 +1535,12 @@ absl::StatusOr<bool> FindBestConditionConcurrentManager(
     return false;
   }
 
-  SplitterWorkRequestCommon common{
-      .train_dataset = train_dataset,
-      .selected_examples = selected_examples,
-      .parent = parent,
-      .label_stats = label_stats,
-      .constraints = constraints,
+  SplitterWorkRequestCommon common = SplitterWorkRequestCommon{
+      train_dataset,
+      selected_examples,
+      parent,
+      label_stats,
+      constraints,
   };
 
   // Computes the number of oblique projections to evaluate and how to group

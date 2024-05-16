@@ -282,6 +282,7 @@ inline void PredictHelperMultiDimensionFromSingleDimensionTrees(
   }
 }
 
+// TODO fix or remove
 // See the documentation of "PredictOptimizedV1".
 template <typename Model,
           float (*FinalTransform)(const Model&, const float) = Idendity<Model>,
