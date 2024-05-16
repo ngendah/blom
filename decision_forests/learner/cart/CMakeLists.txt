@@ -3,7 +3,9 @@ add_library(
   STATIC
   cart.cc
 )
-target_compile_options(cart PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(cart PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+endif()
 target_include_directories(
   cart
   PRIVATE

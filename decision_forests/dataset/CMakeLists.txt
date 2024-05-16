@@ -20,7 +20,9 @@ add_library(
   STATIC
   formats.cc
 )
-target_compile_options(formats PRIVATE -Wno-return-type)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(formats PRIVATE -Wno-return-type)
+endif()
 target_include_directories(
   formats
   PRIVATE

@@ -4,7 +4,9 @@ add_library(
   random_forest.cc
   random_forest_hparams_templates.cc
 )
-target_compile_options(learner_random_forest PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(learner_random_forest PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+endif()
 target_include_directories(
   learner_random_forest
   PRIVATE

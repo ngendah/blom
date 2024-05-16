@@ -249,7 +249,9 @@ add_library(
   STATIC
   plot.cc
 )
-target_compile_options(plot PRIVATE -Wno-return-type)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(plot PRIVATE -Wno-return-type)
+endif()
 target_include_directories(
   plot
   PRIVATE
