@@ -61,8 +61,7 @@
       },
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl.exe",
-        "CMAKE_CXX_COMPILER": "cl.exe",
-        "_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING" : "1"
+        "CMAKE_CXX_COMPILER": "cl.exe"
       }
     },
     {
@@ -88,7 +87,8 @@
       "displayName": "Windows x64 Debug builds",
       "inherits": "windows.x64",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug"
       }
     },
     {
@@ -96,7 +96,8 @@
       "displayName": "Windows x64 Release builds",
       "inherits": "windows.x64",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
       }
     },
     {
@@ -104,7 +105,8 @@
       "displayName": "Windows x86 Debug builds",
       "inherits": "windows.x86",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug"
       }
     },
     {
@@ -112,7 +114,8 @@
       "displayName": "Windows x86 Release builds",
       "inherits": "windows.x86",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
       }
     },
     {

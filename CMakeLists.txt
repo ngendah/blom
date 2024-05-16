@@ -4,6 +4,20 @@ cmake_policy(VERSION 3.20)
 project(blom)
 
 set(CMAKE_CXX_STANDARD 17)
+if(MSVC)
+  add_compile_definitions(
+    -DNDEBUG
+    -DWIN32_LEAN_AND_MEAN
+    -D_USE_MATH_DEFINES
+  )
+  add_compile_options(
+    /Zc:preprocessor
+    /Zc:__cplusplus
+  )
+  add_link_options(
+    $<$<CONFIG:Debug>:/Z7>
+  )
+endif()
 if(NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES ${CMAKE_SYSTEM_NAME})
   set(
     CMAKE_CROSSCOMPILING

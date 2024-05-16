@@ -15,11 +15,6 @@
 
 #include "filesystem_default.h"
 
-#if __cplusplus > 201402L
-#include <filesystem>
-#else
-#include <experimental/filesystem>
-#endif
 #include <regex>  // NOLINT
 
 #include "absl/status/status.h"
