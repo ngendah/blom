@@ -56,7 +56,9 @@ add_library(
   STATIC
   oblique.cc
 )
-target_compile_options(oblique PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(oblique PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+endif()
 target_include_directories(
   oblique
   PRIVATE
@@ -86,7 +88,9 @@ add_library(
   STATIC
   training.cc
 )
-target_compile_options(training PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(training PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+endif()
 target_include_directories(
   training
   PRIVATE
@@ -129,7 +133,9 @@ add_library(
   OBJECT
   ${test_SRC_FILES}
 )
-target_compile_options(learner_decision_tree_tests_obj PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(learner_decision_tree_tests_obj PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+endif()
 target_include_directories(
   learner_decision_tree_tests_obj
   PRIVATE

@@ -108,7 +108,9 @@ add_library(
   metric.cc
   report.cc
 )
-target_compile_options(metric PRIVATE -Wno-return-type)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_options(metric PRIVATE -Wno-return-type)
+endif()
 target_include_directories(
   metric
   PRIVATE

@@ -61,7 +61,8 @@
       },
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl.exe",
-        "CMAKE_CXX_COMPILER": "cl.exe"
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING" : "1"
       }
     },
     {

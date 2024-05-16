@@ -9,6 +9,9 @@ add_library(
   STATIC
   ${farmhash_SOURCE_DIR}/src/farmhash.cc
 )
+if(NOT CMAKE_COMPILER_IS_GNUCXX)
+  target_compile_definitions(farmhash PRIVATE FARMHASH_NO_BUILTIN_EXPECT)
+endif()
 add_library(farmhash::farmhash ALIAS farmhash)
 set(
   farmhash_SOURCE_DIR

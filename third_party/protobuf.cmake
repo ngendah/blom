@@ -9,9 +9,9 @@ endif()
 if(CMAKE_CROSSCOMPILING)
   set(protobuf_BUILD_PROTOC_BINARIES OFF)
 endif()
-
-# silence -Wattributes warning
-add_compile_options(-Wno-attributes)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  add_compile_options(-Wno-attributes)
+endif()
 
 FetchContent_Declare(
  protobuf
@@ -21,6 +21,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(protobuf)
 include(protobuf_generate.cmake)
 
-# enable -Wattributes warning
-add_compile_options(-Wattributes)
-
+if(CMAKE_COMPILER_IS_GNUCXX)
+  add_compile_options(-Wattributes)
+endif()
