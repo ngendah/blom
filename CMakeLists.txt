@@ -13,9 +13,9 @@ if(MSVC)
   add_compile_options(
     /Zc:preprocessor
     /Zc:__cplusplus
-  )
-  add_link_options(
-    $<$<CONFIG:Debug>:/Z7>
+    /wd4244
+    /wd4715
+    /wd4805
   )
 endif()
 if(NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES ${CMAKE_SYSTEM_NAME})
