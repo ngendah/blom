@@ -42,7 +42,6 @@ target_link_libraries(
   learner_proto
   utils_hyper_parameters
   utils_logging
-  utils_status_macros
   absl::status
   absl::statusor
   absl::strings
@@ -114,7 +113,6 @@ target_link_libraries(
   utils_concurrency
   utils_distribution
   utils_logging
-  utils_status_macros
   absl::strings
   absl::statusor
   absl::strings

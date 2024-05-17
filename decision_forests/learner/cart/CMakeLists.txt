@@ -32,7 +32,6 @@ target_link_libraries(
   utils_adaptive_work
   utils_hyper_parameters
   utils_logging
-  utils_status_macros
   utils_usage
   absl::string_view
   protobuf::libprotoc

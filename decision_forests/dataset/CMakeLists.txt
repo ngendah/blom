@@ -109,7 +109,6 @@ target_link_libraries(
   utils_logging
   utils_sharded_io
   utils_concurrency
-  utils_status_macros
   dataset_data_spec
   dataset_formats
   absl::string_view
@@ -136,7 +135,6 @@ target_link_libraries(
   PRIVATE
   dataset_data_spec
   dataset_formats
-  utils_status_macros
   absl::memory
   absl::status
   absl::statusor
@@ -165,7 +163,6 @@ target_link_libraries(
   dataset_data_spec
   dataset_formats
   utils_registration
-  utils_status_macros
   utils_sharded_io
   absl::strings
   absl::string_view
@@ -196,7 +193,6 @@ target_include_directories(
 target_link_libraries(
   vertical_dataset
   PRIVATE
-  utils_status_macros
   utils_logging
   dataset_data_spec
   dataset_example_builder
@@ -232,7 +228,6 @@ target_link_libraries(
   dataset_data_spec
   dataset_vertical_dataset
   utils_logging
-  utils_status_macros
   absl::status
   absl::statusor
   protobuf::libprotoc
@@ -261,7 +256,6 @@ target_link_libraries(
   utils_csv
   utils_filesystem
   utils_logging
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
@@ -291,7 +285,6 @@ target_link_libraries(
   utils_csv
   utils_filesystem
   utils_logging
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor

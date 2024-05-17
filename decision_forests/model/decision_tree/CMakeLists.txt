@@ -47,7 +47,6 @@ target_link_libraries(
   utils_bitmap
   utils_logging
   utils_sharded_io
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
@@ -78,7 +77,6 @@ target_link_libraries(
   utils_filesystem
   utils_protobuf
   utils_sharded_io
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
@@ -107,7 +105,6 @@ target_link_libraries(
   utils_filesystem
   utils_protobuf
   utils_sharded_io
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
@@ -170,7 +167,6 @@ target_link_libraries(
   dataset_vertical_dataset
   utils_filesystem
   utils_logging
-  utils_status_macros
   utils_testing_utils
   # third_party objects
   protobuf::libprotoc
