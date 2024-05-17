@@ -39,21 +39,6 @@ target_link_libraries(
 add_library(utils_adaptive_work ALIAS adaptive_work)
 
 add_library(
-  status_macros
-  STATIC
-  status_macros.h
-  status_macros_default.h
-)
-target_include_directories(status_macros PRIVATE ${absl_SOURCE_DIR})
-target_link_libraries(
-  status_macros
-  PRIVATE
-  absl::status
-  absl::statusor
-)
-add_library(utils_status_macros ALIAS status_macros)
-
-add_library(
   regex
   STATIC
   regex.cc
@@ -331,7 +316,6 @@ target_link_libraries(
   dataset_vertical_dataset
   utils_csv
   utils_filesystem
-  utils_status_macros
   utils_logging
   absl::strings
   protobuf::libprotoc
@@ -356,7 +340,6 @@ target_link_libraries(
   utils_proto
   utils_concurrency
   utils_filesystem
-  utils_status_macros
   absl::strings
   protobuf::libprotoc
 )
@@ -377,7 +360,6 @@ target_link_libraries(
   blob_sequence
   PRIVATE
   utils_bytestream
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
@@ -429,7 +411,6 @@ target_link_libraries(
   PRIVATE
   utils_filesystem
   utils_logging
-  utils_status_macros
   absl::strings
   protobuf::libprotoc
   GTest::gmock_main
@@ -464,7 +445,6 @@ target_link_libraries(
   dataset_formats_registration
   utils_logging
   utils_adaptive_work
-  utils_status_macros
   utils_regex
   utils_protobuf
   utils_bytestream

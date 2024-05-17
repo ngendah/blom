@@ -33,7 +33,6 @@ target_link_libraries(
   utils_filesystem
   utils_logging
   utils_testing_utils
-  utils_status_macros
   absl::strings
   absl::time
   protobuf::libprotoc

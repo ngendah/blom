@@ -16,7 +16,6 @@ target_link_libraries(
   utils_proto
   logging
   concurrency
-  status_macros
   protobuf::libprotoc
 )
 add_library(utils_multi_thread ALIAS multi_thread)

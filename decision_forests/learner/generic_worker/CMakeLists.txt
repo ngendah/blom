@@ -21,7 +21,6 @@ target_link_libraries(
   model_library
   utils_filesystem
   utils_protobuf
-  utils_status_macros
   utils_distribute
 )
 add_library(learner_generic_worker ALIAS generic_worker)

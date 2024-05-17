@@ -54,7 +54,6 @@ target_link_libraries(
   model_decision_tree
   dataset_vertical_dataset
   utils_logging
-  utils_status_macros
   utils_testing_utils
   # third_party objects
   protobuf::libprotoc

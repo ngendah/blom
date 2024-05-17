@@ -57,7 +57,6 @@ target_link_libraries(
   utils_logging
   utils_distribution
   utils_sharded_io
-  utils_status_macros
   absl::status
   absl::statusor
   absl::strings
@@ -112,7 +111,6 @@ target_link_libraries(
   utils_filesystem
   utils_logging
   utils_registration
-  utils_status_macros
   absl::strings
 )
 add_library(model_model_library ALIAS model_library)
@@ -190,7 +188,6 @@ target_link_libraries(
   PRIVATE
   model_model_library
   models_registration
-  utils_status_macros
   utils_testing_utils
   # third_party objects
   protobuf::libprotoc

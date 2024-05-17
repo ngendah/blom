@@ -18,7 +18,6 @@ target_link_libraries(
   learner_proto
   hyperparameters_optimizer_proto
   utils_registration
-  utils_status_macros
   absl::status
   absl::statusor
   farmhash::farmhash

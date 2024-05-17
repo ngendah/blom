@@ -47,7 +47,6 @@ target_link_libraries(
   serving_decision_forest_utils
   utils_bitmap
   utils_logging
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor

@@ -32,7 +32,6 @@ target_link_libraries(
   utils_concurrency
   utils_feature_importance
   utils_logging
-  utils_status_macros
   utils_usage
   e2e_test_utils
   absl::strings

@@ -19,7 +19,6 @@ target_link_libraries(
   dataset_data_spec 
   dataset_vertical_dataset
   utils_logging
-  utils_status_macros
   absl::strings
   absl::status
   absl::statusor
