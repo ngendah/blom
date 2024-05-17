@@ -32,6 +32,10 @@
       "architecture": {
         "value": "x64",
         "strategy": "external"
+      },
+      "toolset": {
+        "value": "x64",
+        "strategy": "external"
       }
     },
     {
@@ -71,6 +75,10 @@
       "architecture": {
         "value": "x64",
         "strategy": "external"
+      },
+      "toolset": {
+        "value": "x64",
+        "strategy": "external"
       }
     },
     {
@@ -78,6 +86,10 @@
       "hidden": true,
       "inherits": "windows",
       "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "toolset": {
         "value": "x86",
         "strategy": "external"
       }
