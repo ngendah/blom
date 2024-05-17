@@ -20,6 +20,8 @@ protos/
 *.pb.cc
 *.pb.h
 *_libraries.txt
+*.sh
+*.zip
 # idea
 .DS_Store
 .idea/
