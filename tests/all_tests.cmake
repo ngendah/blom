@@ -9,8 +9,6 @@ target_link_directories(
 target_link_libraries(
   blom_tests
   PRIVATE
-  utils_tests_obj
-  utils_distribute_tests_obj
   dataset_tests_obj
   metric_tests_obj
   serving_tests_obj

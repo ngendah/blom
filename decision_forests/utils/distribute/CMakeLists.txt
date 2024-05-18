@@ -69,17 +69,14 @@ target_link_libraries(
 )
 add_library(utils_distribute_test_utils ALIAS distribute_test_utils)
 
-
-# Testing artifact
-
+# Tests
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  utils_distribute_tests_obj
-  OBJECT
+add_executable(
+  utils_distribute_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  utils_distribute_tests_obj
+  utils_distribute_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -88,7 +85,7 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  utils_distribute_tests_obj
+  utils_distribute_tests
   PRIVATE
 # this objects
   utils_distribute

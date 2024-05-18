@@ -1,5 +1,3 @@
-include(utils_tests.cmake)
-include(utils_distribute_tests.cmake)
 include(dataset_tests.cmake)
 include(metric_tests.cmake)
 include(serving_tests.cmake)

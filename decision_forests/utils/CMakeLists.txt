@@ -418,16 +418,15 @@ target_link_libraries(
 add_library(utils_testing_utils ALIAS test)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *_test.cc)
-add_library(
-  utils_tests_obj
-  OBJECT
+add_executable(
+  utils_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  utils_tests_obj
+  utils_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -436,7 +435,7 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  utils_tests_obj
+  utils_tests
   PRIVATE
   utils_proto
   dataset_proto
@@ -465,4 +464,8 @@ target_link_libraries(
   protobuf::libprotoc
   GTest::gtest_main GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(utils_tests)
+endif()
 
