@@ -123,19 +123,18 @@ target_link_libraries(
 add_library(learner_decision_tree_training ALIAS training)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  learner_decision_tree_tests_obj
-  OBJECT
+add_executable(
+  learner_decision_tree_tests
   ${test_SRC_FILES}
 )
 if(CMAKE_COMPILER_IS_GNUCXX)
-  target_compile_options(learner_decision_tree_tests_obj PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+  target_compile_options(learner_decision_tree_tests PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
 endif()
 target_include_directories(
-  learner_decision_tree_tests_obj
+  learner_decision_tree_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -144,7 +143,7 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  learner_decision_tree_tests_obj
+  learner_decision_tree_tests
   PRIVATE
   dataset_proto
   model_proto
@@ -153,11 +152,15 @@ target_link_libraries(
   learner_decision_tree_utils
   learner_decision_tree_generic_parameters
   utils_testing_utils
-  # third_party objects
   absl::status
   absl::statusor
   absl::strings
   protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
+  GTest::gtest_main
+  GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(learner_decision_tree_tests)
+endif()
 

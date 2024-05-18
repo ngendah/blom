@@ -93,16 +93,15 @@ target_link_libraries(
 add_library(learner_learners_registration ALIAS learners_registration)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  learner_tests_obj
-  OBJECT
+add_executable(
+  learner_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  learner_tests_obj
+  learner_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -111,7 +110,7 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  learner_tests_obj
+  learner_tests
   PRIVATE
   dataset_proto
   learner_proto
@@ -124,8 +123,12 @@ target_link_libraries(
   learner_library
   utils_logging
   utils_testing_utils
-  # third_party objects
   protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
+  GTest::gtest_main
+  GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(learner_tests)
+endif()
 
