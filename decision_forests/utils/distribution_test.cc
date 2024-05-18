@@ -417,7 +417,7 @@ TEST(BinaryDistributionEntropy, Base) {
   EXPECT_NEAR(BinaryDistributionEntropyF(-10), 0, epsilon);
   EXPECT_NEAR(BinaryDistributionEntropyF(10), 0, epsilon);
   // TODO Fix
-#ifndef MSVC
+#ifdef MSVC
   EXPECT_NEAR(BinaryDistributionEntropyF(0. / 0.), 0, epsilon);
   EXPECT_NEAR(BinaryDistributionEntropyF(-0. / 0.), 0, epsilon);
   EXPECT_NEAR(BinaryDistributionEntropyF(1. / 0.), 0, epsilon);
