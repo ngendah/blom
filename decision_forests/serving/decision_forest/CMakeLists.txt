@@ -110,16 +110,15 @@ target_link_libraries(
 add_library(serving_register_engines ALIAS register_engines)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  serving_decision_forest_tests_obj
-  OBJECT
+add_executable(
+  serving_decision_forest_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  serving_decision_forest_tests_obj
+  serving_decision_forest_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -128,7 +127,7 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  serving_decision_forest_tests_obj
+  serving_decision_forest_tests
   PRIVATE
   serving_decision_forest_utils
   serving_decision_forest
@@ -139,8 +138,12 @@ target_link_libraries(
   model_model_library
   model_decision_tree_random_forest
   utils_testing_utils
-  # third_party objects
   protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
+  GTest::gtest_main
+  GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(serving_decision_forest_tests)
+endif()
 

@@ -47,16 +47,15 @@ target_link_libraries(
 add_library(serving_fast_engine_registration ALIAS fast_engine_registration)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  serving_tests_obj
-  OBJECT
+add_executable(
+  serving_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  serving_tests_obj
+  serving_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -65,19 +64,36 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  serving_tests_obj
+  serving_tests
   PRIVATE
-# other project objects
   dataset_proto
   learner_proto
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
 # this objects
+>>>>>>> Stashed changes
   serving_example_set
+=======
+>>>>>>> Stashed changes
   metric_ranking_utils
   metric_metric
   model_abstract_model
   model_metadata
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
   # third_party objects
+=======
+  serving_example_set
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
+  GTest::gtest_main
+  GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(serving_tests)
+endif()
 

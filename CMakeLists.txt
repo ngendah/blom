@@ -57,6 +57,5 @@ if(CMAKE_CROSSCOMPILING)
   )
 endif()
 add_subdirectory(decision_forests)
-add_subdirectory(tests)
 add_subdirectory(example)
 
