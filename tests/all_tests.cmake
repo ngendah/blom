@@ -9,7 +9,6 @@ target_link_directories(
 target_link_libraries(
   blom_tests
   PRIVATE
-  metric_tests_obj
   serving_tests_obj
   model_tests_obj
   model_decision_tree_tests_obj
