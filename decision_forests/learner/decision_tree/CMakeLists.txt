@@ -122,44 +122,42 @@ target_link_libraries(
 )
 add_library(learner_decision_tree_training ALIAS training)
 
-
 # Tests
-
-file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_executable(
-  learner_decision_tree_tests
-  ${test_SRC_FILES}
-)
-if(CMAKE_COMPILER_IS_GNUCXX)
-  target_compile_options(learner_decision_tree_tests PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
-endif()
-target_include_directories(
-  learner_decision_tree_tests
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${googletest_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
-  ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  learner_decision_tree_tests
-  PRIVATE
-  dataset_proto
-  model_proto
-  learner_decision_tree_training
-  learner_decision_tree_oblique
-  learner_decision_tree_utils
-  learner_decision_tree_generic_parameters
-  utils_testing_utils
-  absl::status
-  absl::statusor
-  absl::strings
-  protobuf::libprotoc
-  GTest::gtest_main
-  GTest::gmock_main
-)
-if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+if(blom_BUILD_TESTS)
+  file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+  add_executable(
+    learner_decision_tree_tests
+    ${test_SRC_FILES}
+  )
+  if(CMAKE_COMPILER_IS_GNUCXX)
+    target_compile_options(learner_decision_tree_tests PRIVATE -Wno-return-type -Wno-non-template-friend -Wno-attributes)
+  endif()
+  target_include_directories(
+    learner_decision_tree_tests
+    PRIVATE
+    ${absl_SOURCE_DIR}
+    ${googletest_SOURCE_DIR}
+    ${protobuf_SOURCE_DIR}/src
+    ${farmhash_SOURCE_DIR}/src
+    ${PROTOC_GENERATED_SOURCE_DIR}
+  )
+  target_link_libraries(
+    learner_decision_tree_tests
+    PRIVATE
+    dataset_proto
+    model_proto
+    learner_decision_tree_training
+    learner_decision_tree_oblique
+    learner_decision_tree_utils
+    learner_decision_tree_generic_parameters
+    utils_testing_utils
+    absl::status
+    absl::statusor
+    absl::strings
+    protobuf::libprotoc
+    GTest::gtest_main
+    GTest::gmock_main
+  )
   include(GoogleTest)
   gtest_discover_tests(learner_decision_tree_tests)
 endif()

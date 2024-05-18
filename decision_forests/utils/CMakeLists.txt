@@ -417,54 +417,51 @@ target_link_libraries(
 )
 add_library(utils_testing_utils ALIAS test)
 
-
 # Tests
-
-file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *_test.cc)
-add_executable(
-  utils_tests
-  ${test_SRC_FILES}
-)
-target_include_directories(
-  utils_tests
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${googletest_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
-  ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  utils_tests
-  PRIVATE
-  utils_proto
-  dataset_proto
-  learner_proto
-  dataset_data_spec_inference
-  dataset_formats_registration
-  utils_logging
-  utils_adaptive_work
-  utils_regex
-  utils_protobuf
-  utils_bytestream
-  utils_filesystem
-  utils_sharded_io
-  utils_registration
-  utils_concurrency
-  utils_html
-  utils_distribution
-  utils_plot
-  utils_fold_generator
-  utils_hyper_parameters
-  utils_bitmap
-  utils_blob_sequence
-  utils_testing_utils
-# third_party objects
-  absl::statusor
-  protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
-)
-if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+if(blom_BUILD_TESTS)
+  file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *_test.cc)
+  add_executable(
+    utils_tests
+    ${test_SRC_FILES}
+  )
+  target_include_directories(
+    utils_tests
+    PRIVATE
+    ${absl_SOURCE_DIR}
+    ${googletest_SOURCE_DIR}
+    ${protobuf_SOURCE_DIR}/src
+    ${farmhash_SOURCE_DIR}/src
+    ${PROTOC_GENERATED_SOURCE_DIR}
+  )
+  target_link_libraries(
+    utils_tests
+    PRIVATE
+    utils_proto
+    dataset_proto
+    learner_proto
+    dataset_data_spec_inference
+    dataset_formats_registration
+    utils_logging
+    utils_adaptive_work
+    utils_regex
+    utils_protobuf
+    utils_bytestream
+    utils_filesystem
+    utils_sharded_io
+    utils_registration
+    utils_concurrency
+    utils_html
+    utils_distribution
+    utils_plot
+    utils_fold_generator
+    utils_hyper_parameters
+    utils_bitmap
+    utils_blob_sequence
+    utils_testing_utils
+    absl::statusor
+    protobuf::libprotoc
+    GTest::gtest_main GTest::gmock_main
+  )
   include(GoogleTest)
   gtest_discover_tests(utils_tests)
 endif()

@@ -1,6 +1,9 @@
 include(CCMakeProtos.cmake)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+if(blom_BUILD_TESTS)
+  enable_testing()
+endif()
 add_subdirectory(utils)
 add_subdirectory(dataset)
 add_subdirectory(metric)

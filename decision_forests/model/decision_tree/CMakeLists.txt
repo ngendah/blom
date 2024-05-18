@@ -136,43 +136,41 @@ target_link_libraries(
 )
 add_library(model_decision_tree_structure_analysis ALIAS structure_analysis)
 
-
 # Tests
-
-file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_executable(
-  model_decision_tree_tests
-  ${test_SRC_FILES}
-)
-target_include_directories(
-  model_decision_tree_tests
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${googletest_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
-  ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  model_decision_tree_tests
-  PRIVATE
-  dataset_proto
-  model_decision_tree_proto
-  model_decision_tree_builder
-  model_decision_tree
-  dataset_data_spec
-  dataset_data_spec_inference
-  dataset_formats_registration
-  dataset_vertical_dataset
-  utils_filesystem
-  utils_logging
-  utils_testing_utils
-  protobuf::libprotoc
-  farmhash::farmhash
-  GTest::gtest_main
-  GTest::gmock_main
-)
-if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+if(blom_BUILD_TESTS)
+  file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+  add_executable(
+    model_decision_tree_tests
+    ${test_SRC_FILES}
+  )
+  target_include_directories(
+    model_decision_tree_tests
+    PRIVATE
+    ${absl_SOURCE_DIR}
+    ${googletest_SOURCE_DIR}
+    ${protobuf_SOURCE_DIR}/src
+    ${farmhash_SOURCE_DIR}/src
+    ${PROTOC_GENERATED_SOURCE_DIR}
+  )
+  target_link_libraries(
+    model_decision_tree_tests
+    PRIVATE
+    dataset_proto
+    model_decision_tree_proto
+    model_decision_tree_builder
+    model_decision_tree
+    dataset_data_spec
+    dataset_data_spec_inference
+    dataset_formats_registration
+    dataset_vertical_dataset
+    utils_filesystem
+    utils_logging
+    utils_testing_utils
+    protobuf::libprotoc
+    farmhash::farmhash
+    GTest::gtest_main
+    GTest::gmock_main
+  )
   include(GoogleTest)
   gtest_discover_tests(model_decision_tree_tests)
 endif()

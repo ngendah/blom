@@ -34,38 +34,38 @@ target_link_libraries(
 )
 add_library(learner_hyperparameters_optimizer ALIAS hyperparameters_optimizer)
 
-
 # Tests
-
-file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_executable(
-  learner_hyperparameters_optimizer_tests
-  ${test_SRC_FILES}
-)
-target_include_directories(
-  learner_hyperparameters_optimizer_tests
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${googletest_SOURCE_DIR}
-  ${protobuf_SOURCE_DIR}/src
-  ${farmhash_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  learner_hyperparameters_optimizer_tests
-  PRIVATE
-  model_proto
-  metric_metric
-  e2e_test_utils
-  learner_hyperparameters_optimizer
-  utils_filesystem
-  utils_logging
-  utils_testing_utils
-  protobuf::libprotoc
-  GTest::gtest_main
-  GTest::gmock_main
-)
-if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+include(CMakePrintHelpers)
+cmake_print_variables(blom_BUILD_TESTS)
+if(blom_BUILD_TESTS)
+  file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+  add_executable(
+    learner_hyperparameters_optimizer_tests
+    ${test_SRC_FILES}
+  )
+  target_include_directories(
+    learner_hyperparameters_optimizer_tests
+    PRIVATE
+    ${absl_SOURCE_DIR}
+    ${googletest_SOURCE_DIR}
+    ${protobuf_SOURCE_DIR}/src
+    ${farmhash_SOURCE_DIR}/src
+    ${PROTOC_GENERATED_SOURCE_DIR}
+  )
+  target_link_libraries(
+    learner_hyperparameters_optimizer_tests
+    PRIVATE
+    model_proto
+    metric_metric
+    e2e_test_utils
+    learner_hyperparameters_optimizer
+    utils_filesystem
+    utils_logging
+    utils_testing_utils
+    protobuf::libprotoc
+    GTest::gtest_main
+    GTest::gmock_main
+  )
   include(GoogleTest)
   gtest_discover_tests(learner_hyperparameters_optimizer_tests)
 endif()
