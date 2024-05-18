@@ -171,16 +171,8 @@ target_link_libraries(
   utils_distribution
   utils_filesystem
   utils_testing_utils
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-# third_party objects
->>>>>>> Stashed changes
-  GTest::gtest_main GTest::gmock_main
-=======
   GTest::gtest_main
   GTest::gmock_main
->>>>>>> Stashed changes
 )
 if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
   include(GoogleTest)

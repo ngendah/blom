@@ -68,26 +68,11 @@ target_link_libraries(
   PRIVATE
   dataset_proto
   learner_proto
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-# this objects
->>>>>>> Stashed changes
-  serving_example_set
-=======
->>>>>>> Stashed changes
   metric_ranking_utils
   metric_metric
   model_abstract_model
   model_metadata
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-  # third_party objects
-=======
   serving_example_set
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   protobuf::libprotoc
   GTest::gtest_main
   GTest::gmock_main
