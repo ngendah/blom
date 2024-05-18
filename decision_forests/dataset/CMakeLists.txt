@@ -314,16 +314,15 @@ target_link_libraries(
 add_library(dataset_formats_registration ALIAS formats_registration)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  dataset_tests_obj
-  OBJECT
+add_executable(
+  dataset_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  dataset_tests_obj
+  dataset_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -332,7 +331,7 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  dataset_tests_obj
+  dataset_tests
   PRIVATE
   utils_proto
   learner_proto
@@ -344,6 +343,11 @@ target_link_libraries(
   dataset_data_spec_inference
   utils_testing_utils
   protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
+  GTest::gtest_main
+  GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(dataset_tests)
+endif()
 

@@ -1,4 +1,3 @@
-include(dataset_tests.cmake)
 include(metric_tests.cmake)
 include(serving_tests.cmake)
 include(learner_tests.cmake)

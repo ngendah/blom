@@ -9,7 +9,6 @@ target_link_directories(
 target_link_libraries(
   blom_tests
   PRIVATE
-  dataset_tests_obj
   metric_tests_obj
   serving_tests_obj
   learner_tests_obj
