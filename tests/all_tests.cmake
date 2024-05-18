@@ -10,9 +10,6 @@ target_link_libraries(
   blom_tests
   PRIVATE
   serving_tests_obj
-  model_tests_obj
-  model_decision_tree_tests_obj
-  model_random_forest_tests_obj
   serving_decision_forest_tests_obj
 )
 if(NOT CMAKE_CROSSCOMPILING)

@@ -166,16 +166,15 @@ target_link_libraries(
 add_library(model_models_registration ALIAS models_registration)
 
 
-# Testing artifact
+# Tests
 
 file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  model_tests_obj
-  OBJECT
+add_executable(
+  model_tests
   ${test_SRC_FILES}
 )
 target_include_directories(
-  model_tests_obj
+  model_tests
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
@@ -184,14 +183,18 @@ target_include_directories(
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  model_tests_obj
+  model_tests
   PRIVATE
   model_model_library
   models_registration
   utils_testing_utils
-  # third_party objects
   protobuf::libprotoc
   farmhash::farmhash
-  GTest::gtest_main GTest::gmock_main
+  GTest::gtest_main
+  GTest::gmock_main
 )
+if(CMAKE_HOST_UNIX OR CMAKE_HOST_WIN32)
+  include(GoogleTest)
+  gtest_discover_tests(model_tests)
+endif()
 
