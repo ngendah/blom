@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.22)
 cmake_policy(VERSION 3.20)
 
 project(blom)
-
 set(CMAKE_CXX_STANDARD 17)
+
+option(blom_BUILD_TESTS "Build tests" ON)
+
 if(MSVC)
   add_compile_definitions(
     -DNDEBUG
@@ -47,6 +49,7 @@ if(NOT CMAKE_CROSSCOMPILING)
   )
 endif()
 if(CMAKE_CROSSCOMPILING)
+  set(blom_BUILD_TEST OFF)
   include(${PROJECT_BUILD_DIR}/ProtoBufConfig.cmake)
   set(
     PROTOC_COMPILER
@@ -57,6 +60,5 @@ if(CMAKE_CROSSCOMPILING)
   )
 endif()
 add_subdirectory(decision_forests)
-add_subdirectory(tests)
 add_subdirectory(example)
 

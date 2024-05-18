@@ -313,37 +313,39 @@ target_link_libraries(
 )
 add_library(dataset_formats_registration ALIAS formats_registration)
 
-
-# Testing artifact
-
-file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
-add_library(
-  dataset_tests_obj
-  OBJECT
-  ${test_SRC_FILES}
-)
-target_include_directories(
-  dataset_tests_obj
-  PRIVATE
-  ${absl_SOURCE_DIR}
-  ${googletest_SOURCE_DIR}
-  ${farmhash_SOURCE_DIR}/src
-  ${protobuf_SOURCE_DIR}/src
-  ${PROTOC_GENERATED_SOURCE_DIR}
-)
-target_link_libraries(
-  dataset_tests_obj
-  PRIVATE
-  utils_proto
-  learner_proto
-  dataset_data_spec
-  dataset_example_builder
-  dataset_formats
-  dataset_formats_registration
-  dataset_weight
-  dataset_data_spec_inference
-  utils_testing_utils
-  protobuf::libprotoc
-  GTest::gtest_main GTest::gmock_main
-)
+# Tests
+if(blom_BUILD_TESTS)
+  file(GLOB test_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *test.cc)
+  add_executable(
+    dataset_tests
+    ${test_SRC_FILES}
+  )
+  target_include_directories(
+    dataset_tests
+    PRIVATE
+    ${absl_SOURCE_DIR}
+    ${googletest_SOURCE_DIR}
+    ${farmhash_SOURCE_DIR}/src
+    ${protobuf_SOURCE_DIR}/src
+    ${PROTOC_GENERATED_SOURCE_DIR}
+  )
+  target_link_libraries(
+    dataset_tests
+    PRIVATE
+    utils_proto
+    learner_proto
+    dataset_data_spec
+    dataset_example_builder
+    dataset_formats
+    dataset_formats_registration
+    dataset_weight
+    dataset_data_spec_inference
+    utils_testing_utils
+    protobuf::libprotoc
+    GTest::gtest_main
+    GTest::gmock_main
+  )
+  include(GoogleTest)
+  gtest_discover_tests(dataset_tests)
+endif()
 
