@@ -32,10 +32,6 @@
       "architecture": {
         "value": "x64",
         "strategy": "external"
-      },
-      "toolset": {
-        "value": "x64",
-        "strategy": "external"
       }
     },
     {
@@ -75,10 +71,6 @@
       "architecture": {
         "value": "x64",
         "strategy": "external"
-      },
-      "toolset": {
-        "value": "x64",
-        "strategy": "external"
       }
     },
     {
@@ -86,10 +78,6 @@
       "hidden": true,
       "inherits": "windows",
       "architecture": {
-        "value": "x86",
-        "strategy": "external"
-      },
-      "toolset": {
         "value": "x86",
         "strategy": "external"
       }
@@ -176,7 +164,7 @@
     },
     {
       "name": "android.x64-debug",
-      "displayName": "Android x86_64 (x86_64) Debug builds",
+      "displayName": "Android x64 (64-bit) Debug builds",
       "inherits": "android.x64",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
@@ -184,7 +172,7 @@
     },
     {
       "name": "android.x64-release",
-      "displayName": "Android x86_64 (x86_64) Release builds",
+      "displayName": "Android x64 (64-bit) Release builds",
       "inherits": "android.x64",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
@@ -231,37 +219,49 @@
     },
     {
       "name": "linux.x64-debug",
-      "displayName": "Linux x86_64 Debug builds",
+      "displayName": "Linux x64 Debug builds",
       "configurePreset": "linux.x64-debug",
       "inherits": "base"
     },
     {
       "name": "linux.x64-release",
-      "displayName": "Linux x86_64 Release builds",
+      "displayName": "Linux x64 Release builds",
       "configurePreset": "linux.x64-release",
       "inherits": "base"
     },
     {
       "name": "windows.x64-debug",
-      "displayName": "Windows x86_64 Debug builds",
+      "displayName": "Windows x64 Debug builds",
       "configurePreset": "windows.x64-debug",
       "inherits": "base"
     },
     {
       "name": "windows.x64-release",
-      "displayName": "windows x86_64 Release builds",
+      "displayName": "windows x64 Release builds",
       "configurePreset": "windows.x64-release",
       "inherits": "base"
     },
     {
+      "name": "windows.x86-debug",
+      "displayName": "Windows x86 Debug builds",
+      "configurePreset": "windows.x86-debug",
+      "inherits": "base"
+    },
+    {
+      "name": "windows.x86-release",
+      "displayName": "windows x86 Release builds",
+      "configurePreset": "windows.x86-release",
+      "inherits": "base"
+    },
+    {
       "name": "android.x64-debug",
-      "displayName": "Android x86_64 Debug builds",
+      "displayName": "Android x64 Debug builds",
       "configurePreset": "android.x64-debug",
       "inherits": "base"
     },
     {
       "name": "android.x64-release",
-      "displayName": "Android x86_64 Release builds",
+      "displayName": "Android x64 Release builds",
       "configurePreset": "android.x64-release",
       "inherits": "base"
     },
