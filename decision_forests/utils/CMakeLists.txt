@@ -114,7 +114,7 @@ target_link_libraries(
   absl::random_internal_randen
   protobuf::libprotoc
 )
-if(NOT ANDROID_NDK)
+if(CMAKE_HOST_UNIX)
   target_link_libraries(
     filesystem
     PRIVATE
