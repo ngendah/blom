@@ -114,7 +114,7 @@ target_link_libraries(
   absl::random_internal_randen
   protobuf::libprotoc
 )
-if(CMAKE_HOST_UNIX)
+if(CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS_EQUAL 9.0)
   target_link_libraries(
     filesystem
     PRIVATE
