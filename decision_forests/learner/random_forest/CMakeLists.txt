@@ -78,7 +78,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest_main
     GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(learner_random_forest_tests)
   gtest_discover_tests(learner_random_forest_tests)
 endif()
 

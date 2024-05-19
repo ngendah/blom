@@ -126,7 +126,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest_main
     GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(learner_tests)
   gtest_discover_tests(learner_tests)
 endif()
 

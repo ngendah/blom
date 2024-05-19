@@ -141,7 +141,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest_main
     GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(serving_decision_forest_tests)
   gtest_discover_tests(serving_decision_forest_tests)
 endif()
 

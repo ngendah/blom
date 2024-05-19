@@ -345,7 +345,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest_main
     GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(dataset_tests)
   gtest_discover_tests(dataset_tests)
 endif()
 
