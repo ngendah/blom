@@ -81,7 +81,9 @@ I would recommend using Visual studio.
 
 2. Select folder where you have cloned the project.
 
-3. Wait for Visual studio to download project dependencies and build.
+3. Wait for Visual studio to setup the project dependencies.
+
+4. On project menu "build all"
 
 4. On folder view change, select "CMake target view" to select targets. Search for "example" executable and set as default.
 
@@ -103,15 +105,17 @@ For more information refer to [Visual Studio documentation on CMake](https://lea
 
         cmake --version
 
-   c. Configure the project;
+   c. Remove the "builds" directory, if it exists.
+
+   d. Configure the project;
 
         cmake --preset=windows.x64-debug -S .
 
-   d. Build example;
+   e. Build example;
 
         cmake --build --preset=windows.x64-debug --target example
 
-   e. Or build all;
+   f. Or build all;
 
         cmake --build --preset=windows.x64-debug
 
