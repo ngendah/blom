@@ -3,6 +3,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 if(blom_BUILD_TESTS)
   enable_testing()
+  include(GoogleTest)
+  include(CCMakeHelper.cmake)
 endif()
 add_subdirectory(utils)
 add_subdirectory(dataset)

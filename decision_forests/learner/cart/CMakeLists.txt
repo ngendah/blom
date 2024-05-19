@@ -69,7 +69,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest
     GTest::gmock
   )
-  include(GoogleTest)
+  blom_test_target(learner_cart_tests)
   gtest_discover_tests(learner_cart_tests)
 endif()
 

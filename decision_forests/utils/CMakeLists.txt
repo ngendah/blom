@@ -462,7 +462,7 @@ if(blom_BUILD_TESTS)
     protobuf::libprotoc
     GTest::gtest_main GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(utils_tests)
   gtest_discover_tests(utils_tests)
 endif()
 

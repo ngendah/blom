@@ -66,7 +66,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest_main
     GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(learner_hyperparameters_optimizer_tests)
   gtest_discover_tests(learner_hyperparameters_optimizer_tests)
 endif()
 

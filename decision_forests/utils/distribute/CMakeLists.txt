@@ -99,7 +99,7 @@ if(blom_BUILD_TESTS)
     GTest::gtest_main
     GTest::gmock_main
   )
-  include(GoogleTest)
+  blom_test_target(utils_distribute_tests)
   gtest_discover_tests(utils_distribute_tests)
 endif()
 
