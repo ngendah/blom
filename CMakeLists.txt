@@ -33,6 +33,7 @@ if(NOT PROJECT_BUILD_DIR)
   return()
 endif()
 
+
 add_subdirectory(third_party)
 if(NOT CMAKE_CROSSCOMPILING)
   export(
@@ -57,6 +58,19 @@ if(CMAKE_CROSSCOMPILING)
     CACHE
     FILEPATH
     ""
+  )
+endif()
+if(blom_BUILD_TESTS)
+  enable_testing()
+  add_custom_target(
+    test_data ALL
+    DEPENDS testing_data
+  )
+  add_custom_command(
+    OUTPUT testing_data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+      ${PROJECT_SOURCE_DIR}/testing_data
+      ${PROJECT_BINARY_DIR}/testing_data
   )
 endif()
 add_subdirectory(decision_forests)
