@@ -50,7 +50,7 @@ if(NOT CMAKE_CROSSCOMPILING)
   )
 endif()
 if(CMAKE_CROSSCOMPILING)
-  set(blom_BUILD_TEST OFF)
+  set(blom_BUILD_TESTS OFF)
   include(${PROJECT_BUILD_DIR}/ProtoBufConfig.cmake)
   set(
     PROTOC_COMPILER
