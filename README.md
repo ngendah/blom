@@ -46,7 +46,7 @@ If you opt to use docker, you can safely skip installing the prequisites and go 
 3. Run example executable;
 
 ```
-cd builds/linux.x86_64/example
+cd builds/linux.x64-debug/example
 ./example
 ```
 
@@ -94,9 +94,13 @@ For more information refer to [Visual Studio documentation on CMake](https://lea
 1. **Not all project dependencies were downloaded:**
 
    Go to project menu and "Delete cache and Reconfigure".
-   
-2. **If issues still persist:**
-   
+
+2. **Test discovery timeout:**
+
+    Go to test menu options and adjust the timeout for Google test discovery.
+
+3. **If issues still persist:**
+
    (re)configure and build the project manually by going to "view menu", opening a terminal and running the following commands.
 
    a. Check your terminal prompt has the project directory set as the default directory.
