@@ -395,19 +395,19 @@ target_link_libraries(
 add_library(utils_usage ALIAS usage)
 
 add_library(
-  test
+  test_util
   STATIC
   test.cc
 )
 target_include_directories(
-  test
+  test_util
   PRIVATE
   ${absl_SOURCE_DIR}
   ${googletest_SOURCE_DIR}
   ${PROTOC_GENERATED_SOURCE_DIR}
 )
 target_link_libraries(
-  test
+  test_util
   PRIVATE
   utils_filesystem
   utils_logging
@@ -415,7 +415,7 @@ target_link_libraries(
   protobuf::libprotoc
   GTest::gmock_main
 )
-add_library(utils_testing_utils ALIAS test)
+add_library(utils_testing_utils ALIAS test_util)
 
 # Tests
 if(blom_BUILD_TESTS)
