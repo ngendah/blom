@@ -395,6 +395,32 @@ target_link_libraries(
 add_library(utils_usage ALIAS usage)
 
 add_library(
+  evaluation
+  STATIC
+  evaluation.cc
+)
+target_include_directories(
+  evaluation
+  PRIVATE
+  ${absl_SOURCE_DIR}
+  ${protobuf_SOURCE_DIR}/src
+  ${farmhash_SOURCE_DIR}/src
+  ${PROTOC_GENERATED_SOURCE_DIR}
+)
+target_link_libraries(
+  evaluation
+  PRIVATE
+  dataset_proto
+  utils_proto
+  dataset_example_writer
+  dataset_formats
+  utils_distribution
+  protobuf::libprotoc
+  farmhash::farmhash
+)
+add_library(utils_evaluation ALIAS evaluation)
+
+add_library(
   test_util
   STATIC
   test.cc
@@ -457,6 +483,7 @@ if(blom_BUILD_TESTS)
     utils_hyper_parameters
     utils_bitmap
     utils_blob_sequence
+    utils_evaluation
     utils_testing_utils
     absl::statusor
     protobuf::libprotoc
