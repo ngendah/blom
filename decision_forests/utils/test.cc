@@ -22,11 +22,8 @@
 #include <vector>
 
 #include "gtest/gtest.h"
-
-#include "gtest/gtest.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
-#include "absl/strings/substitute.h"
 #include "filesystem.h"
 #include "logging.h"
 #include "testing_macros.h"
@@ -46,7 +43,7 @@ std::string TmpDirectory() {
       test->test_suite_name(), "-", test->test_case_name(), "-",
       test->name(), "-", utils::GenUniqueId());
   std::string path =
-      file::JoinPath(testing::TempDir(), "yggdrasil_unittest", test_name);
+      file::JoinPath(testing::TempDir(), "test", test_name);
   CHECK_OK(file::RecursivelyCreateDir(path, file::Defaults()));
   return path;
 }
