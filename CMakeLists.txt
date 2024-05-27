@@ -72,6 +72,11 @@ if(blom_BUILD_TESTS)
       ${PROJECT_SOURCE_DIR}/testing_data
       ${PROJECT_BINARY_DIR}/testing_data
   )
+  set_property(
+    TARGET test_data
+    APPEND
+    PROPERTY ADDITIONAL_CLEAN_FILES ${PROJECT_BINARY_DIR}/testing_data
+  )
 endif()
 add_subdirectory(decision_forests)
 add_subdirectory(example)
