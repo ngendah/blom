@@ -3,6 +3,7 @@ cmake_policy(VERSION 3.20)
 
 project(blom LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 option(blom_BUILD_TESTS "Build tests" ON)
 
@@ -19,9 +20,6 @@ if(MSVC)
     /wd4715
     /wd4805
   )
-endif()
-if(CMAKE_SYSTEM_UNIX)
-  add_compile_options(-fPIC)
 endif()
 if(NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES ${CMAKE_SYSTEM_NAME})
   set(
