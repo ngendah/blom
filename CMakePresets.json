@@ -10,10 +10,7 @@
       "name": "base",
       "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/builds/${presetName}",
-      "cacheVariables": {
-        "PROJECT_BUILD_DIR": "${sourceDir}/builds"
-      }
+      "binaryDir": "${sourceDir}/builds/${presetName}"
     },
     {
       "name": "linux",
@@ -61,8 +58,7 @@
       },
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl.exe",
-        "CMAKE_CXX_COMPILER": "cl.exe",
-        "TEST_DISCOVERY_TIMEOUT":  "20"
+        "CMAKE_CXX_COMPILER": "cl.exe"
       }
     },
     {
@@ -130,7 +126,7 @@
         "rhs": ""
       },
       "cacheVariables": {
-        "ANDROID_PLATFORM": "android-29",
+        "ANDROID_PLATFORM": "android-21",
         "CMAKE_SYSTEM_NAME": "Android",
         "CMAKE_TOOLCHAIN_FILE": "$env{CMAKE_ANDROID_NDK}/build/cmake/android.toolchain.cmake",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
