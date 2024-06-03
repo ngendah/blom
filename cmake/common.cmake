@@ -1,0 +1,12 @@
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+if(CMAKE_SYSTEM_NAME STREQUAL Linux)
+  set(LINUX 1)
+elseif(CMAKE_SYSTEM_NAME STREQUAL Windows)
+  set(WINDOWS 1)
+elseif(CMAKE_SYSTEM_NAME STREQUAL Android)
+  set(ANDROID 1)
+else()
+  message(FATAL_ERROR "Unsupported system ${CMAKE_SYSTEM_NAME}" )
+endif()
+
